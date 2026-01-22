@@ -1,93 +1,135 @@
+/**
+ * useAppState Hook
+ * 
+ * React hook that integrates the MVC controllers with React's state management.
+ * This hook bridges the imperative controller API with React's declarative model.
+ */
+
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
-import type { AppState, HistoryItem, PlaybackState } from '@/lib/types'
-import { getHistory, addHistoryItem, clearHistory } from '@/lib/storage'
+import { useState, useCallback, useEffect, useMemo } from 'react'
+import type { AppState, HistoryItem, PlaybackState } from '@/models'
+import { AppController } from '@/controllers'
 
 interface UseAppStateReturn {
+  // State
   appState: AppState
-  setAppState: (state: AppState) => void
   history: HistoryItem[]
+  selectedHistoryItem: HistoryItem | null
+  playback: PlaybackState
+
+  // State setters
+  setAppState: (state: AppState) => void
+
+  // History actions
   addToHistory: (text: string) => void
   clearAllHistory: () => void
-  selectedHistoryItem: HistoryItem | null
   selectHistoryItem: (item: HistoryItem) => void
-  playback: PlaybackState
+
+  // Playback actions
   setPlayback: (state: Partial<PlaybackState>) => void
+
+  // Translation actions
   submitTranslation: (text: string) => Promise<void>
 }
 
 export function useAppState(): UseAppStateReturn {
-  const [appState, setAppState] = useState<AppState>('HERO')
+  // Initialize controller once
+  const [controller] = useState(() => new AppController())
+
+  // Local state synced with controller
+  const [appState, setAppStateLocal] = useState<AppState>('HERO')
   const [history, setHistory] = useState<HistoryItem[]>([])
   const [selectedHistoryItem, setSelectedHistoryItem] = useState<HistoryItem | null>(null)
-  const [playback, setPlaybackState] = useState<PlaybackState>({
+  const [playback, setPlaybackLocal] = useState<PlaybackState>({
     isPlaying: false,
     speed: 1,
     currentTime: 0
   })
 
-  // Load history on mount
+  // Initialize controller and load data on mount
   useEffect(() => {
-    setHistory(getHistory())
+    const initialState = controller.initialize()
+    setHistory(initialState.history)
+    setAppStateLocal(initialState.appState)
+    setPlaybackLocal(initialState.playback)
+  }, [controller])
+
+  // Set app state via controller
+  const setAppState = useCallback((state: AppState) => {
+    controller.setAppState(state)
+    setAppStateLocal(state)
+  }, [controller])
+
+  // Add to history (internal use)
+  const addToHistory = useCallback((text: string) => {
+    // This is typically called through submitTranslation
   }, [])
 
-  const addToHistory = useCallback((text: string) => {
+  // Clear all history
+  const clearAllHistory = useCallback(() => {
+    controller.clearHistory()
+    setHistory([])
+    setSelectedHistoryItem(null)
+  }, [controller])
+
+  // Select a history item
+  const selectHistoryItem = useCallback((item: HistoryItem) => {
+    controller.selectHistoryItem(item)
+    setSelectedHistoryItem(item)
+    setAppStateLocal('READY')
+  }, [controller])
+
+  // Update playback state
+  const setPlayback = useCallback((partial: Partial<PlaybackState>) => {
+    controller.updatePlayback(partial)
+    setPlaybackLocal(prev => ({ ...prev, ...partial }))
+  }, [controller])
+
+  // Submit translation
+  const submitTranslation = useCallback(async (text: string) => {
+    if (!text.trim()) return
+
+    setAppStateLocal('PROCESSING')
+    
+    // Add to history locally for immediate feedback
     const newItem: HistoryItem = {
       id: crypto.randomUUID(),
       text,
       timestamp: new Date(),
     }
-    const updated = addHistoryItem(newItem)
-    setHistory(updated)
+    setHistory(prev => [newItem, ...prev].slice(0, 50))
     setSelectedHistoryItem(newItem)
-  }, [])
 
-  const clearAllHistory = useCallback(() => {
-    clearHistory()
-    setHistory([])
-    setSelectedHistoryItem(null)
-  }, [])
+    // Submit via controller
+    await controller.submitTranslation(text)
 
-  const selectHistoryItem = useCallback((item: HistoryItem) => {
-    setSelectedHistoryItem(item)
-    setAppState('READY')
-  }, [])
-
-  const setPlayback = useCallback((partial: Partial<PlaybackState>) => {
-    setPlaybackState(prev => ({ ...prev, ...partial }))
-  }, [])
-
-  const submitTranslation = useCallback(async (text: string) => {
-    if (!text.trim()) return
-
-    setAppState('PROCESSING')
-    addToHistory(text)
-
-    // Simulate processing delay
-    await new Promise(resolve => setTimeout(resolve, 2500))
-
-    // Check if online (simplified check)
-    if (!navigator.onLine) {
-      setAppState('OFFLINE')
-      return
-    }
-
-    // Simulate success (in real app, this would call API)
-    setAppState('READY')
-    setPlayback({ isPlaying: true })
-  }, [addToHistory, setPlayback])
+    // Sync state from controller
+    const state = controller.getState()
+    setAppStateLocal(state.appState)
+    setPlaybackLocal(state.playback)
+    setHistory(state.history)
+  }, [controller])
 
   return {
+    // State
     appState,
-    setAppState,
     history,
+    selectedHistoryItem,
+    playback,
+
+    // State setters
+    setAppState,
+
+    // History actions
     addToHistory,
     clearAllHistory,
-    selectedHistoryItem,
     selectHistoryItem,
-    playback,
+
+    // Playback actions
     setPlayback,
+
+    // Translation actions
     submitTranslation
   }
 }

@@ -31,18 +31,67 @@ DuoSign is a visual translation platform designed specifically for the Deaf comm
 -   **Animation/3D**: Spline, Framer Motion
 -   **Architecture**: MVC (Model-View-Controller)
 
-## 📂 Project Structure
+## 📂 Project Structure (MVC Architecture)
 
 ```
 src/
-├── app/           # View: Pages and Routing
-├── components/    # View: UI Components
-│   ├── ui/        # shadcn primitives (Button, Input, etc.)
-│   ├── layout/    # AppShell, Header, Footer
-│   └── app/       # Feature-specific components (Panels, Controls)
-├── hooks/         # Controller: State logic (useAppState)
-├── lib/           # Model: Types, Utilities, and Storage logic
-└── public/        # Assets and Static files
+├── app/              # Pages and Routing (Next.js App Router)
+│
+├── models/           # MODEL: Data structures and business logic
+│   ├── types.ts      # Type definitions (AppState, HistoryItem, etc.)
+│   ├── HistoryModel.ts    # History data management & localStorage
+│   ├── PlaybackModel.ts   # Animation playback state
+│   └── TranslationModel.ts # Translation request/response handling
+│
+├── views/            # VIEW: UI components and presentation
+│   ├── ui/           # Reusable UI primitives (Button, Input, Card)
+│   ├── layout/       # Layout components (AppShell, Header, Footer)
+│   └── app/          # Feature components (Panels, Controls, Player)
+│
+├── controllers/      # CONTROLLER: Application logic and orchestration
+│   ├── AppController.ts        # Main orchestrating controller
+│   ├── HistoryController.ts    # History CRUD operations
+│   ├── PlaybackController.ts   # Playback state management
+│   └── TranslationController.ts # Translation API handling
+│
+├── hooks/            # React hooks (bridge between controllers and views)
+│   └── useAppState.ts # Main state hook using controllers
+│
+├── lib/              # Utilities (deprecated - moved to models)
+│
+├── components/       # Legacy components (use views/ instead)
+│
+└── public/           # Assets and Static files
+```
+
+### Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         USER INTERACTION                         │
+└─────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     VIEWS (src/views/)                          │
+│  • UI Components  • Layout  • Feature Components                │
+│  • Presentation only, receive data via props                    │
+└─────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                  CONTROLLERS (src/controllers/)                  │
+│  • Handle user actions  • Update models  • Manage flow         │
+│  • AppController orchestrates HistoryController,               │
+│    PlaybackController, TranslationController                    │
+└─────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    MODELS (src/models/)                         │
+│  • Data structures  • Business logic  • Persistence            │
+│  • HistoryModel, PlaybackModel, TranslationModel               │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## 🚀 Getting Started

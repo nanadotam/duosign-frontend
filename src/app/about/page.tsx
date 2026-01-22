@@ -1,5 +1,5 @@
-import { AppShell } from '@/components/layout/AppShell'
-import { Button } from '@/components/ui/button'
+import { AppShell } from '@/views/layout/AppShell'
+import { Button } from '@/views/ui/button'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 

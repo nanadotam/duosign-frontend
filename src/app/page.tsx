@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { AppShell } from '@/components/layout/AppShell'
-import { TextInput } from '@/components/app/TextInput'
-import { Button } from '@/components/ui/button'
-import { Spotlight } from '@/components/ui/spotlight'
+import { AppShell } from '@/views/layout/AppShell'
+import { TextInput } from '@/views/app/TextInput'
+import { Button } from '@/views/ui/button'
+import { Spotlight } from '@/views/ui/spotlight'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Users, Eye, Zap } from 'lucide-react'
 

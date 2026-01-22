@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAppState } from '@/hooks/useAppState'
-import { TextInput } from '@/components/app/TextInput'
-import { LeftPanel } from '@/components/app/LeftPanel'
-import { RightPanel } from '@/components/app/RightPanel'
-import { Header } from '@/components/layout/Header'
-import { Spotlight } from '@/components/ui/spotlight'
-import type { PlaybackState } from '@/lib/types'
+import { TextInput } from '@/views/app/TextInput'
+import { LeftPanel } from '@/views/app/LeftPanel'
+import { RightPanel } from '@/views/app/RightPanel'
+import { Header } from '@/views/layout/Header'
+import { Spotlight } from '@/views/ui/spotlight'
+import type { PlaybackState } from '@/models'
 
 export default function AppPage() {
   const {

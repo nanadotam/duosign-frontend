@@ -1,4 +1,4 @@
-import { AppShell } from '@/components/layout/AppShell'
+import { AppShell } from '@/views/layout/AppShell'
 
 export default function AccessibilityPage() {
   return (
