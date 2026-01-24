@@ -1,0 +1,11 @@
+path,spoken_language,signed_language,start,end,words,glosses,priority
+ase/before.pose,en,ase,0,0,before,BEFORE,0
+ase/can.pose,en,ase,0,0,can,CAN,0
+ase/cheat.pose,en,ase,0,0,cheat,CHEAT,0
+ase/how.pose,en,ase,0,0,how,HOW,0
+ase/no.pose,en,ase,0,0,no,NO,0
+ase/purple.pose,en,ase,0,0,purple,PURPLE,0
+ase/table.pose,en,ase,0,0,table,TABLE,0
+ase/thin.pose,en,ase,0,0,thin,THIN,0
+ase/woman.pose,en,ase,0,0,woman,WOMAN,0
+ase/yes.pose,en,ase,0,0,yes,YES,0

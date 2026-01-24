@@ -1,29 +1,44 @@
 'use client'
 
-import { SplineScene } from '@/components/ui/splite'
+import { SkeletonRenderer, type PoseData } from '@/components/app/SkeletonRenderer'
 import { motion } from 'framer-motion'
 
 interface OutputPlayerProps {
   isReady: boolean
   isPlaying?: boolean
+  speed?: number
+  poseData?: PoseData | null
+  currentFrame?: number
+  onFrameChange?: (frame: number) => void
 }
 
-export function OutputPlayer({ isReady, isPlaying }: OutputPlayerProps) {
+export function OutputPlayer({ 
+  isReady, 
+  isPlaying = false,
+  speed = 1,
+  poseData = null,
+  currentFrame,
+  onFrameChange
+}: OutputPlayerProps) {
   return (
     <div className="relative w-full aspect-square max-h-[400px] rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30" />
       
-      {/* 3D Avatar Scene */}
-      {isReady ? (
+      {/* Skeleton Renderer */}
+      {isReady && poseData ? (
         <motion.div 
           className="absolute inset-0"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <SplineScene 
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+          <SkeletonRenderer 
+            poseData={poseData}
+            isPlaying={isPlaying}
+            speed={speed}
+            currentFrame={currentFrame}
+            onFrameChange={onFrameChange}
             className="w-full h-full"
           />
         </motion.div>
@@ -53,15 +68,29 @@ export function OutputPlayer({ isReady, isPlaying }: OutputPlayerProps) {
               <path d="M20 70 Q20 55 50 55 Q80 55 80 70 L80 140 Q80 150 70 150 L30 150 Q20 150 20 140 Z" />
             </svg>
           </div>
+          <div className="absolute bottom-8 text-center">
+            <p className="text-sm text-neutral-400">Select a sign to view</p>
+          </div>
         </div>
       )}
 
       {/* Playing indicator */}
-      {isPlaying && (
+      {isPlaying && poseData && (
         <div className="absolute top-4 right-4">
           <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-xs font-medium text-neutral-600">Playing</span>
+          </div>
+        </div>
+      )}
+
+      {/* Gloss name indicator */}
+      {poseData && (
+        <div className="absolute top-4 left-4">
+          <div className="bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+            <span className="text-xs font-mono text-white uppercase">
+              {poseData.source_video?.split('/').pop()?.replace('.pose', '').replace('.json', '') || 'Unknown'}
+            </span>
           </div>
         </div>
       )}

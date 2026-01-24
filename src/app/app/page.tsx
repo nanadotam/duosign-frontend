@@ -9,6 +9,8 @@ import { RightPanel } from '@/views/app/RightPanel'
 import { Header } from '@/views/layout/Header'
 import { Spotlight } from '@/views/ui/spotlight'
 import type { PlaybackState } from '@/models'
+import type { GlossEntry } from '@/components/app/GlossPicker'
+import type { PoseData } from '@/components/app/SkeletonRenderer'
 
 export default function AppPage() {
   const {
@@ -24,6 +26,12 @@ export default function AppPage() {
   } = useAppState()
 
   const [initialText, setInitialText] = useState<string | null>(null)
+  
+  // Gloss and pose state
+  const [selectedGloss, setSelectedGloss] = useState<string | null>(null)
+  const [poseData, setPoseData] = useState<PoseData | null>(null)
+  const [loadingPose, setLoadingPose] = useState(false)
+  const [currentFrame, setCurrentFrame] = useState(0)
 
   // Check for initial text from landing page
   useEffect(() => {
@@ -42,11 +50,41 @@ export default function AppPage() {
     }
   }, [initialText, appState, submitTranslation])
 
+  // Handle gloss selection - load pose data
+  const handleSelectGloss = useCallback(async (entry: GlossEntry) => {
+    setSelectedGloss(entry.glosses)
+    setLoadingPose(true)
+    setPlayback({ isPlaying: false })
+    setCurrentFrame(0)
+    
+    try {
+      // Load the JSON version of the pose file
+      const gloss = entry.words.toLowerCase()
+      const response = await fetch(`/lexicon/ase/${gloss}.json`)
+      
+      if (!response.ok) {
+        throw new Error(`Failed to load pose: ${response.status}`)
+      }
+      
+      const data: PoseData = await response.json()
+      setPoseData(data)
+      setAppState('READY')
+      setPlayback({ isPlaying: true })
+      
+    } catch (error) {
+      console.error('Error loading pose:', error)
+      setAppState('ERROR')
+    } finally {
+      setLoadingPose(false)
+    }
+  }, [setAppState, setPlayback])
+
   const handlePlayPause = useCallback(() => {
     setPlayback({ isPlaying: !playback.isPlaying })
   }, [playback.isPlaying, setPlayback])
 
   const handleRestart = useCallback(() => {
+    setCurrentFrame(0)
     setPlayback({ currentTime: 0, isPlaying: true })
   }, [setPlayback])
 
@@ -62,6 +100,10 @@ export default function AppPage() {
       submitTranslation(selectedHistoryItem.text)
     }
   }, [selectedHistoryItem, submitTranslation])
+
+  const handleFrameChange = useCallback((frame: number) => {
+    setCurrentFrame(frame)
+  }, [])
 
   const isHeroState = appState === 'HERO'
   const showTwoPanelLayout = !isHeroState
@@ -130,7 +172,7 @@ export default function AppPage() {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
-                  className="h-full min-h-[400px] md:min-h-0"
+                  className="h-full min-h-[400px] md:min-h-0 overflow-hidden"
                 >
                   <LeftPanel
                     onSubmit={submitTranslation}
@@ -138,6 +180,8 @@ export default function AppPage() {
                     selectedItem={selectedHistoryItem}
                     onSelectItem={selectHistoryItem}
                     onClearHistory={clearAllHistory}
+                    onSelectGloss={handleSelectGloss}
+                    selectedGloss={selectedGloss}
                   />
                 </motion.div>
 
@@ -149,12 +193,15 @@ export default function AppPage() {
                   className="h-full min-h-[500px] md:min-h-0"
                 >
                   <RightPanel
-                    appState={appState}
+                    appState={loadingPose ? 'PROCESSING' : appState}
                     playback={playback}
                     onPlayPause={handlePlayPause}
                     onRestart={handleRestart}
                     onSpeedChange={handleSpeedChange}
                     onRetry={handleRetry}
+                    poseData={poseData}
+                    currentFrame={currentFrame}
+                    onFrameChange={handleFrameChange}
                   />
                 </motion.div>
               </div>
@@ -165,3 +212,4 @@ export default function AppPage() {
     </div>
   )
 }
+
