@@ -1,0 +1,227 @@
+{
+  "selected_classes": [
+    {
+      "id": 81,
+      "name": "cheat"
+    },
+    {
+      "id": 14,
+      "name": "thin"
+    },
+    {
+      "id": 3,
+      "name": "before"
+    },
+    {
+      "id": 94,
+      "name": "purple"
+    },
+    {
+      "id": 35,
+      "name": "can"
+    },
+    {
+      "id": 31,
+      "name": "woman"
+    },
+    {
+      "id": 28,
+      "name": "table"
+    },
+    {
+      "id": 17,
+      "name": "yes"
+    },
+    {
+      "id": 13,
+      "name": "no"
+    },
+    {
+      "id": 86,
+      "name": "how"
+    }
+  ],
+  "videos": [
+    {
+      "video_id": "69370",
+      "class_id": 86,
+      "class_name": "how",
+      "subset": "test"
+    },
+    {
+      "video_id": "64292",
+      "class_id": 17,
+      "class_name": "yes",
+      "subset": "train"
+    },
+    {
+      "video_id": "64293",
+      "class_id": 17,
+      "class_name": "yes",
+      "subset": "test"
+    },
+    {
+      "video_id": "64291",
+      "class_id": 17,
+      "class_name": "yes",
+      "subset": "train"
+    },
+    {
+      "video_id": "45443",
+      "class_id": 94,
+      "class_name": "purple",
+      "subset": "train"
+    },
+    {
+      "video_id": "05734",
+      "class_id": 3,
+      "class_name": "before",
+      "subset": "train"
+    },
+    {
+      "video_id": "05730",
+      "class_id": 3,
+      "class_name": "before",
+      "subset": "train"
+    },
+    {
+      "video_id": "05731",
+      "class_id": 3,
+      "class_name": "before",
+      "subset": "train"
+    },
+    {
+      "video_id": "28214",
+      "class_id": 86,
+      "class_name": "how",
+      "subset": "train"
+    },
+    {
+      "video_id": "28210",
+      "class_id": 86,
+      "class_name": "how",
+      "subset": "train"
+    },
+    {
+      "video_id": "69411",
+      "class_id": 13,
+      "class_name": "no",
+      "subset": "val"
+    },
+    {
+      "video_id": "10158",
+      "class_id": 81,
+      "class_name": "cheat",
+      "subset": "train"
+    },
+    {
+      "video_id": "66799",
+      "class_id": 31,
+      "class_name": "woman",
+      "subset": "train"
+    },
+    {
+      "video_id": "66798",
+      "class_id": 31,
+      "class_name": "woman",
+      "subset": "train"
+    },
+    {
+      "video_id": "10166",
+      "class_id": 81,
+      "class_name": "cheat",
+      "subset": "train"
+    },
+    {
+      "video_id": "10147",
+      "class_id": 81,
+      "class_name": "cheat",
+      "subset": "train"
+    },
+    {
+      "video_id": "63679",
+      "class_id": 31,
+      "class_name": "woman",
+      "subset": "train"
+    },
+    {
+      "video_id": "57935",
+      "class_id": 14,
+      "class_name": "thin",
+      "subset": "train"
+    },
+    {
+      "video_id": "57934",
+      "class_id": 14,
+      "class_name": "thin",
+      "subset": "train"
+    },
+    {
+      "video_id": "57937",
+      "class_id": 14,
+      "class_name": "thin",
+      "subset": "train"
+    },
+    {
+      "video_id": "08935",
+      "class_id": 35,
+      "class_name": "can",
+      "subset": "train"
+    },
+    {
+      "video_id": "08937",
+      "class_id": 35,
+      "class_name": "can",
+      "subset": "train"
+    },
+    {
+      "video_id": "08936",
+      "class_id": 35,
+      "class_name": "can",
+      "subset": "train"
+    },
+    {
+      "video_id": "38544",
+      "class_id": 13,
+      "class_name": "no",
+      "subset": "train"
+    },
+    {
+      "video_id": "66183",
+      "class_id": 13,
+      "class_name": "no",
+      "subset": "train"
+    },
+    {
+      "video_id": "45438",
+      "class_id": 94,
+      "class_name": "purple",
+      "subset": "val"
+    },
+    {
+      "video_id": "45436",
+      "class_id": 94,
+      "class_name": "purple",
+      "subset": "train"
+    },
+    {
+      "video_id": "56556",
+      "class_id": 28,
+      "class_name": "table",
+      "subset": "train"
+    },
+    {
+      "video_id": "56557",
+      "class_id": 28,
+      "class_name": "table",
+      "subset": "train"
+    },
+    {
+      "video_id": "56563",
+      "class_id": 28,
+      "class_name": "table",
+      "subset": "train"
+    }
+  ],
+  "total_videos": 30
+}

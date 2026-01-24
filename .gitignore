@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# duosign_algo/pose_extraction/wlasl-processed
+duosign_algo/pose_extraction/wlasl-processed/videos

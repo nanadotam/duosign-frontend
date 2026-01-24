@@ -1,0 +1,13 @@
+{
+  "input_dir": "./wlasl-processed/test_subset/videos",
+  "output_dir": "./wlasl-processed/test_subset/poses",
+  "num_workers": 1,
+  "model_complexity": 1,
+  "min_detection_confidence": 0.5,
+  "min_tracking_confidence": 0.5,
+  "skip_existing": true,
+  "log_level": "INFO",
+  "recursive": false,
+  "run_timestamp": "2026-01-24T08:37:18.577263",
+  "python_version": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]"
+}
