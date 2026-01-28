@@ -1,6 +1,7 @@
 'use client'
 
-import { SkeletonRenderer, type PoseData } from '@/components/app/SkeletonRenderer'
+import { AvatarRenderer } from '@/components/app/AvatarRenderer'
+import type { PoseData } from '@/components/app/SkeletonRenderer'
 import { motion } from 'framer-motion'
 
 interface OutputPlayerProps {
@@ -21,11 +22,8 @@ export function OutputPlayer({
   onFrameChange
 }: OutputPlayerProps) {
   return (
-    <div className="relative w-full aspect-square max-h-[400px] rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30" />
-      
-      {/* Skeleton Renderer */}
+    <div className="relative w-full aspect-square max-h-[400px] rounded-2xl overflow-hidden bg-slate-900">
+      {/* VRM Avatar Renderer */}
       {isReady && poseData ? (
         <motion.div 
           className="absolute inset-0"
@@ -33,7 +31,7 @@ export function OutputPlayer({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <SkeletonRenderer 
+          <AvatarRenderer 
             poseData={poseData}
             isPlaying={isPlaying}
             speed={speed}

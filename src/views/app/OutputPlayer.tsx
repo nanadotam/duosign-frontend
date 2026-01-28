@@ -1,7 +1,18 @@
 'use client'
 
+/**
+ * Output Player View
+ *
+ * Displays animated sign language output using either a 3D avatar or 2D skeleton.
+ * Supports switching between rendering modes and handles playback state.
+ */
+
+import { useState } from 'react'
 import { SkeletonRenderer, type PoseData } from '@/components/app/SkeletonRenderer'
+import { AvatarRenderer } from '@/components/app/AvatarRenderer'
 import { motion } from 'framer-motion'
+import { User, Activity } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface OutputPlayerProps {
   isReady: boolean
@@ -12,31 +23,49 @@ interface OutputPlayerProps {
   onFrameChange?: (frame: number) => void
 }
 
-export function OutputPlayer({ 
-  isReady, 
+/**
+ * Render mode: Avatar (3D VRM) or Skeleton (2D canvas)
+ */
+type RenderMode = 'avatar' | 'skeleton'
+
+export function OutputPlayer({
+  isReady,
   isPlaying = false,
   speed = 1,
   poseData = null,
   currentFrame,
   onFrameChange
 }: OutputPlayerProps) {
+  // State for toggling between avatar and skeleton
+  const [renderMode, setRenderMode] = useState<RenderMode>('avatar')
+
   return (
     <div className="relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden bg-slate-900">
-      {/* Skeleton Renderer */}
+      {/* Renderer - Avatar or Skeleton */}
       {isReady && poseData ? (
-        <motion.div 
+        <motion.div
           className="absolute inset-0"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <SkeletonRenderer 
-            poseData={poseData}
-            isPlaying={isPlaying}
-            speed={speed}
-            currentFrame={currentFrame}
-            onFrameChange={onFrameChange}
-          />
+          {renderMode === 'avatar' ? (
+            <AvatarRenderer
+              poseData={poseData}
+              isPlaying={isPlaying}
+              speed={speed}
+              currentFrame={currentFrame}
+              onFrameChange={onFrameChange}
+            />
+          ) : (
+            <SkeletonRenderer
+              poseData={poseData}
+              isPlaying={isPlaying}
+              speed={speed}
+              currentFrame={currentFrame}
+              onFrameChange={onFrameChange}
+            />
+          )}
         </motion.div>
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
@@ -69,6 +98,42 @@ export function OutputPlayer({
         </div>
       )}
 
+      {/* Render Mode Toggle */}
+      {poseData && (
+        <div className="absolute top-4 left-4 z-20">
+          <div className="flex items-center gap-2 bg-black/70 backdrop-blur-sm rounded-lg p-1">
+            <Button
+              variant={renderMode === 'avatar' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setRenderMode('avatar')}
+              className={`h-8 px-3 transition-all ${
+                renderMode === 'avatar'
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700'
+              }`}
+              title="3D Avatar View"
+            >
+              <User className="h-4 w-4 mr-1.5" />
+              <span className="text-xs font-medium">Avatar</span>
+            </Button>
+            <Button
+              variant={renderMode === 'skeleton' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setRenderMode('skeleton')}
+              className={`h-8 px-3 transition-all ${
+                renderMode === 'skeleton'
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700'
+              }`}
+              title="2D Skeleton View"
+            >
+              <Activity className="h-4 w-4 mr-1.5" />
+              <span className="text-xs font-medium">Skeleton</span>
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Playing indicator */}
       {isPlaying && poseData && (
         <div className="absolute top-4 right-4 z-10">
@@ -81,7 +146,7 @@ export function OutputPlayer({
 
       {/* Gloss name indicator */}
       {poseData && (
-        <div className="absolute top-4 left-4 z-10">
+        <div className="absolute bottom-4 left-4 z-10">
           <div className="bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
             <span className="text-xs font-mono text-white uppercase">
               {poseData.source_video?.split('/').pop()?.replace('.pose', '').replace('.json', '') || 'Unknown'}

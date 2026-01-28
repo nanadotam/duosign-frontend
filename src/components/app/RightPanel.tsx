@@ -4,6 +4,7 @@ import { OutputPlayer } from './OutputPlayer'
 import { PlaybackControls } from './PlaybackControls'
 import { StatusText } from './StatusText'
 import type { AppState, PlaybackState } from '@/lib/types'
+import type { PoseData } from '@/components/app/SkeletonRenderer'
 import { AlertCircle, WifiOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -15,6 +16,9 @@ interface RightPanelProps {
   onRestart: () => void
   onSpeedChange: () => void
   onRetry?: () => void
+  poseData?: PoseData | null
+  currentFrame?: number
+  onFrameChange?: (frame: number) => void
 }
 
 export function RightPanel({ 
@@ -23,7 +27,10 @@ export function RightPanel({
   onPlayPause, 
   onRestart, 
   onSpeedChange,
-  onRetry
+  onRetry,
+  poseData,
+  currentFrame,
+  onFrameChange
 }: RightPanelProps) {
   const isProcessing = appState === 'PROCESSING'
   const isReady = appState === 'READY'
@@ -83,7 +90,14 @@ export function RightPanel({
               exit={{ opacity: 0 }}
               className="w-full"
             >
-              <OutputPlayer isReady={isReady} isPlaying={playback.isPlaying} />
+              <OutputPlayer 
+                isReady={isReady} 
+                isPlaying={playback.isPlaying}
+                speed={playback.speed}
+                poseData={poseData}
+                currentFrame={currentFrame}
+                onFrameChange={onFrameChange}
+              />
             </motion.div>
           )}
         </AnimatePresence>
