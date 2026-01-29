@@ -5,6 +5,8 @@ Based on the work of Moryossef et al. (2023) for their
 work on https://sign.mt 
 """
 
+#depracated
+
 import cv2
 import mediapipe as mp
 import numpy as np

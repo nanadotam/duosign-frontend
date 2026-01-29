@@ -13,7 +13,7 @@ import * as THREE from 'three';
 import { VRM, VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as Kalidokit from 'kalidokit';
-import { convertToKalidokitFormat } from '@/utils/poseToKalidokit';
+import { convertToKalidokitFormat, POSE_LANDMARK_INDICES } from '@/utils/poseToKalidokit';
 import type { PoseData } from '@/components/app/SkeletonRenderer';
 import { motion } from 'framer-motion';
 
@@ -53,10 +53,6 @@ interface SceneRef {
  */
 const ROTATION_SMOOTHING = 0.7;
 
-/**
- * Minimum visibility threshold for applying pose data
- */
-const MIN_VISIBILITY_THRESHOLD = 0.5;
 
 /**
  * AvatarRenderer Component
@@ -396,7 +392,10 @@ async function loadAvatar(
 }
 
 /**
- * Apply pose data to VRM avatar using Kalidokit
+ * Apply pose data to VRM avatar using custom geometric rigging
+ *
+ * This uses a custom solution designed for DuoSign's 13-point upper body format
+ * instead of Kalidokit (which expects 33-point MediaPipe format).
  *
  * @param vrm - VRM avatar to animate
  * @param poseData - Full pose data structure
@@ -415,77 +414,166 @@ function applyPoseToAvatar(
     confidence: poseData.confidence[frameIndex]
   };
 
-  // Convert to Kalidokit format (includes 2D, 3D, and validation flags)
+  // Convert to format with validation flags
   const kalidokitData = convertToKalidokitFormat(frameData);
 
-  // Debug: Log first few frames to trace data flow
-  if (frameIndex < 3) {
-    console.log(`🔍 Frame ${frameIndex}:`, {
-      hasValidPose: kalidokitData.hasValidPose,
-      hasValidLeftHand: kalidokitData.hasValidLeftHand,
-      hasValidRightHand: kalidokitData.hasValidRightHand,
-      poseLandmarksCount: kalidokitData.poseLandmarks.length,
-      sampleLandmark: kalidokitData.poseLandmarks[0]
-    });
-  }
-
-  // Check if we have valid pose data using the validation flag
+  // Check if we have valid pose data
   if (!kalidokitData.hasValidPose) {
-    // Debug: log when pose data is invalid
     if (frameIndex === 0) {
-      console.warn('Frame 0 has insufficient pose landmarks for rigging', {
-        poseLandmarks: kalidokitData.poseLandmarks.slice(0, 5)
-      });
+      console.warn('Frame 0 has insufficient pose landmarks');
     }
-    return; // Skip frame if insufficient landmarks
+    return;
   }
 
   try {
-    // Solve for bone rotations using Kalidokit
-    // IMPORTANT: First param is 3D world landmarks, second is 2D normalized
-    const riggedPose = Kalidokit.Pose.solve(
-      kalidokitData.poseLandmarks3D,  // 3D world landmarks
-      kalidokitData.poseLandmarks     // 2D normalized landmarks
-    );
+    // Use custom geometric rigging for arms (designed for 13-point upper body data)
+    rigArmsFromLandmarks(vrm, kalidokitData.poseLandmarks);
 
-    // Only solve hands if we have valid hand data
-    let riggedLeftHand = null;
-    let riggedRightHand = null;
-
+    // Use Kalidokit for hands (21-point hand data is standard)
     if (kalidokitData.hasValidLeftHand) {
-      riggedLeftHand = Kalidokit.Hand.solve(kalidokitData.leftHandLandmarks, 'Left');
+      const riggedLeftHand = Kalidokit.Hand.solve(kalidokitData.leftHandLandmarks, 'Left');
+      if (riggedLeftHand) {
+        rigHand(vrm, riggedLeftHand, 'Left');
+      }
     }
 
     if (kalidokitData.hasValidRightHand) {
-      riggedRightHand = Kalidokit.Hand.solve(kalidokitData.rightHandLandmarks, 'Right');
+      const riggedRightHand = Kalidokit.Hand.solve(kalidokitData.rightHandLandmarks, 'Right');
+      if (riggedRightHand) {
+        rigHand(vrm, riggedRightHand, 'Right');
+      }
     }
 
-    // Apply rotations to VRM bones
-    if (riggedPose) {
-      rigPose(vrm, riggedPose);
-    }
-
-    if (riggedLeftHand) {
-      rigHand(vrm, riggedLeftHand, 'Left');
-    }
-
-    if (riggedRightHand) {
-      rigHand(vrm, riggedRightHand, 'Right');
-    }
-
-    // Debug: Log first frame success
+    // Debug: Log first frame
     if (frameIndex === 0) {
-      console.log('✅ Frame 0 rigged successfully', {
-        poseValid: !!riggedPose,
-        leftHandValid: !!riggedLeftHand,
-        rightHandValid: !!riggedRightHand
+      const { LEFT_SHOULDER, RIGHT_SHOULDER, LEFT_ELBOW, RIGHT_ELBOW, LEFT_WRIST, RIGHT_WRIST } = POSE_LANDMARK_INDICES;
+      console.log('✅ Frame 0 rigged with custom solution', {
+        leftShoulder: kalidokitData.poseLandmarks[LEFT_SHOULDER],
+        rightShoulder: kalidokitData.poseLandmarks[RIGHT_SHOULDER],
+        leftElbow: kalidokitData.poseLandmarks[LEFT_ELBOW],
+        rightElbow: kalidokitData.poseLandmarks[RIGHT_ELBOW],
+        leftWrist: kalidokitData.poseLandmarks[LEFT_WRIST],
+        rightWrist: kalidokitData.poseLandmarks[RIGHT_WRIST],
       });
     }
   } catch (err) {
-    // Log errors for first frame, silently handle others
     if (frameIndex === 0) {
       console.error('Could not rig frame 0:', err);
     }
+  }
+}
+
+/**
+ * Calculate arm rotations from 13-point upper body landmarks
+ *
+ * Uses geometric calculations to determine arm bone rotations:
+ * - Upper arm: shoulder → elbow direction
+ * - Lower arm: elbow → wrist direction
+ *
+ * @param vrm - VRM avatar
+ * @param poseLandmarks - 13 upper body landmarks
+ */
+function rigArmsFromLandmarks(
+  vrm: VRM,
+  poseLandmarks: { x: number; y: number; z: number; visibility?: number }[]
+): void {
+  const { humanoid } = vrm;
+  const { LEFT_SHOULDER, RIGHT_SHOULDER, LEFT_ELBOW, RIGHT_ELBOW, LEFT_WRIST, RIGHT_WRIST } = POSE_LANDMARK_INDICES;
+
+  // Get landmark positions
+  const leftShoulder = poseLandmarks[LEFT_SHOULDER];
+  const rightShoulder = poseLandmarks[RIGHT_SHOULDER];
+  const leftElbow = poseLandmarks[LEFT_ELBOW];
+  const rightElbow = poseLandmarks[RIGHT_ELBOW];
+  const leftWrist = poseLandmarks[LEFT_WRIST];
+  const rightWrist = poseLandmarks[RIGHT_WRIST];
+
+  // Helper to create Vector3 from landmark
+  // Convert from normalized screen coords to 3D space
+  // MediaPipe: x=0-1 (left-right), y=0-1 (top-bottom), z=depth
+  // VRM: x=left-right, y=up-down (inverted), z=forward-back
+  const toVec3 = (lm: { x: number; y: number; z: number }) => {
+    return new THREE.Vector3(
+      (lm.x - 0.5) * 2,      // Center and scale x: -1 to 1
+      -(lm.y - 0.5) * 2,     // Center, invert, and scale y: -1 to 1
+      -lm.z                   // Invert z for VRM coordinate system
+    );
+  };
+
+  // Calculate arm rotations
+  // LEFT ARM
+  if (leftShoulder && leftElbow && leftWrist) {
+    const shoulderPos = toVec3(leftShoulder);
+    const elbowPos = toVec3(leftElbow);
+    const wristPos = toVec3(leftWrist);
+
+    // Upper arm: shoulder to elbow direction
+    const upperArmDir = new THREE.Vector3().subVectors(elbowPos, shoulderPos).normalize();
+    const upperArmRotation = calculateArmRotation(upperArmDir, 'left');
+    applyBoneRotation(humanoid, 'leftUpperArm', upperArmRotation);
+
+    // Lower arm: elbow to wrist direction
+    const lowerArmDir = new THREE.Vector3().subVectors(wristPos, elbowPos).normalize();
+    const lowerArmRotation = calculateArmRotation(lowerArmDir, 'left');
+    applyBoneRotation(humanoid, 'leftLowerArm', lowerArmRotation);
+  }
+
+  // RIGHT ARM
+  if (rightShoulder && rightElbow && rightWrist) {
+    const shoulderPos = toVec3(rightShoulder);
+    const elbowPos = toVec3(rightElbow);
+    const wristPos = toVec3(rightWrist);
+
+    // Upper arm: shoulder to elbow direction
+    const upperArmDir = new THREE.Vector3().subVectors(elbowPos, shoulderPos).normalize();
+    const upperArmRotation = calculateArmRotation(upperArmDir, 'right');
+    applyBoneRotation(humanoid, 'rightUpperArm', upperArmRotation);
+
+    // Lower arm: elbow to wrist direction
+    const lowerArmDir = new THREE.Vector3().subVectors(wristPos, elbowPos).normalize();
+    const lowerArmRotation = calculateArmRotation(lowerArmDir, 'right');
+    applyBoneRotation(humanoid, 'rightLowerArm', lowerArmRotation);
+  }
+}
+
+/**
+ * Calculate rotation quaternion for an arm bone from direction vector
+ *
+ * @param direction - Normalized direction vector of the arm segment
+ * @param side - 'left' or 'right'
+ * @returns Quaternion rotation for the bone
+ */
+function calculateArmRotation(
+  direction: THREE.Vector3,
+  side: 'left' | 'right'
+): THREE.Quaternion {
+  // VRM T-pose has arms pointing outward along X-axis
+  // Left arm: negative X direction (-1, 0, 0)
+  // Right arm: positive X direction (1, 0, 0)
+  const restDirection = new THREE.Vector3(side === 'left' ? -1 : 1, 0, 0);
+
+  // Calculate rotation from rest pose to target direction
+  const quaternion = new THREE.Quaternion();
+  quaternion.setFromUnitVectors(restDirection, direction);
+
+  return quaternion;
+}
+
+/**
+ * Apply a quaternion rotation to a VRM bone with smoothing
+ *
+ * @param humanoid - VRM humanoid reference
+ * @param boneName - Name of the bone to rotate
+ * @param targetRotation - Target quaternion rotation
+ */
+function applyBoneRotation(
+  humanoid: any,
+  boneName: string,
+  targetRotation: THREE.Quaternion
+): void {
+  const bone = humanoid.getNormalizedBoneNode(boneName);
+  if (bone) {
+    bone.quaternion.slerp(targetRotation, ROTATION_SMOOTHING);
   }
 }
 
@@ -500,63 +588,6 @@ function applyPoseToAvatar(
 function eulerToQuaternion(euler: { x: number; y: number; z: number }): THREE.Quaternion {
   const threeEuler = new THREE.Euler(euler.x, euler.y, euler.z, 'XYZ');
   return new THREE.Quaternion().setFromEuler(threeEuler);
-}
-
-/**
- * Apply pose rotations to VRM body bones
- * 
- * IMPORTANT: Kalidokit.Pose.solve returns euler angles { x, y, z } in radians,
- * NOT quaternions. We must convert to quaternions for Three.js bones.
- *
- * @param vrm - VRM avatar
- * @param riggedPose - Kalidokit pose solution with euler angles
- */
-function rigPose(vrm: VRM, riggedPose: any): void {
-  const { humanoid } = vrm;
-
-  /**
-   * Helper to safely apply euler rotation to a bone
-   *
-   * @param boneName - VRM bone name
-   * @param euler - Euler angles { x, y, z } in radians from Kalidokit
-   */
-  const applyRotation = (boneName: string, euler: { x: number; y: number; z: number } | undefined) => {
-    if (!euler || typeof euler.x !== 'number') return;
-
-    const bone = humanoid.getNormalizedBoneNode(boneName as any);
-    if (bone) {
-      // Convert euler angles to quaternion
-      const targetQuat = eulerToQuaternion(euler);
-      // Use slerp for smooth interpolation
-      bone.quaternion.slerp(targetQuat, ROTATION_SMOOTHING);
-    }
-  };
-
-  // Core body - Kalidokit returns direct euler angles for these
-  applyRotation('hips', riggedPose.Hips?.rotation);
-  applyRotation('spine', riggedPose.Spine);
-  applyRotation('chest', riggedPose.Chest);
-  
-  // Head and neck use direct euler values from Kalidokit
-  if (riggedPose.head) {
-    applyRotation('neck', riggedPose.head);
-    applyRotation('head', riggedPose.head);
-  }
-
-  // Arms - Kalidokit returns direct euler angles
-  applyRotation('leftUpperArm', riggedPose.LeftUpperArm);
-  applyRotation('leftLowerArm', riggedPose.LeftLowerArm);
-  applyRotation('leftHand', riggedPose.LeftHand);
-
-  applyRotation('rightUpperArm', riggedPose.RightUpperArm);
-  applyRotation('rightLowerArm', riggedPose.RightLowerArm);
-  applyRotation('rightHand', riggedPose.RightHand);
-
-  // Legs (less critical for sign language but included)
-  applyRotation('leftUpperLeg', riggedPose.LeftUpperLeg);
-  applyRotation('leftLowerLeg', riggedPose.LeftLowerLeg);
-  applyRotation('rightUpperLeg', riggedPose.RightUpperLeg);
-  applyRotation('rightLowerLeg', riggedPose.RightLowerLeg);
 }
 
 /**

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaPipe to VRM Coordinate System Transformation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            align-items: center;
+            margin: 40px 0;
+        }
+        
+        .coordinate-system {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .coordinate-system h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+        }
+        
+        .mediapipe h2 { color: #e74c3c; }
+        .vrm h2 { color: #27ae60; }
+        
+        .axis-diagram {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(180deg, #f0f0f0 0%, #fff 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        
+        .axis {
+            position: absolute;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .arrow {
+            font-size: 24px;
+        }
+        
+        .x-axis { color: #e74c3c; }
+        .y-axis { color: #3498db; }
+        .z-axis { color: #f39c12; }
+        
+        .person {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            z-index: 10;
+        }
+        
+        .label {
+            position: absolute;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .transform-arrow {
+            font-size: 60px;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .code-example {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .code-example .keyword { color: #c678dd; }
+        .code-example .string { color: #98c379; }
+        .code-example .number { color: #d19a66; }
+        .code-example .comment { color: #5c6370; font-style: italic; }
+        .code-example .highlight { background: #3e4451; }
+        
+        .transformation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .transformation-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .transformation-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .transformation-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .transformation-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .problem { color: #e74c3c; font-weight: bold; }
+        .solution { color: #27ae60; font-weight: bold; }
+        
+        .example-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .example-box h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Coordinate System Transformation</h1>
+        <p class="subtitle">MediaPipe Holistic → VRM Avatar Rigging</p>
+        
+        <div class="comparison">
+            <!-- MediaPipe System -->
+            <div class="coordinate-system mediapipe">
+                <h2>📱 MediaPipe (Screen Space)</h2>
+                <div class="axis-diagram">
+                    <!-- Coordinate origin at top-left -->
+                    <div class="label" style="top: 5px; left: 5px;">Origin (0,0,0)</div>
+                    
+                    <!-- X Axis -->
+                    <div class="axis x-axis" style="top: 20px; left: 5px;">
+                        <span class="arrow">→</span> X (right)
+                    </div>
+                    
+                    <!-- Y Axis -->
+                    <div class="axis y-axis" style="top: 50px; left: 5px; flex-direction: column;">
+                        <span class="arrow">↓</span>
+                        <span>Y (down)</span>
+                    </div>
+                    
+                    <!-- Z Axis -->
+                    <div class="axis z-axis" style="bottom: 20px; left: 5px;">
+                        <span class="arrow">⊙</span> Z (toward camera)
+                    </div>
+                    
+                    <!-- Person icon -->
+                    <div class="person">🙋‍♂️</div>
+                    
+                    <!-- Arm position labels -->
+                    <div class="label problem" style="top: 35%; right: 10px;">
+                        Arms: Y = 0.3<br>(30% from top)
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #ffebee; border-radius: 8px;">
+                    <strong class="problem">Problem:</strong> Y increases downward!<br>
+                    Screen coordinates: origin at top-left
+                </div>
+            </div>
+            
+            <!-- Transform Arrow -->
+            <div class="transform-arrow">
+                <div>⚡</div>
+                <div style="font-size: 20px; margin-top: 10px;">Transform</div>
+            </div>
+            
+            <!-- VRM System -->
+            <div class="coordinate-system vrm">
+                <h2>🎮 VRM/Three.js (3D Space)</h2>
+                <div class="axis-diagram">
+                    <!-- Coordinate origin at center -->
+                    <div class="label" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        Origin (0,0,0)
+                    </div>
+                    
+                    <!-- Y Axis (up) -->
+                    <div class="axis y-axis" style="top: 20px; left: 50%; transform: translateX(-50%); flex-direction: column;">
+                        <span class="arrow">↑</span>
+                        <span>Y (up)</span>
+                    </div>
+                    
+                    <!-- X Axis -->
+                    <div class="axis x-axis" style="bottom: 20px; right: 10px;">
+                        <span class="arrow">→</span> X (right)
+                    </div>
+                    
+                    <!-- Z Axis -->
+                    <div class="axis z-axis" style="bottom: 20px; left: 10px;">
+                        <span class="arrow">⊙</span> Z (forward)
+                    </div>
+                    
+                    <!-- Person icon -->
+                    <div class="person">🙋‍♂️</div>
+                    
+                    <!-- Arm position labels -->
+                    <div class="label solution" style="top: 35%; right: 10px;">
+                        Arms: Y = 0.7<br>(70% from bottom)<br>= 1.0 - 0.3
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 8px;">
+                    <strong class="solution">Solution:</strong> Y increases upward!<br>
+                    3D world coordinates: origin at center
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="margin-top: 50px; color: #667eea;">🔧 The Transformation Formula</h2>
+        
+        <table class="transformation-table">
+            <thead>
+                <tr>
+                    <th>Axis</th>
+                    <th>MediaPipe Input</th>
+                    <th>Transformation</th>
+                    <th>VRM Output</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong class="x-axis">X</strong></td>
+                    <td>0.0 (left) → 1.0 (right)</td>
+                    <td><code>x = x</code></td>
+                    <td>-1.0 (left) → 1.0 (right)</td>
+                    <td>✅ Same convention</td>
+                </tr>
+                <tr>
+                    <td><strong class="y-axis">Y</strong></td>
+                    <td>0.0 (top) → 1.0 (bottom)</td>
+                    <td><code class="problem">y = 1.0 - y</code></td>
+                    <td>-1.0 (bottom) → 1.0 (top)</td>
+                    <td>⚠️ Inverted axis direction</td>
+                </tr>
+                <tr>
+                    <td><strong class="z-axis">Z</strong></td>
+                    <td>-1.0 (close) → 1.0 (far)</td>
+                    <td><code class="problem">z = -z</code></td>
+                    <td>-1.0 (back) → 1.0 (front)</td>
+                    <td>⚠️ Camera vs world space</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2 style="color: #667eea;">💻 Code Implementation</h2>
+        
+        <div class="code-example">
+<span class="comment">// BEFORE: Direct passthrough (WRONG!)</span>
+landmarks.push({
+  x: landmark[<span class="number">0</span>],
+  y: landmark[<span class="number">1</span>],  <span class="comment">// ❌ No transformation</span>
+  z: landmark[<span class="number">2</span>],
+  visibility: conf
+});
+
+<span class="comment">// AFTER: With coordinate transformation (CORRECT!)</span>
+landmarks.push({
+  x: landmark[<span class="number">0</span>],              <span class="comment">// ✅ X unchanged</span>
+  y: <span class="number">1.0</span> - landmark[<span class="number">1</span>],      <span class="highlight"><span class="comment">// ✅ INVERT Y-AXIS</span></span>
+  z: -landmark[<span class="number">2</span>],            <span class="highlight"><span class="comment">// ✅ NEGATE Z-AXIS</span></span>
+  visibility: conf
+});
+        </div>
+        
+        <div class="example-box">
+            <h3>📊 Real Example: Raised Arms</h3>
+            <p><strong>Scenario:</strong> Person raises their arms to shoulder height</p>
+            
+            <table style="width: 100%; margin-top: 15px;">
+                <tr style="background: #fff;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>MediaPipe detects:</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Left Shoulder: (0.3, 0.4, -0.5)</td>
+                </tr>
+                <tr style="background: #f8f9fa;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Without fix:</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">
+                        VRM interprets as Y=0.4 → <span class="problem">Arms appear LOW</span> (40% from bottom)
+                    </td>
+                </tr>
+                <tr style="background: #fff;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>With fix:</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">
+                        Transform to (0.3, <strong>0.6</strong>, <strong>0.5</strong>) → <span class="solution">Arms appear at shoulder height</span> (60% from bottom)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2 style="color: #667eea; margin-top: 40px;">🎯 What Changes in Your Code</h2>
+        
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 4px solid #667eea;">
+            <h3 style="margin-top: 0;">File: <code>poseToKalidokit.ts</code></h3>
+            
+            <p><strong>Location 1:</strong> <code>extractLandmarks()</code> function (around line 175)</p>
+            <ul>
+                <li>Change <code>y: landmark[1]</code> → <code>y: 1.0 - landmark[1]</code></li>
+                <li>Change <code>z: landmark[2]</code> → <code>z: -landmark[2]</code></li>
+            </ul>
+            
+            <p><strong>Location 2:</strong> <code>extractLandmarks3D()</code> function (around line 225)</p>
+            <ul>
+                <li>Change <code>y: landmark[1]</code> → <code>y: 1.0 - landmark[1]</code></li>
+                <li>Change <code>z: landmark[2]</code> → <code>z: -landmark[2]</code></li>
+            </ul>
+            
+            <p style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                <strong>⚠️ Important:</strong> Apply the transformation to <strong>BOTH</strong> functions. 
+                They both feed data to Kalidokit, so both need the coordinate fix.
+            </p>
+        </div>
+        
+        <h2 style="color: #667eea; margin-top: 40px;">✅ Verification Checklist</h2>
+        
+        <div style="background: #e8f5e9; padding: 25px; border-radius: 10px;">
+            <p><strong>After applying the fix, verify:</strong></p>
+            <ul style="line-height: 1.8;">
+                <li>✅ Arms raised in video → Avatar arms go UP (not down)</li>
+                <li>✅ Arms lowered in video → Avatar arms go DOWN (not up)</li>
+                <li>✅ Arms forward in video → Avatar arms go FORWARD (not backward)</li>
+                <li>✅ Left/right movements match (not mirrored)</li>
+                <li>✅ Hand positions align with skeleton overlay</li>
+                <li>✅ No sudden 180° flips during animation</li>
+                <li>✅ Avatar pose matches the extracted landmark visualization</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; text-align: center;">
+            <h2 style="color: white; margin-top: 0;">🎉 Result</h2>
+            <p style="font-size: 1.2em; margin: 15px 0;">
+                Your VRM avatar will now move in sync with the pose landmarks!<br>
+                No more upside-down or backwards movements.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

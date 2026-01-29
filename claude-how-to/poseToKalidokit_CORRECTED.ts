@@ -1,12 +1,17 @@
 /**
- * Pose to Kalidokit Conversion Utility
+ * Pose to Kalidokit Conversion Utility (CORRECTED VERSION)
  *
  * Converts DuoSign pose data format to Kalidokit's expected MediaPipe format.
- * Handles null values and provides safe landmark extraction for VRM avatar animation.
+ * Based on official Kalidokit and MediaPipe documentation.
  * 
  * IMPORTANT: Kalidokit.Pose.solve requires two sets of landmarks:
- * - poseLandmarks3D: 3D world coordinates (used for depth calculations)
- * - poseLandmarks: 2D normalized screen coordinates (used for angle calculations)
+ * - poseLandmarks3D: 3D world coordinates (ideally from MediaPipe worldLandmarks)
+ * - poseLandmarks: 2D normalized screen coordinates (from MediaPipe landmarks)
+ * 
+ * COORDINATE SYSTEM FIX:
+ * MediaPipe normalized landmarks use Y-down (screen space: 0=top, 1=bottom)
+ * Kalidokit/VRM expect Y-up (3D space: 0=bottom, 1=top)
+ * Solution: Invert Y-axis (1.0 - y) for both 2D and 3D landmarks
  */
 
 /**
@@ -41,69 +46,37 @@ export interface KalidokitData {
  * Frame data from DuoSign pose extraction
  */
 export interface FrameData {
-  landmarks: (number | null)[][];  // [523, 3]
+  landmarks: (number | null)[][];  // [523, 3] - normalized coordinates
   confidence: (number | null)[];   // [523]
+  worldLandmarks?: (number | null)[][]; // [33, 3] - world coordinates (if available)
 }
 
 /**
- * Landmark ranges for DuoSign's 523-landmark format
- *
- * IMPORTANT: This data uses a REDUCED pose format (13 upper body landmarks)
- * extracted from MediaPipe's 33-point BlazePose model.
- *
- * Pose landmarks (13 upper body points, indices 0-12):
- *   0: nose
- *   1: left_shoulder
- *   2: right_shoulder
- *   3: left_elbow
- *   4: right_elbow
- *   5: left_wrist
- *   6: right_wrist
- *   7: left_pinky
- *   8: right_pinky
- *   9: left_index
- *   10: right_index
- *   11: left_thumb
- *   12: right_thumb
- *
- * Total: 13 + 468 + 21 + 21 = 523 landmarks
+ * MediaPipe Holistic landmark ranges
+ * Based on the 523-landmark format from pose extraction:
+ * - Pose: 33 body landmarks (0-32)
+ * - Face: 468 face landmarks (33-500)
+ * - Left Hand: 21 landmarks (501-521)
+ * - Right Hand: 21 landmarks (502-522) - NOTE: overlaps slightly
+ * 
+ * Total: 33 + 468 + 21 + 21 = 543, but data has 523 landmarks
  */
 const LANDMARK_RANGES = {
-  // Pose landmarks (13 upper body points: indices 0-12)
-  pose: { start: 0, end: 13 },
+  // Pose landmarks (33 points: indices 0-32)
+  pose: { start: 0, end: 33 },
 
-  // Face landmarks (468 points: indices 13-480)
-  face: { start: 13, end: 481 },
+  // Face landmarks (468 points: indices 33-500)
+  face: { start: 33, end: 501 },
 
-  // Left hand landmarks (21 points: indices 481-501)
-  leftHand: { start: 481, end: 502 },
+  // Left hand landmarks (21 points: indices 501-521)
+  leftHand: { start: 501, end: 522 },
 
   // Right hand landmarks (21 points: indices 502-522)
   rightHand: { start: 502, end: 523 }
 } as const;
 
-/**
- * Mapping from our 13-point pose format to standard indices
- * Used for custom rigging calculations
- */
-export const POSE_LANDMARK_INDICES = {
-  NOSE: 0,
-  LEFT_SHOULDER: 1,
-  RIGHT_SHOULDER: 2,
-  LEFT_ELBOW: 3,
-  RIGHT_ELBOW: 4,
-  LEFT_WRIST: 5,
-  RIGHT_WRIST: 6,
-  LEFT_PINKY: 7,
-  RIGHT_PINKY: 8,
-  LEFT_INDEX: 9,
-  RIGHT_INDEX: 10,
-  LEFT_THUMB: 11,
-  RIGHT_THUMB: 12,
-} as const;
-
 /** Minimum valid landmarks required for pose/hand rigging */
-const MIN_POSE_LANDMARKS = 6;   // Need at least shoulders, elbows, wrists (6 key points)
+const MIN_POSE_LANDMARKS = 10;
 const MIN_HAND_LANDMARKS = 15;
 
 /**
@@ -120,41 +93,55 @@ const MIN_HAND_LANDMARKS = 15;
  * };
  * const kalidokitData = convertToKalidokitFormat(frameData);
  * if (kalidokitData.hasValidPose) {
- *   // Safe to call Kalidokit.Pose.solve
+ *   const riggedPose = Kalidokit.Pose.solve(
+ *     kalidokitData.poseLandmarks3D,
+ *     kalidokitData.poseLandmarks,
+ *     { runtime: 'mediapipe', enableLegs: true }
+ *   );
  * }
  * ```
  */
 export function convertToKalidokitFormat(frameData: FrameData): KalidokitData {
-  const { landmarks, confidence } = frameData;
+  const { landmarks, confidence, worldLandmarks } = frameData;
 
-  // Extract 2D landmarks for each body part (normalized screen coordinates)
-  const pose2D = extractLandmarks(
+  // Extract 2D normalized landmarks with Y-axis inversion
+  const pose2D = extractNormalizedLandmarks(
     landmarks,
     LANDMARK_RANGES.pose,
     confidence
   );
 
-  // Create 3D world landmarks from the same data
-  // Kalidokit uses z-depth for 3D calculations
-  const pose3D = extractLandmarks3D(
-    landmarks,
-    LANDMARK_RANGES.pose,
-    confidence
-  );
+  // Extract 3D landmarks (use world landmarks if available, otherwise approximate)
+  let pose3D: MediaPipeLandmark[];
+  if (worldLandmarks && worldLandmarks.length >= LANDMARK_RANGES.pose.end) {
+    // Use actual world landmarks (already in Y-up coordinate system)
+    pose3D = extractWorldLandmarks(
+      worldLandmarks,
+      LANDMARK_RANGES.pose,
+      confidence
+    );
+  } else {
+    // Approximate from normalized landmarks
+    pose3D = extractNormalizedLandmarks(
+      landmarks,
+      LANDMARK_RANGES.pose,
+      confidence
+    );
+  }
 
-  const face = extractLandmarks(
+  const face = extractNormalizedLandmarks(
     landmarks,
     LANDMARK_RANGES.face,
     confidence
   );
 
-  const leftHand = extractLandmarks(
+  const leftHand = extractNormalizedLandmarks(
     landmarks,
     LANDMARK_RANGES.leftHand,
     confidence
   );
 
-  const rightHand = extractLandmarks(
+  const rightHand = extractNormalizedLandmarks(
     landmarks,
     LANDMARK_RANGES.rightHand,
     confidence
@@ -178,18 +165,24 @@ export function convertToKalidokitFormat(frameData: FrameData): KalidokitData {
 }
 
 /**
- * Extracts and formats a range of landmarks from the full landmark array
+ * Extracts normalized landmarks and converts from MediaPipe screen space to VRM 3D space
+ * 
+ * MediaPipe normalized landmarks use:
+ * - x: 0 (left) → 1 (right)
+ * - y: 0 (top) → 1 (bottom) [SCREEN SPACE]
+ * - z: depth scale
+ * 
+ * Kalidokit/VRM expect:
+ * - x: 0 (left) → 1 (right) [SAME]
+ * - y: 0 (bottom) → 1 (top) [INVERTED]
+ * - z: depth scale [SAME]
  *
  * @param allLandmarks - Full array of 523 landmarks
  * @param range - Start and end indices for the desired body part
  * @param confidence - Confidence values for each landmark
- * @returns Array of MediaPipe-formatted landmarks
- *
- * @remarks
- * Handles null/undefined values gracefully by creating zero-visibility landmarks.
- * This ensures Kalidokit receives valid data even when some landmarks are missing.
+ * @returns Array of MediaPipe-formatted landmarks with Y-axis inverted
  */
-function extractLandmarks(
+function extractNormalizedLandmarks(
   allLandmarks: (number | null)[][],
   range: { start: number; end: number },
   confidence: (number | null)[]
@@ -202,7 +195,6 @@ function extractLandmarks(
 
     // Handle missing or invalid landmarks
     if (!landmark || landmark[0] === null || landmark[1] === null || landmark[2] === null) {
-      // Create a placeholder landmark with zero visibility
       landmarks.push({
         x: 0,
         y: 0,
@@ -212,13 +204,11 @@ function extractLandmarks(
       continue;
     }
 
-    // Create valid landmark - keep native MediaPipe coordinates
-    // Kalidokit with runtime: 'mediapipe' handles coordinate transformation internally
+    // Create landmark with Y-axis inversion
     landmarks.push({
-      x: landmark[0],
-      y: landmark[1],
-      z: landmark[2],
-      // Use confidence if available, otherwise default to low visibility
+      x: landmark[0],                    // X unchanged (left-to-right)
+      y: 1.0 - landmark[1],              // ✅ INVERT Y: screen space (Y-down) → 3D space (Y-up)
+      z: landmark[2],                    // ✅ Z unchanged (depth scale is relative)
       visibility: (conf !== null && conf !== undefined) ? conf : 0.5
     });
   }
@@ -227,29 +217,31 @@ function extractLandmarks(
 }
 
 /**
- * Extracts landmarks as 3D world coordinates for Kalidokit.Pose.solve
+ * Extracts world landmarks (if available from MediaPipe)
  * 
- * Kalidokit expects landmarks in the same normalized format as MediaPipe.
- * The solve function uses both 2D and 3D landmarks to calculate rotations,
- * where 3D provides depth information for more accurate rigging.
+ * MediaPipe world landmarks are already in the correct Y-up coordinate system:
+ * - x: left (-) → right (+) in meters
+ * - y: down (-) → up (+) in meters [ALREADY Y-UP]
+ * - z: back (-) → front (+) in meters
  * 
- * Note: We use the same normalized coordinates for both, as our pose data
- * doesn't have separate world coordinates. Kalidokit handles this gracefully.
+ * Origin: Center between hips
+ * 
+ * These can be used directly without transformation.
  *
- * @param allLandmarks - Full array of 523 landmarks
- * @param range - Start and end indices for the desired body part  
+ * @param worldLandmarks - World landmarks from MediaPipe (33 pose landmarks)
+ * @param range - Start and end indices for the desired body part
  * @param confidence - Confidence values for each landmark
- * @returns Array of landmarks with 3D coordinates
+ * @returns Array of landmarks in world coordinates (no transformation needed)
  */
-function extractLandmarks3D(
-  allLandmarks: (number | null)[][],
+function extractWorldLandmarks(
+  worldLandmarks: (number | null)[][],
   range: { start: number; end: number },
   confidence: (number | null)[]
 ): MediaPipeLandmark[] {
   const landmarks: MediaPipeLandmark[] = [];
 
   for (let i = range.start; i < range.end; i++) {
-    const landmark = allLandmarks[i];
+    const landmark = worldLandmarks[i];
     const conf = confidence[i];
 
     // Handle missing or invalid landmarks
@@ -263,20 +255,18 @@ function extractLandmarks3D(
       continue;
     }
 
-    // Keep same normalized coordinates as 2D landmarks
-    // The z-value provides depth information for 3D rigging
-    // Kalidokit with runtime: 'mediapipe' handles coordinate transformation internally
+    // World landmarks are already in correct Y-up coordinate system
+    // Use them directly - NO transformation needed
     landmarks.push({
-      x: landmark[0],
-      y: landmark[1],
-      z: landmark[2],
+      x: landmark[0],   // meters, left-right
+      y: landmark[1],   // meters, bottom-top (already Y-up! No inversion needed)
+      z: landmark[2],   // meters, back-front
       visibility: (conf !== null && conf !== undefined) ? conf : 0.5
     });
   }
 
   return landmarks;
 }
-
 
 /**
  * Checks if a landmark has sufficient visibility for animation

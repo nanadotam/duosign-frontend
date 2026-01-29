@@ -1,4 +1,0 @@
-- takes too long to load
-- -avatar just does a T pose 
-- that's it
-- lets see how we can match and improve
