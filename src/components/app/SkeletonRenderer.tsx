@@ -3,34 +3,58 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 
 /**
- * Pose data structure matching .pose file format
+ * Pose data structure matching Kalidokit-compatible .pose file format
  */
 export interface PoseData {
-  landmarks: (number | null)[][][]  // (T, 523, 3) - x, y, z (can be null)
-  confidence: (number | null)[][]   // (T, 523) (can be null)
+  landmarks: (number[] | null)[][]  // (T, 543, 3) - [x, y, z] or null
+  confidence: (number | null)[][]   // (T, 543)
   fps: number
   frame_count: number
   source_video: string
+  // Kalidokit metadata (optional for backwards compatibility)
+  format_version?: string
+  kalidokit_compatible?: boolean
+  total_landmarks?: number
+  landmark_layout?: {
+    pose: [number, number]
+    face: [number, number]
+    left_hand: [number, number]
+    right_hand: [number, number]
+  }
 }
 
 /**
- * Landmark layout indices
+ * Landmark layout indices (Kalidokit-compatible 543-landmark format)
  */
 const LANDMARK_LAYOUT = {
-  pose: { start: 0, end: 13 },
-  face: { start: 13, end: 481 },
-  leftHand: { start: 481, end: 502 },
-  rightHand: { start: 502, end: 523 },
+  pose: { start: 0, end: 33 },
+  face: { start: 33, end: 501 },
+  leftHand: { start: 501, end: 522 },
+  rightHand: { start: 522, end: 543 },
 }
 
 /**
- * Skeleton connections for pose landmarks
+ * Skeleton connections for 33-point MediaPipe pose landmarks
+ * Using standard MediaPipe BlazePose indices
  */
 const POSE_CONNECTIONS = [
-  [1, 2],   // shoulders
-  [1, 3], [3, 5],   // left arm
-  [2, 4], [4, 6],   // right arm
-  [1, 0], [2, 0],   // neck/head
+  // Face
+  [0, 1], [1, 2], [2, 3], [3, 7],  // left eye
+  [0, 4], [4, 5], [5, 6], [6, 8],  // right eye
+  [9, 10],  // mouth
+  // Torso
+  [11, 12],  // shoulders
+  [11, 23], [12, 24], [23, 24],  // torso
+  // Left arm
+  [11, 13], [13, 15],  // upper arm, forearm
+  [15, 17], [15, 19], [15, 21], [17, 19],  // hand
+  // Right arm
+  [12, 14], [14, 16],  // upper arm, forearm
+  [16, 18], [16, 20], [16, 22], [18, 20],  // hand
+  // Left leg
+  [23, 25], [25, 27], [27, 29], [27, 31], [29, 31],
+  // Right leg
+  [24, 26], [26, 28], [28, 30], [28, 32], [30, 32],
 ]
 
 /**

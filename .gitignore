@@ -47,3 +47,8 @@ next-env.d.ts
 # duosign_algo/pose_extraction/wlasl-processed
 duosign_algo/pose_extraction/wlasl-processed/videos
 research paper.md
+duosign_algo/pose_extraction/poses_kalidokit
+public/poses_kalidokit
+public/lexicon/ase/old
+public/lexicon/ase/
+public/lexicon/

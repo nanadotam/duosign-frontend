@@ -46,64 +46,87 @@ export interface FrameData {
 }
 
 /**
- * Landmark ranges for DuoSign's 523-landmark format
+ * Landmark ranges for Kalidokit-compatible 543-landmark format
  *
- * IMPORTANT: This data uses a REDUCED pose format (13 upper body landmarks)
- * extracted from MediaPipe's 33-point BlazePose model.
+ * This format uses the FULL 33-point MediaPipe BlazePose model,
+ * which is required for proper Kalidokit.Pose.solve() operation.
  *
- * Pose landmarks (13 upper body points, indices 0-12):
+ * MediaPipe Pose Landmarks (33 points):
  *   0: nose
- *   1: left_shoulder
- *   2: right_shoulder
- *   3: left_elbow
- *   4: right_elbow
- *   5: left_wrist
- *   6: right_wrist
- *   7: left_pinky
- *   8: right_pinky
- *   9: left_index
- *   10: right_index
- *   11: left_thumb
- *   12: right_thumb
+ *   1: left_eye_inner, 2: left_eye, 3: left_eye_outer
+ *   4: right_eye_inner, 5: right_eye, 6: right_eye_outer
+ *   7: left_ear, 8: right_ear
+ *   9: mouth_left, 10: mouth_right
+ *   11: left_shoulder, 12: right_shoulder
+ *   13: left_elbow, 14: right_elbow
+ *   15: left_wrist, 16: right_wrist
+ *   17: left_pinky, 18: right_pinky
+ *   19: left_index, 20: right_index
+ *   21: left_thumb, 22: right_thumb
+ *   23: left_hip, 24: right_hip
+ *   25: left_knee, 26: right_knee
+ *   27: left_ankle, 28: right_ankle
+ *   29: left_heel, 30: right_heel
+ *   31: left_foot_index, 32: right_foot_index
  *
- * Total: 13 + 468 + 21 + 21 = 523 landmarks
+ * Total: 33 + 468 + 21 + 21 = 543 landmarks
  */
 const LANDMARK_RANGES = {
-  // Pose landmarks (13 upper body points: indices 0-12)
-  pose: { start: 0, end: 13 },
+  // Pose landmarks (33 full body points: indices 0-32)
+  pose: { start: 0, end: 33 },
 
-  // Face landmarks (468 points: indices 13-480)
-  face: { start: 13, end: 481 },
+  // Face landmarks (468 points: indices 33-500)
+  face: { start: 33, end: 501 },
 
-  // Left hand landmarks (21 points: indices 481-501)
-  leftHand: { start: 481, end: 502 },
+  // Left hand landmarks (21 points: indices 501-521)
+  leftHand: { start: 501, end: 522 },
 
-  // Right hand landmarks (21 points: indices 502-522)
-  rightHand: { start: 502, end: 523 }
+  // Right hand landmarks (21 points: indices 522-542)
+  rightHand: { start: 522, end: 543 }
 } as const;
 
 /**
- * Mapping from our 13-point pose format to standard indices
- * Used for custom rigging calculations
+ * Standard MediaPipe 33-point pose landmark indices
+ * These match Kalidokit's expected format exactly
  */
 export const POSE_LANDMARK_INDICES = {
   NOSE: 0,
-  LEFT_SHOULDER: 1,
-  RIGHT_SHOULDER: 2,
-  LEFT_ELBOW: 3,
-  RIGHT_ELBOW: 4,
-  LEFT_WRIST: 5,
-  RIGHT_WRIST: 6,
-  LEFT_PINKY: 7,
-  RIGHT_PINKY: 8,
-  LEFT_INDEX: 9,
-  RIGHT_INDEX: 10,
-  LEFT_THUMB: 11,
-  RIGHT_THUMB: 12,
+  LEFT_EYE_INNER: 1,
+  LEFT_EYE: 2,
+  LEFT_EYE_OUTER: 3,
+  RIGHT_EYE_INNER: 4,
+  RIGHT_EYE: 5,
+  RIGHT_EYE_OUTER: 6,
+  LEFT_EAR: 7,
+  RIGHT_EAR: 8,
+  MOUTH_LEFT: 9,
+  MOUTH_RIGHT: 10,
+  LEFT_SHOULDER: 11,
+  RIGHT_SHOULDER: 12,
+  LEFT_ELBOW: 13,
+  RIGHT_ELBOW: 14,
+  LEFT_WRIST: 15,
+  RIGHT_WRIST: 16,
+  LEFT_PINKY: 17,
+  RIGHT_PINKY: 18,
+  LEFT_INDEX: 19,
+  RIGHT_INDEX: 20,
+  LEFT_THUMB: 21,
+  RIGHT_THUMB: 22,
+  LEFT_HIP: 23,
+  RIGHT_HIP: 24,
+  LEFT_KNEE: 25,
+  RIGHT_KNEE: 26,
+  LEFT_ANKLE: 27,
+  RIGHT_ANKLE: 28,
+  LEFT_HEEL: 29,
+  RIGHT_HEEL: 30,
+  LEFT_FOOT_INDEX: 31,
+  RIGHT_FOOT_INDEX: 32,
 } as const;
 
 /** Minimum valid landmarks required for pose/hand rigging */
-const MIN_POSE_LANDMARKS = 6;   // Need at least shoulders, elbows, wrists (6 key points)
+const MIN_POSE_LANDMARKS = 15;  // Need key body points for Kalidokit rigging
 const MIN_HAND_LANDMARKS = 15;
 
 /**

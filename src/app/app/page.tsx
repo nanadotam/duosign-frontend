@@ -56,7 +56,7 @@ export default function AppPage() {
     setLoadingPose(true)
     setPlayback({ isPlaying: false })
     setCurrentFrame(0)
-    
+
     try {
       // Load the JSON version of the pose file
       const gloss = entry.words.toLowerCase()
