@@ -8,8 +8,9 @@
  */
 
 import { useState } from 'react'
-import { SkeletonRenderer, type PoseData } from '@/components/app/SkeletonRenderer'
+import { SkeletonRenderer } from '@/components/app/SkeletonRenderer'
 import { AvatarRenderer } from '@/components/app/AvatarRenderer'
+import type { PoseDataV3 } from '@/utils/applyPoseFrame'
 import { motion } from 'framer-motion'
 import { User, Activity } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -18,7 +19,7 @@ interface OutputPlayerProps {
   isReady: boolean
   isPlaying?: boolean
   speed?: number
-  poseData?: PoseData | null
+  poseData?: PoseDataV3 | null
   currentFrame?: number
   onFrameChange?: (frame: number) => void
 }

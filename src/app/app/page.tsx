@@ -10,7 +10,7 @@ import { Header } from '@/views/layout/Header'
 import { Spotlight } from '@/views/ui/spotlight'
 import type { PlaybackState } from '@/models'
 import type { GlossEntry } from '@/components/app/GlossPicker'
-import type { PoseData } from '@/components/app/SkeletonRenderer'
+import type { PoseDataV3 } from '@/utils/applyPoseFrame'
 
 export default function AppPage() {
   const {
@@ -29,7 +29,7 @@ export default function AppPage() {
   
   // Gloss and pose state
   const [selectedGloss, setSelectedGloss] = useState<string | null>(null)
-  const [poseData, setPoseData] = useState<PoseData | null>(null)
+  const [poseData, setPoseData] = useState<PoseDataV3 | null>(null)
   const [loadingPose, setLoadingPose] = useState(false)
   const [currentFrame, setCurrentFrame] = useState(0)
 
@@ -50,7 +50,7 @@ export default function AppPage() {
     }
   }, [initialText, appState, submitTranslation])
 
-  // Handle gloss selection - load pose data
+  // Handle gloss selection - load pose data from API
   const handleSelectGloss = useCallback(async (entry: GlossEntry) => {
     setSelectedGloss(entry.glosses)
     setLoadingPose(true)
@@ -58,15 +58,15 @@ export default function AppPage() {
     setCurrentFrame(0)
 
     try {
-      // Load the JSON version of the pose file
-      const gloss = entry.words.toLowerCase()
-      const response = await fetch(`/lexicon/ase/${gloss}.json`)
+      // Load pose data from API using video_id (if available) or gloss
+      const videoId = (entry as any).video_id || entry.words.toLowerCase()
+      const response = await fetch(`http://localhost:8000/api/sign/${videoId}`)
       
       if (!response.ok) {
         throw new Error(`Failed to load pose: ${response.status}`)
       }
       
-      const data: PoseData = await response.json()
+      const data: PoseDataV3 = await response.json()
       setPoseData(data)
       setAppState('READY')
       setPlayback({ isPlaying: true })

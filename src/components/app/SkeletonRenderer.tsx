@@ -1,76 +1,17 @@
 'use client'
 
 import { useRef, useEffect, useCallback, useState } from 'react'
+import type { PoseDataV3 } from '@/utils/applyPoseFrame'
 
 /**
- * Pose data structure matching Kalidokit-compatible .pose file format
+ * Skeleton Renderer for PoseDataV3 (Quaternion-based)
+ * 
+ * Renders a 2D stick figure visualization of the bone rotations.
+ * Uses forward kinematics to compute bone positions from quaternions.
  */
-export interface PoseData {
-  landmarks: (number[] | null)[][]  // (T, 543, 3) - [x, y, z] or null
-  confidence: (number | null)[][]   // (T, 543)
-  fps: number
-  frame_count: number
-  source_video: string
-  // Kalidokit metadata (optional for backwards compatibility)
-  format_version?: string
-  kalidokit_compatible?: boolean
-  total_landmarks?: number
-  landmark_layout?: {
-    pose: [number, number]
-    face: [number, number]
-    left_hand: [number, number]
-    right_hand: [number, number]
-  }
-}
-
-/**
- * Landmark layout indices (Kalidokit-compatible 543-landmark format)
- */
-const LANDMARK_LAYOUT = {
-  pose: { start: 0, end: 33 },
-  face: { start: 33, end: 501 },
-  leftHand: { start: 501, end: 522 },
-  rightHand: { start: 522, end: 543 },
-}
-
-/**
- * Skeleton connections for 33-point MediaPipe pose landmarks
- * Using standard MediaPipe BlazePose indices
- */
-const POSE_CONNECTIONS = [
-  // Face
-  [0, 1], [1, 2], [2, 3], [3, 7],  // left eye
-  [0, 4], [4, 5], [5, 6], [6, 8],  // right eye
-  [9, 10],  // mouth
-  // Torso
-  [11, 12],  // shoulders
-  [11, 23], [12, 24], [23, 24],  // torso
-  // Left arm
-  [11, 13], [13, 15],  // upper arm, forearm
-  [15, 17], [15, 19], [15, 21], [17, 19],  // hand
-  // Right arm
-  [12, 14], [14, 16],  // upper arm, forearm
-  [16, 18], [16, 20], [16, 22], [18, 20],  // hand
-  // Left leg
-  [23, 25], [25, 27], [27, 29], [27, 31], [29, 31],
-  // Right leg
-  [24, 26], [26, 28], [28, 30], [28, 32], [30, 32],
-]
-
-/**
- * Hand connections (21 landmarks)
- */
-const HAND_CONNECTIONS = [
-  [0, 1], [1, 2], [2, 3], [3, 4],
-  [0, 5], [5, 6], [6, 7], [7, 8],
-  [0, 9], [9, 10], [10, 11], [11, 12],
-  [0, 13], [13, 14], [14, 15], [15, 16],
-  [0, 17], [17, 18], [18, 19], [19, 20],
-  [5, 9], [9, 13], [13, 17],
-]
 
 interface SkeletonRendererProps {
-  poseData: PoseData | null
+  poseData: PoseDataV3 | null
   isPlaying: boolean
   speed: number
   currentFrame?: number
@@ -81,25 +22,46 @@ interface SkeletonRendererProps {
 // Colors
 const COLORS = {
   background: '#0f172a',
-  pose: '#4ade80',
-  poseJoint: '#22c55e',
-  leftHand: '#60a5fa',
-  leftHandJoint: '#3b82f6',
-  rightHand: '#f472b6',
-  rightHandJoint: '#ec4899',
-  face: 'rgba(148, 163, 184, 0.4)',
+  spine: '#22c55e',
+  leftArm: '#60a5fa',
+  rightArm: '#f472b6',
+  head: '#fbbf24',
+  joint: '#ffffff',
+}
+
+// Bone lengths (normalized units)
+const BONE_LENGTHS = {
+  spine: 0.25,
+  neck: 0.08,
+  head: 0.08,
+  upperArm: 0.18,
+  lowerArm: 0.15,
+  hand: 0.08,
 }
 
 /**
- * Check if a landmark value is valid (not null/undefined/NaN)
+ * Apply quaternion rotation to a direction vector (simplified 2D projection)
  */
-function isValidLandmark(lm: (number | null)[] | undefined): lm is number[] {
-  if (!lm || lm.length < 2) return false
-  return lm[0] !== null && lm[1] !== null && !isNaN(lm[0] as number) && !isNaN(lm[1] as number)
+function applyQuatToDirection(quat: number[], direction: [number, number, number]): [number, number] {
+  // Quaternion rotation: v' = q * v * q^-1
+  // For 2D visualization, we project to XY plane
+  const [qx, qy, qz, qw] = quat
+  const [dx, dy, dz] = direction
+  
+  // Simplified quaternion rotation
+  const ix = qw * dx + qy * dz - qz * dy
+  const iy = qw * dy + qz * dx - qx * dz
+  const iz = qw * dz + qx * dy - qy * dx
+  const iw = -qx * dx - qy * dy - qz * dz
+  
+  const rx = ix * qw + iw * -qx + iy * -qz - iz * -qy
+  const ry = iy * qw + iw * -qy + iz * -qx - ix * -qz
+  
+  return [rx, ry]
 }
 
 /**
- * Canvas-based 2D skeleton renderer
+ * Canvas-based 2D skeleton renderer for PoseDataV3 (quaternion format)
  */
 export function SkeletonRenderer({
   poseData,
@@ -117,255 +79,167 @@ export function SkeletonRenderer({
   const [canvasSize, setCanvasSize] = useState({ width: 400, height: 400 })
 
   /**
-   * Draw a single frame of pose data with confidence-based opacity and Z-depth sorting
+   * Draw a single frame of pose data
    */
   const drawFrame = useCallback((ctx: CanvasRenderingContext2D, frameIdx: number) => {
     if (!poseData || frameIdx >= poseData.frame_count) return
 
     const width = canvasSize.width
     const height = canvasSize.height
+    const scale = Math.min(width, height) * 0.8
 
     // Clear canvas
     ctx.fillStyle = COLORS.background
     ctx.fillRect(0, 0, width, height)
 
     // Get frame data
-    const landmarks = poseData.landmarks[frameIdx]
-    const confidence = poseData.confidence[frameIdx]
+    const frame = poseData.frames[frameIdx]
+    if (!frame) return
 
-    if (!landmarks) return
+    const rots = frame.rotations
+    const confs = frame.confidences
 
-    // Calculate scale - landmarks are normalized 0-1
-    const scale = Math.min(width, height) * 0.85
-    const offsetX = (width - scale) / 2
-    const offsetY = (height - scale) / 2
+    // Base position (center of canvas, slightly up)
+    const baseX = width / 2
+    const baseY = height * 0.65
 
-    // Transform landmark to canvas coordinates
-    const toCanvas = (lm: number[]) => ({
-      x: offsetX + lm[0] * scale,
-      y: offsetY + lm[1] * scale,
-      z: lm[2] ?? 0,
-    })
+    // Helper: draw bone
+    const drawBone = (
+      x1: number, y1: number,
+      x2: number, y2: number,
+      color: string,
+      lineWidth: number = 6
+    ) => {
+      ctx.strokeStyle = color
+      ctx.lineWidth = lineWidth
+      ctx.lineCap = 'round'
+      ctx.beginPath()
+      ctx.moveTo(x1, y1)
+      ctx.lineTo(x2, y2)
+      ctx.stroke()
+    }
 
-    // Get confidence value for a landmark (clamped to reasonable range)
-    const getConfidence = (idx: number): number => {
-      const conf = confidence[idx]
-      if (conf === null || conf === undefined || isNaN(conf as number)) return 0.3
-      return Math.max(0.15, Math.min(1, conf as number))
+    // Helper: draw joint
+    const drawJoint = (x: number, y: number, color: string, radius: number = 8) => {
+      ctx.fillStyle = color
+      ctx.beginPath()
+      ctx.arc(x, y, radius, 0, Math.PI * 2)
+      ctx.fill()
     }
 
     // ─────────────────────────────────────────────────────────────
-    // Collect all draw operations for Z-depth sorting
+    // Draw Spine (hip to shoulder)
     // ─────────────────────────────────────────────────────────────
-    type DrawOp = {
-      type: 'circle' | 'line'
-      x: number
-      y: number
-      z: number
-      radius?: number
-      x2?: number
-      y2?: number
-      color: string
-      opacity: number
-      lineWidth?: number
-    }
-
-    const drawOps: DrawOp[] = []
+    const hipY = baseY
+    const spineQuat = rots['spine'] || [0, 0, 0, 1]
+    const spineDir = applyQuatToDirection(spineQuat, [0, -1, 0])
+    const shoulderX = baseX + spineDir[0] * BONE_LENGTHS.spine * scale
+    const shoulderY = hipY + spineDir[1] * BONE_LENGTHS.spine * scale
+    
+    drawBone(baseX, hipY, shoulderX, shoulderY, COLORS.spine)
+    drawJoint(baseX, hipY, COLORS.joint, 10)
 
     // ─────────────────────────────────────────────────────────────
-    // Collect Face operations (subtle dots)
+    // Draw Neck and Head
     // ─────────────────────────────────────────────────────────────
-    for (let i = LANDMARK_LAYOUT.face.start; i < LANDMARK_LAYOUT.face.end; i++) {
-      const lm = landmarks[i]
-      if (!isValidLandmark(lm)) continue
-      
-      const pos = toCanvas(lm as number[])
-      const opacity = getConfidence(i) * 0.4 // Face is more subtle
-      
-      drawOps.push({
-        type: 'circle',
-        x: pos.x,
-        y: pos.y,
-        z: pos.z,
-        radius: 1.5,
-        color: '#94a3b8',
-        opacity,
-      })
-    }
-
-    // ─────────────────────────────────────────────────────────────
-    // Collect Pose Skeleton operations
-    // ─────────────────────────────────────────────────────────────
-    for (const [start, end] of POSE_CONNECTIONS) {
-      const lm1 = landmarks[start]
-      const lm2 = landmarks[end]
-      
-      if (!isValidLandmark(lm1) || !isValidLandmark(lm2)) continue
-      
-      const p1 = toCanvas(lm1 as number[])
-      const p2 = toCanvas(lm2 as number[])
-      const avgOpacity = (getConfidence(start) + getConfidence(end)) / 2
-      const avgZ = (p1.z + p2.z) / 2
-      
-      drawOps.push({
-        type: 'line',
-        x: p1.x,
-        y: p1.y,
-        x2: p2.x,
-        y2: p2.y,
-        z: avgZ,
-        color: COLORS.pose,
-        opacity: avgOpacity,
-        lineWidth: 4,
-      })
-    }
-
-    // Pose joints
-    for (let i = 0; i < LANDMARK_LAYOUT.pose.end; i++) {
-      const lm = landmarks[i]
-      if (!isValidLandmark(lm)) continue
-      
-      const pos = toCanvas(lm as number[])
-      const opacity = getConfidence(i)
-      
-      drawOps.push({
-        type: 'circle',
-        x: pos.x,
-        y: pos.y,
-        z: pos.z,
-        radius: 8,
-        color: COLORS.poseJoint,
-        opacity,
-      })
-    }
+    const neckQuat = rots['neck'] || [0, 0, 0, 1]
+    const neckDir = applyQuatToDirection(neckQuat, [0, -1, 0])
+    const neckX = shoulderX + neckDir[0] * BONE_LENGTHS.neck * scale
+    const neckY = shoulderY + neckDir[1] * BONE_LENGTHS.neck * scale
+    
+    drawBone(shoulderX, shoulderY, neckX, neckY, COLORS.spine, 4)
+    
+    // Head (simplified as circle)
+    const headRadius = BONE_LENGTHS.head * scale * 0.8
+    ctx.fillStyle = COLORS.head
+    ctx.beginPath()
+    ctx.arc(neckX, neckY - headRadius, headRadius, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.strokeStyle = '#ffffff'
+    ctx.lineWidth = 2
+    ctx.stroke()
 
     // ─────────────────────────────────────────────────────────────
-    // Collect Left Hand operations
+    // Draw Left Arm
     // ─────────────────────────────────────────────────────────────
-    const leftHandStart = LANDMARK_LAYOUT.leftHand.start
-
-    for (const [start, end] of HAND_CONNECTIONS) {
-      const lm1 = landmarks[leftHandStart + start]
-      const lm2 = landmarks[leftHandStart + end]
-      
-      if (!isValidLandmark(lm1) || !isValidLandmark(lm2)) continue
-      
-      const p1 = toCanvas(lm1 as number[])
-      const p2 = toCanvas(lm2 as number[])
-      const avgOpacity = (getConfidence(leftHandStart + start) + getConfidence(leftHandStart + end)) / 2
-      
-      drawOps.push({
-        type: 'line',
-        x: p1.x,
-        y: p1.y,
-        x2: p2.x,
-        y2: p2.y,
-        z: (p1.z + p2.z) / 2,
-        color: COLORS.leftHand,
-        opacity: avgOpacity,
-        lineWidth: 2,
-      })
-    }
-
-    for (let i = 0; i < 21; i++) {
-      const lm = landmarks[leftHandStart + i]
-      if (!isValidLandmark(lm)) continue
-      
-      const pos = toCanvas(lm as number[])
-      const opacity = getConfidence(leftHandStart + i)
-      
-      drawOps.push({
-        type: 'circle',
-        x: pos.x,
-        y: pos.y,
-        z: pos.z,
-        radius: 5,
-        color: COLORS.leftHandJoint,
-        opacity,
-      })
-    }
-
-    // ─────────────────────────────────────────────────────────────
-    // Collect Right Hand operations
-    // ─────────────────────────────────────────────────────────────
-    const rightHandStart = LANDMARK_LAYOUT.rightHand.start
-
-    for (const [start, end] of HAND_CONNECTIONS) {
-      const lm1 = landmarks[rightHandStart + start]
-      const lm2 = landmarks[rightHandStart + end]
-      
-      if (!isValidLandmark(lm1) || !isValidLandmark(lm2)) continue
-      
-      const p1 = toCanvas(lm1 as number[])
-      const p2 = toCanvas(lm2 as number[])
-      const avgOpacity = (getConfidence(rightHandStart + start) + getConfidence(rightHandStart + end)) / 2
-      
-      drawOps.push({
-        type: 'line',
-        x: p1.x,
-        y: p1.y,
-        x2: p2.x,
-        y2: p2.y,
-        z: (p1.z + p2.z) / 2,
-        color: COLORS.rightHand,
-        opacity: avgOpacity,
-        lineWidth: 2,
-      })
-    }
-
-    for (let i = 0; i < 21; i++) {
-      const lm = landmarks[rightHandStart + i]
-      if (!isValidLandmark(lm)) continue
-      
-      const pos = toCanvas(lm as number[])
-      const opacity = getConfidence(rightHandStart + i)
-      
-      drawOps.push({
-        type: 'circle',
-        x: pos.x,
-        y: pos.y,
-        z: pos.z,
-        radius: 5,
-        color: COLORS.rightHandJoint,
-        opacity,
-      })
-    }
-
-    // ─────────────────────────────────────────────────────────────
-    // Sort by Z-depth (draw farther points first, so closer overlap)
-    // Higher Z = farther from camera (in MediaPipe convention)
-    // ─────────────────────────────────────────────────────────────
-    drawOps.sort((a, b) => b.z - a.z)
-
-    // ─────────────────────────────────────────────────────────────
-    // Execute draw operations with confidence-based opacity
-    // ─────────────────────────────────────────────────────────────
-    ctx.lineCap = 'round'
-    ctx.lineJoin = 'round'
-
-    for (const op of drawOps) {
-      ctx.globalAlpha = op.opacity
-
-      if (op.type === 'circle') {
-        ctx.fillStyle = op.color
-        ctx.beginPath()
-        ctx.arc(op.x, op.y, op.radius!, 0, Math.PI * 2)
-        ctx.fill()
-      } else if (op.type === 'line') {
-        ctx.strokeStyle = op.color
-        ctx.lineWidth = op.lineWidth!
-        ctx.beginPath()
-        ctx.moveTo(op.x, op.y)
-        ctx.lineTo(op.x2!, op.y2!)
-        ctx.stroke()
-      }
-    }
-
-    // Reset alpha
+    const leftShoulderX = shoulderX - 0.08 * scale
+    const leftShoulderY = shoulderY
+    
+    // Upper arm
+    const leftUpperQuat = rots['leftUpperArm'] || [0, 0, 0, 1]
+    const leftUpperDir = applyQuatToDirection(leftUpperQuat, [0, 1, 0])
+    const leftElbowX = leftShoulderX + leftUpperDir[0] * BONE_LENGTHS.upperArm * scale
+    const leftElbowY = leftShoulderY + leftUpperDir[1] * BONE_LENGTHS.upperArm * scale
+    
+    const leftUpperConf = confs['leftUpperArm'] ?? 0.5
+    ctx.globalAlpha = 0.4 + leftUpperConf * 0.6
+    drawBone(leftShoulderX, leftShoulderY, leftElbowX, leftElbowY, COLORS.leftArm)
+    drawJoint(leftShoulderX, leftShoulderY, COLORS.joint)
+    
+    // Lower arm
+    const leftLowerQuat = rots['leftLowerArm'] || [0, 0, 0, 1]
+    const leftLowerDir = applyQuatToDirection(leftLowerQuat, [0, 1, 0])
+    const leftWristX = leftElbowX + leftLowerDir[0] * BONE_LENGTHS.lowerArm * scale
+    const leftWristY = leftElbowY + leftLowerDir[1] * BONE_LENGTHS.lowerArm * scale
+    
+    const leftLowerConf = confs['leftLowerArm'] ?? 0.5
+    ctx.globalAlpha = 0.4 + leftLowerConf * 0.6
+    drawBone(leftElbowX, leftElbowY, leftWristX, leftWristY, COLORS.leftArm)
+    drawJoint(leftElbowX, leftElbowY, COLORS.joint)
+    
+    // Hand
+    const leftHandQuat = rots['leftHand'] || [0, 0, 0, 1]
+    const leftHandDir = applyQuatToDirection(leftHandQuat, [0, 1, 0])
+    const leftHandX = leftWristX + leftHandDir[0] * BONE_LENGTHS.hand * scale
+    const leftHandY = leftWristY + leftHandDir[1] * BONE_LENGTHS.hand * scale
+    
+    drawBone(leftWristX, leftWristY, leftHandX, leftHandY, COLORS.leftArm, 4)
+    drawJoint(leftWristX, leftWristY, COLORS.joint, 6)
     ctx.globalAlpha = 1
 
     // ─────────────────────────────────────────────────────────────
-    // Draw frame counter (always on top)
+    // Draw Right Arm
+    // ─────────────────────────────────────────────────────────────
+    const rightShoulderX = shoulderX + 0.08 * scale
+    const rightShoulderY = shoulderY
+    
+    // Upper arm
+    const rightUpperQuat = rots['rightUpperArm'] || [0, 0, 0, 1]
+    const rightUpperDir = applyQuatToDirection(rightUpperQuat, [0, 1, 0])
+    const rightElbowX = rightShoulderX + rightUpperDir[0] * BONE_LENGTHS.upperArm * scale
+    const rightElbowY = rightShoulderY + rightUpperDir[1] * BONE_LENGTHS.upperArm * scale
+    
+    const rightUpperConf = confs['rightUpperArm'] ?? 0.5
+    ctx.globalAlpha = 0.4 + rightUpperConf * 0.6
+    drawBone(rightShoulderX, rightShoulderY, rightElbowX, rightElbowY, COLORS.rightArm)
+    drawJoint(rightShoulderX, rightShoulderY, COLORS.joint)
+    
+    // Lower arm
+    const rightLowerQuat = rots['rightLowerArm'] || [0, 0, 0, 1]
+    const rightLowerDir = applyQuatToDirection(rightLowerQuat, [0, 1, 0])
+    const rightWristX = rightElbowX + rightLowerDir[0] * BONE_LENGTHS.lowerArm * scale
+    const rightWristY = rightElbowY + rightLowerDir[1] * BONE_LENGTHS.lowerArm * scale
+    
+    const rightLowerConf = confs['rightLowerArm'] ?? 0.5
+    ctx.globalAlpha = 0.4 + rightLowerConf * 0.6
+    drawBone(rightElbowX, rightElbowY, rightWristX, rightWristY, COLORS.rightArm)
+    drawJoint(rightElbowX, rightElbowY, COLORS.joint)
+    
+    // Hand
+    const rightHandQuat = rots['rightHand'] || [0, 0, 0, 1]
+    const rightHandDir = applyQuatToDirection(rightHandQuat, [0, 1, 0])
+    const rightHandX = rightWristX + rightHandDir[0] * BONE_LENGTHS.hand * scale
+    const rightHandY = rightWristY + rightHandDir[1] * BONE_LENGTHS.hand * scale
+    
+    drawBone(rightWristX, rightWristY, rightHandX, rightHandY, COLORS.rightArm, 4)
+    drawJoint(rightWristX, rightWristY, COLORS.joint, 6)
+    ctx.globalAlpha = 1
+
+    // Shoulder joint
+    drawJoint(shoulderX, shoulderY, COLORS.joint, 10)
+
+    // ─────────────────────────────────────────────────────────────
+    // Draw frame counter
     // ─────────────────────────────────────────────────────────────
     ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
     ctx.font = '14px monospace'
@@ -510,4 +384,3 @@ export function SkeletonRenderer({
     </div>
   )
 }
-

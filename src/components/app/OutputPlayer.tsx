@@ -1,14 +1,14 @@
 'use client'
 
 import { AvatarRenderer } from '@/components/app/AvatarRenderer'
-import type { PoseData } from '@/components/app/SkeletonRenderer'
+import type { PoseDataV3 } from '@/utils/applyPoseFrame'
 import { motion } from 'framer-motion'
 
 interface OutputPlayerProps {
   isReady: boolean
   isPlaying?: boolean
   speed?: number
-  poseData?: PoseData | null
+  poseData?: PoseDataV3 | null
   currentFrame?: number
   onFrameChange?: (frame: number) => void
 }

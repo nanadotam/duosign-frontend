@@ -89,12 +89,14 @@ class SignListItem(BaseModel):
     Metadata for a single sign in the library.
     
     Attributes:
-        gloss: Sign gloss (identifier)
+        gloss: Sign gloss name (human-readable)
+        video_id: WLASL video ID (for loading pose data)
         frame_count: Number of frames
         duration_sec: Duration in seconds
         file_size_kb: File size in KB
     """
     gloss: str = Field(..., description="Sign gloss/identifier")
+    video_id: str = Field(..., description="WLASL video ID")
     frame_count: int = Field(..., description="Number of frames")
     duration_sec: float = Field(..., description="Duration in seconds")
     file_size_kb: float = Field(..., description="File size in KB")
@@ -150,6 +152,50 @@ if not POSES_DIR.exists():
     # Fallback: try relative to current working directory
     POSES_DIR = Path("../public/poses_v3").resolve()
 POSES_DIR.mkdir(parents=True, exist_ok=True)
+
+# WLASL metadata directory
+WLASL_DIR = Path(__file__).parent.parent / "wlasl-processed"
+
+# Gloss to video ID mapping (loaded lazily)
+_gloss_map: Dict[str, List[str]] = {}
+
+def load_gloss_map() -> Dict[str, List[str]]:
+    """Load WLASL gloss -> video ID mapping (cached)."""
+    global _gloss_map
+    if _gloss_map:
+        return _gloss_map
+    
+    wlasl_file = WLASL_DIR / "WLASL_v0.3.json"
+    if not wlasl_file.exists():
+        return {}
+    
+    try:
+        with open(wlasl_file, 'r') as f:
+            data = json.load(f)
+        
+        for entry in data:
+            gloss = entry['gloss'].lower()
+            video_ids = [inst['video_id'] for inst in entry.get('instances', [])]
+            _gloss_map[gloss] = video_ids
+        
+        return _gloss_map
+    except Exception:
+        return {}
+
+
+def get_video_ids_for_gloss(gloss: str) -> List[str]:
+    """Get all video IDs for a given gloss name."""
+    mapping = load_gloss_map()
+    return mapping.get(gloss.lower(), [])
+
+
+def get_gloss_for_video_id(video_id: str) -> Optional[str]:
+    """Get gloss name for a video ID."""
+    mapping = load_gloss_map()
+    for gloss, vids in mapping.items():
+        if video_id in vids:
+            return gloss
+    return None
 
 
 # ============================================================================
@@ -287,17 +333,19 @@ async def list_signs(
     if limit:
         signs = signs[:limit]
     
-    # Load metadata for each sign
+    # Load metadata for each sign (video_id -> gloss name)
     sign_list = []
-    for gloss in signs:
+    for video_id in signs:
         try:
-            data = load_pose_file(gloss)
+            data = load_pose_file(video_id)
+            gloss_name = get_gloss_for_video_id(video_id) or video_id
             
             sign_list.append(SignListItem(
-                gloss=gloss,
+                gloss=gloss_name,  # Use actual gloss name
+                video_id=video_id,  # WLASL video ID for loading
                 frame_count=data["frame_count"],
                 duration_sec=round(data["frame_count"] / data["fps"], 2),
-                file_size_kb=round((POSES_DIR / f"{gloss}.json").stat().st_size / 1024, 2)
+                file_size_kb=round((POSES_DIR / f"{video_id}.json").stat().st_size / 1024, 2)
             ))
         except Exception as e:
             # Skip invalid files
