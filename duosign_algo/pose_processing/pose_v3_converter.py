@@ -114,8 +114,8 @@ def convert_pose_to_v3(
     
     try:
         data = np.load(str(pose_path), allow_pickle=True)
-        landmarks = data["landmarks"]  # Shape: (T, 543, 3)
-        confidence = data["confidence"]  # Shape: (T, 543)
+        landmarks = data["landmarks"]  # Shape: (T, 523, 3)
+        confidence = data["confidence"]  # Shape: (T, 523)
         fps = float(data["fps"])
         frame_count = int(data["frame_count"])
         source_video = str(data.get("source_video", "unknown"))
@@ -123,9 +123,9 @@ def convert_pose_to_v3(
         raise ValueError(f"Failed to load pose file: {e}")
     
     # Validate data shapes
-    if landmarks.ndim != 3 or landmarks.shape[1] != 543 or landmarks.shape[2] != 3:
-        raise ValueError(f"Invalid landmarks shape: {landmarks.shape}, expected (T, 543, 3)")
-    if confidence.shape != (landmarks.shape[0], 543):
+    if landmarks.ndim != 3 or landmarks.shape[1] != 523 or landmarks.shape[2] != 3:
+        raise ValueError(f"Invalid landmarks shape: {landmarks.shape}, expected (T, 523, 3)")
+    if confidence.shape != (landmarks.shape[0], 523):
         raise ValueError(f"Invalid confidence shape: {confidence.shape}")
     
     # Step 2: Apply 1€ filter
@@ -169,23 +169,35 @@ def convert_pose_to_v3(
                 bone: quat.tolist()  # Convert numpy array to list for JSON
                 for bone, quat in rotations_seq[t].items()
             },
-            "velocities": velocities_seq[t],
-            "confidences": confidences_seq[t]
+            "velocities": {
+                bone: float(vel)  # Convert numpy float to Python float
+                for bone, vel in velocities_seq[t].items()
+            },
+            "confidences": {
+                bone: float(conf)  # Convert numpy float to Python float
+                for bone, conf in confidences_seq[t].items()
+            }
         }
         frames.append(frame)
     
     output_data = {
         "format_version": "3.0-quaternion",
-        "fps": fps,
-        "frame_count": frame_count,
+        "fps": float(fps),  # Convert to Python float
+        "frame_count": int(frame_count),  # Convert to Python int
         "source_video": source_video,
         "frames": frames,
         "skeleton_info": {
             "source": "mediapipe",
-            "normalization": norm_metadata,
+            "normalization": {
+                k: float(v) if isinstance(v, (np.floating, np.integer)) else v
+                for k, v in norm_metadata.items()
+            },
             "bone_count": len(rotations_seq[0])
         },
-        "filter_config": filter_config,
+        "filter_config": {
+            k: float(v) if isinstance(v, (np.floating, np.integer)) else v
+            for k, v in filter_config.items()
+        },
         "metadata": {
             "converted_at": datetime.now().isoformat(),
             "converter_version": "3.0.0"

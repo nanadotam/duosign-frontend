@@ -27,7 +27,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Path as PathParam
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
@@ -143,7 +143,12 @@ app.add_middleware(
 )
 
 # Configuration
+# When running from duosign_algo/, __file__ is duosign_algo/api/main.py
+# We need to go: api/main.py -> api -> duosign_algo -> duosign-frontend -> public/poses_v3
 POSES_DIR = Path(__file__).parent.parent.parent / "public" / "poses_v3"
+if not POSES_DIR.exists():
+    # Fallback: try relative to current working directory
+    POSES_DIR = Path("../public/poses_v3").resolve()
 POSES_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -303,7 +308,7 @@ async def list_signs(
 
 @app.get("/api/sign/{gloss}", response_model=PoseV3Data)
 async def get_sign(
-    gloss: str = Field(..., description="Sign gloss/identifier")
+    gloss: str = PathParam(..., description="Sign gloss/identifier")
 ):
     """
     Get pose data for a specific sign.
@@ -335,7 +340,7 @@ async def get_sign(
 
 @app.get("/api/sign/{gloss}/metadata", response_model=Dict[str, Any])
 async def get_sign_metadata(
-    gloss: str = Field(..., description="Sign gloss/identifier")
+    gloss: str = PathParam(..., description="Sign gloss/identifier")
 ):
     """
     Get metadata for a specific sign (without frame data).

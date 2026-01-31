@@ -12,17 +12,15 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { VRM, VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import * as Kalidokit from 'kalidokit';
-import { convertToKalidokitFormat } from '@/utils/poseToKalidokit';
-import type { PoseData } from '@/components/app/SkeletonRenderer';
+import { applyPoseFrame, type PoseFrameV3, type PoseDataV3 } from '@/utils/applyPoseFrame';
 import { motion } from 'framer-motion';
 
 /**
  * Props for AvatarRenderer component
  */
 interface AvatarRendererProps {
-  /** Pose data containing landmarks and confidence values */
-  poseData: PoseData | null;
+  /** Pose data in V3 format with quaternions */
+  poseData: PoseDataV3 | null;
   /** Whether animation playback is active */
   isPlaying: boolean;
   /** Playback speed multiplier (0.5, 0.75, 1.0, etc.) */
@@ -176,17 +174,14 @@ export function AvatarRenderer({
       }
     }
 
-    // Apply current frame pose to avatar
-    if (vrm) {
+    // Apply current frame pose to avatar using quaternion-based rendering
+    if (vrm && poseData.frames && poseData.frames[frameRef.current]) {
       try {
-        applyPoseToAvatar(vrm, poseData, frameRef.current);
+        const frame = poseData.frames[frameRef.current];
+        applyPoseFrame(vrm, frame);
       } catch (err) {
         console.warn('Error applying pose to avatar:', err);
       }
-
-      // Update VRM (required for proper rendering)
-      const deltaTime = clock.getDelta();
-      vrm.update(deltaTime);
     }
 
     // Render scene
@@ -391,215 +386,6 @@ async function loadAvatar(
   return vrm;
 }
 
-/**
- * Apply pose data to VRM avatar using Kalidokit
- *
- * Now uses the full 33-point MediaPipe format which is compatible with
- * Kalidokit.Pose.solve() for proper bone rotation calculations.
- *
- * @param vrm - VRM avatar to animate
- * @param poseData - Full pose data structure
- * @param frameIndex - Current frame to apply
- */
-function applyPoseToAvatar(
-  vrm: VRM,
-  poseData: PoseData,
-  frameIndex: number
-): void {
-  if (!poseData || frameIndex >= poseData.frame_count) return;
-
-  // Extract current frame data
-  const frameData = {
-    landmarks: poseData.landmarks[frameIndex],
-    confidence: poseData.confidence[frameIndex]
-  };
-
-  // Convert to Kalidokit format
-  const kalidokitData = convertToKalidokitFormat(frameData);
-
-  // Check if we have valid pose data
-  if (!kalidokitData.hasValidPose) {
-    if (frameIndex === 0) {
-      console.warn('Frame 0 has insufficient pose landmarks');
-    }
-    return;
-  }
-
-  try {
-    // Use Kalidokit.Pose.solve with the full 33-point MediaPipe format
-    // IMPORTANT: imageSize is required for proper angle calculations
-    // Since our landmarks are normalized (0-1), we use width/height of 1
-    const riggedPose = Kalidokit.Pose.solve(
-      kalidokitData.poseLandmarks3D,  // 3D world landmarks
-      kalidokitData.poseLandmarks,    // 2D normalized landmarks
-      {
-        runtime: 'mediapipe',
-        imageSize: { width: 1, height: 1 },  // Normalized coordinates
-        enableLegs: false  // Disable legs for sign language (upper body focus)
-      }
-    );
-
-    // Apply pose to VRM
-    if (riggedPose) {
-      rigPose(vrm, riggedPose);
-    }
-
-    // Solve and apply hand poses
-    if (kalidokitData.hasValidLeftHand) {
-      const riggedLeftHand = Kalidokit.Hand.solve(kalidokitData.leftHandLandmarks, 'Left');
-      if (riggedLeftHand) {
-        rigHand(vrm, riggedLeftHand, 'Left');
-      }
-    }
-
-    if (kalidokitData.hasValidRightHand) {
-      const riggedRightHand = Kalidokit.Hand.solve(kalidokitData.rightHandLandmarks, 'Right');
-      if (riggedRightHand) {
-        rigHand(vrm, riggedRightHand, 'Right');
-      }
-    }
-
-    // Debug: Log first frame with full details
-    if (frameIndex === 0) {
-      console.log('=== FRAME 0 DEBUG ===');
-      console.log('Input landmarks (key points):');
-      console.log('  Left shoulder (11):', kalidokitData.poseLandmarks[11]);
-      console.log('  Right shoulder (12):', kalidokitData.poseLandmarks[12]);
-      console.log('  Left elbow (13):', kalidokitData.poseLandmarks[13]);
-      console.log('  Right elbow (14):', kalidokitData.poseLandmarks[14]);
-      console.log('  Left wrist (15):', kalidokitData.poseLandmarks[15]);
-      console.log('  Right wrist (16):', kalidokitData.poseLandmarks[16]);
-
-      console.log('\nKalidokit.Pose.solve output:');
-      console.log('  Full riggedPose:', riggedPose);
-      console.log('  LeftUpperArm:', riggedPose?.LeftUpperArm);
-      console.log('  RightUpperArm:', riggedPose?.RightUpperArm);
-      console.log('  LeftLowerArm:', riggedPose?.LeftLowerArm);
-      console.log('  RightLowerArm:', riggedPose?.RightLowerArm);
-
-      console.log('\nHand validity:');
-      console.log('  hasValidLeftHand:', kalidokitData.hasValidLeftHand);
-      console.log('  hasValidRightHand:', kalidokitData.hasValidRightHand);
-      console.log('=== END DEBUG ===');
-    }
-  } catch (err) {
-    if (frameIndex === 0) {
-      console.error('Could not rig frame 0:', err);
-    }
-  }
-}
-
-/**
- * Apply Kalidokit pose solution to VRM avatar
- *
- * Kalidokit.Pose.solve returns euler angles (in radians) for body bones.
- * This function converts those to quaternions and applies them to VRM bones
- * with smoothing for natural animation.
- *
- * @param vrm - VRM avatar
- * @param riggedPose - Pose solution from Kalidokit.Pose.solve
- */
-function rigPose(vrm: VRM, riggedPose: any): void {
-  const { humanoid } = vrm;
-
-  /**
-   * Helper to apply euler rotation to a body bone
-   * @param boneName - VRM bone name
-   * @param euler - Euler angles { x, y, z } in radians
-   */
-  const applyRotation = (boneName: string, euler: { x: number; y: number; z: number } | undefined) => {
-    if (!euler) return;
-
-    const bone = humanoid.getNormalizedBoneNode(boneName as any);
-    if (bone) {
-      const targetQuat = eulerToQuaternion(euler);
-      bone.quaternion.slerp(targetQuat, ROTATION_SMOOTHING);
-    }
-  };
-
-  // Apply upper body rotations (disable hips/spine for sign language focus)
-  // These can cause the avatar to lean or rotate unexpectedly
-  // applyRotation('hips', riggedPose.Hips?.rotation);
-  // applyRotation('spine', riggedPose.Spine);
-  // applyRotation('chest', riggedPose.Chest);
-
-  // Apply arm rotations - these are critical for sign language
-  applyRotation('leftUpperArm', riggedPose.LeftUpperArm);
-  applyRotation('rightUpperArm', riggedPose.RightUpperArm);
-  applyRotation('leftLowerArm', riggedPose.LeftLowerArm);
-  applyRotation('rightLowerArm', riggedPose.RightLowerArm);
-
-  // Apply shoulder rotations if available
-  applyRotation('leftShoulder', riggedPose.LeftShoulder);
-  applyRotation('rightShoulder', riggedPose.RightShoulder);
-
-  // Apply hand rotations (wrist orientation)
-  applyRotation('leftHand', riggedPose.LeftHand);
-  applyRotation('rightHand', riggedPose.RightHand);
-}
-
-
-/**
- * Convert Kalidokit euler angles to Three.js quaternion
- * Kalidokit outputs euler angles in radians as { x, y, z }
- * 
- * @param euler - Euler angles from Kalidokit { x, y, z }
- * @returns THREE.Quaternion
- */
-function eulerToQuaternion(euler: { x: number; y: number; z: number }): THREE.Quaternion {
-  const threeEuler = new THREE.Euler(euler.x, euler.y, euler.z, 'XYZ');
-  return new THREE.Quaternion().setFromEuler(threeEuler);
-}
-
-/**
- * Apply hand rotations to VRM finger bones
- * 
- * IMPORTANT: Kalidokit.Hand.solve returns euler angles { x, y, z } in radians,
- * NOT quaternions. Note that fingers primarily move in the z-axis.
- *
- * @param vrm - VRM avatar
- * @param riggedHand - Kalidokit hand solution with euler angles
- * @param side - 'Left' or 'Right'
- */
-function rigHand(vrm: VRM, riggedHand: any, side: 'Left' | 'Right'): void {
-  const { humanoid } = vrm;
-  const prefix = side.toLowerCase();
-
-  /**
-   * Helper to apply euler rotation to a finger bone
-   *
-   * @param boneName - VRM bone name
-   * @param euler - Euler angles { x, y, z } in radians from Kalidokit
-   */
-  const applyRotation = (boneName: string, euler: { x: number; y: number; z: number } | undefined) => {
-    if (!euler || typeof euler.z !== 'number') return;
-
-    const bone = humanoid.getNormalizedBoneNode(boneName as any);
-    if (bone) {
-      // Convert euler angles to quaternion
-      const targetQuat = eulerToQuaternion(euler);
-      bone.quaternion.slerp(targetQuat, ROTATION_SMOOTHING);
-    }
-  };
-
-  // Apply wrist rotation
-  const wristKey = `${side}Wrist` as keyof typeof riggedHand;
-  if (riggedHand[wristKey]) {
-    applyRotation(`${prefix}Hand`, riggedHand[wristKey]);
-  }
-
-  // Finger names and joints
-  const fingers = ['Thumb', 'Index', 'Middle', 'Ring', 'Little'];
-  const joints = ['Proximal', 'Intermediate', 'Distal'];
-
-  // Apply rotation to each finger joint
-  fingers.forEach((finger) => {
-    joints.forEach((joint) => {
-      // Kalidokit uses format: RightThumbProximal, etc.
-      const rotationKey = `${side}${finger}${joint}` as keyof typeof riggedHand;
-      // VRM uses format: rightThumbProximal, etc.
-      const boneKey = `${prefix}${finger}${joint}`;
-      applyRotation(boneKey, riggedHand[rotationKey]);
-    });
-  });
-}
+// All pose application logic is now handled by the applyPoseFrame utility
+// from @/utils/applyPoseFrame.ts which uses direct quaternion application
+// with velocity-adaptive SLERP smoothing.
