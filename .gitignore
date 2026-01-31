@@ -57,3 +57,6 @@ public/lexicon/
 duosign_algo/wlasl-processed
 duosign_algo/wlasl-processed/videos
 
+duosign_algo/pose_processing/poses_v3/
+duosign_algo/pose_processing/poses_v3/
+public/poses_v3
