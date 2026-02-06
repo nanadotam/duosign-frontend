@@ -27,8 +27,6 @@ export default function AppPage() {
   const { theme, toggleTheme } = useTheme()
 
   const [initialText, setInitialText] = useState<string | null>(null)
-
-  // Gloss and pose state
   const [selectedGloss, setSelectedGloss] = useState<string | null>(null)
   const [poseData, setPoseData] = useState<PoseDataV3 | null>(null)
   const [loadingPose, setLoadingPose] = useState(false)
@@ -51,7 +49,7 @@ export default function AppPage() {
     }
   }, [initialText, appState, submitTranslation])
 
-  // Handle gloss selection - load pose data from API
+  // Handle gloss selection
   const handleSelectGloss = useCallback(async (entry: GlossEntry) => {
     setSelectedGloss(entry.glosses ?? entry.gloss)
     setLoadingPose(true)
@@ -109,7 +107,6 @@ export default function AppPage() {
   }, [])
 
   const handleForward = useCallback(() => {
-    // Skip forward in animation
     if (poseData) {
       const totalFrames = poseData.frames?.length || 0
       setCurrentFrame(prev => Math.min(prev + 10, totalFrames - 1))
@@ -127,18 +124,18 @@ export default function AppPage() {
   }, [selectedHistoryItem])
 
   return (
-    <div className="min-h-screen bg-[var(--background)] transition-colors">
+    <div className="min-h-screen bg-[var(--background)] transition-colors duration-300">
       <Header theme={theme} toggleTheme={toggleTheme} />
 
-      <main className="px-[var(--panel-gap)] pb-[var(--panel-gap)]">
-        <div className="h-[calc(100vh-var(--header-height)-var(--panel-gap))] grid grid-cols-1 md:grid-cols-[45fr_55fr] gap-[var(--panel-gap)] max-w-[var(--max-content-width)] mx-auto">
+      <main className="px-4 md:px-6 pb-6">
+        <motion.div 
+          className="h-[calc(100vh-var(--header-height)-24px)] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-5 max-w-[var(--max-content-width)] mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Left Panel */}
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="h-full min-h-[400px] md:min-h-0 overflow-hidden"
-          >
+          <div className="h-full min-h-[400px] lg:min-h-0 overflow-hidden">
             <LeftPanel
               history={history}
               selectedItem={selectedHistoryItem}
@@ -147,15 +144,10 @@ export default function AppPage() {
               onSelectGloss={handleSelectGloss}
               selectedGloss={selectedGloss}
             />
-          </motion.div>
+          </div>
 
           {/* Right Panel */}
-          <motion.div
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="h-full min-h-[500px] md:min-h-0"
-          >
+          <div className="h-full min-h-[500px] lg:min-h-0">
             <RightPanel
               appState={loadingPose ? 'PROCESSING' : appState}
               playback={playback}
@@ -170,8 +162,8 @@ export default function AppPage() {
               currentFrame={currentFrame}
               onFrameChange={handleFrameChange}
             />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </main>
     </div>
   )

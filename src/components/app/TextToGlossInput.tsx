@@ -2,12 +2,10 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Send, AlertTriangle, Sparkles, Check, X, ChevronDown, Terminal } from 'lucide-react'
 
 const API_BASE_URL = 'http://localhost:8000'
 
-/**
- * Gloss item from API response
- */
 interface GlossItem {
   index: number
   gloss: string
@@ -16,9 +14,6 @@ interface GlossItem {
   video_id: string | null
 }
 
-/**
- * Debug info from API response
- */
 interface DebugInfo {
   available_count: number
   missing_count: number
@@ -27,9 +22,6 @@ interface DebugInfo {
   available_glosses: string[]
 }
 
-/**
- * Full API response
- */
 interface TextToGlossResponse {
   text: string
   gloss_string: string
@@ -43,15 +35,12 @@ interface TextToGlossInputProps {
   onGlossSelect?: (gloss: string, videoId: string | null) => void
 }
 
-/**
- * Text input and gloss breakdown component
- * Allows users to enter English text and see ASL gloss conversion
- */
 export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
   const [inputText, setInputText] = useState('')
   const [result, setResult] = useState<TextToGlossResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showDebug, setShowDebug] = useState(false)
 
   const handleConvert = useCallback(async () => {
     if (!inputText.trim()) return
@@ -74,7 +63,7 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
       setResult(data)
     } catch (err) {
       console.error('Text-to-gloss conversion failed:', err)
-      setError('Could not connect to API. Make sure the server is running.')
+      setError('Could not connect to pose API. Make sure the server is running.')
     } finally {
       setLoading(false)
     }
@@ -88,117 +77,171 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
   }
 
   return (
-    <div className="space-y-4">
-      {/* Input section */}
+    <div className="space-y-5">
+      {/* Input Section */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">
+        <label className="text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wider">
           Enter English Text
         </label>
-        <div className="flex gap-2">
+        
+        <div className="relative">
           <textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type a sentence... (e.g., 'Can you help me?')"
-            className="flex-1 px-3 py-2 text-sm border border-neutral-200 rounded-lg 
-                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                       resize-none bg-white"
+            className="input resize-none pr-14"
             rows={2}
           />
-          <button
+          
+          {/* Send Button - Inside input */}
+          <motion.button
             onClick={handleConvert}
             disabled={loading || !inputText.trim()}
-            className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg
-                       hover:bg-blue-700 disabled:bg-neutral-300 disabled:cursor-not-allowed
-                       transition-colors flex items-center gap-2"
+            className="absolute right-2 top-1/2 -translate-y-1/2
+                       w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center
+                       bg-[var(--color-primary)] text-white
+                       hover:bg-[var(--color-primary-dark)]
+                       disabled:bg-[var(--color-gray-300)] dark:disabled:bg-[var(--color-gray-600)]
+                       disabled:cursor-not-allowed
+                       shadow-[var(--shadow-primary)] disabled:shadow-none
+                       transition-all duration-200"
+            whileHover={{ scale: loading ? 1 : 1.05 }}
+            whileTap={{ scale: loading ? 1 : 0.95 }}
           >
             {loading ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Converting...</span>
-              </>
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
-              'Translate'
+              <Send className="h-4 w-4" />
             )}
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {/* Error message */}
-      {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="p-3 bg-red-50 border border-red-200 rounded-lg"
-        >
-          <p className="text-red-600 text-sm">{error}</p>
-          <p className="text-red-400 text-xs mt-1">
-            Start the API: <code className="bg-red-100 px-1 rounded">cd duosign_algo && uvicorn api.main:app --port 8000</code>
-          </p>
-        </motion.div>
-      )}
+      {/* Error Message */}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: 'auto' }}
+            exit={{ opacity: 0, y: -10, height: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="p-4 rounded-[var(--radius-lg)] bg-[var(--color-error-subtle)] border border-[var(--color-error-border)]">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-error)]/10 flex items-center justify-center shrink-0">
+                  <AlertTriangle className="h-4 w-4 text-[var(--color-error)]" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-[var(--color-error)]">{error}</p>
+                  <div className="mt-2 flex items-center gap-2 text-xs text-[var(--color-error)]/70">
+                    <Terminal className="h-3 w-3" />
+                    <code className="font-mono bg-[var(--color-error)]/10 px-1.5 py-0.5 rounded">
+                      cd duosign_algo && uvicorn api.main:app --port 8000
+                    </code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Results section */}
+      {/* Results Section */}
       <AnimatePresence mode="wait">
         {result && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="space-y-3"
+            className="space-y-4"
           >
-            {/* Gloss string */}
-            <div className="p-3 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-lg">
-              <div className="text-xs text-neutral-500 mb-1">ASL Gloss</div>
-              <div className="font-mono text-lg font-semibold text-blue-800">
-                {result.gloss_string}
+            {/* Gloss String Result */}
+            <div className="p-4 rounded-[var(--radius-lg)] bg-gradient-to-br from-[var(--color-primary-subtle)] to-[var(--color-accent-subtle)] border border-[var(--color-primary)]/10">
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="h-4 w-4 text-[var(--color-primary)]" />
+                <span className="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wide">
+                  ASL Gloss
+                </span>
               </div>
+              <p className="font-mono text-lg font-semibold text-[var(--color-text-primary)] tracking-wide">
+                {result.gloss_string}
+              </p>
             </div>
 
-            {/* Gloss breakdown */}
-            <div className="space-y-2">
-              <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">
-                Breakdown ({result.debug.available_count}/{result.debug.total_count} available)
+            {/* Gloss Breakdown */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wider">
+                  Breakdown
+                </span>
+                <span className="badge badge-success">
+                  {result.debug.available_count}/{result.debug.total_count} available
+                </span>
               </div>
+              
               <div className="flex flex-wrap gap-2">
-                {result.glosses.map((item) => (
+                {result.glosses.map((item, index) => (
                   <motion.button
                     key={item.index}
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: item.index * 0.05 }}
+                    transition={{ delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => item.available && onGlossSelect?.(item.gloss, item.video_id)}
                     disabled={!item.available}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium border-2 transition-all
-                      ${item.available
-                        ? 'bg-green-50 border-green-300 text-green-800 hover:bg-green-100 hover:border-green-400 cursor-pointer'
-                        : 'bg-neutral-50 border-neutral-200 text-neutral-400 cursor-not-allowed'
-                      }`}
+                    className={`gloss-chip ${item.available ? 'gloss-chip-available' : 'gloss-chip-unavailable'}`}
                     title={item.available 
-                      ? `Click to play: ${item.gloss} (video: ${item.video_id})`
+                      ? `Click to play: ${item.gloss}`
                       : `No pose data for: ${item.gloss}`
                     }
                   >
-                    <span className="mr-1">{item.available ? '✓' : '✗'}</span>
-                    {item.gloss}
+                    {item.available ? (
+                      <Check className="h-3 w-3" />
+                    ) : (
+                      <X className="h-3 w-3" />
+                    )}
+                    <span>{item.gloss}</span>
                     {item.original_word && (
-                      <span className="ml-1 text-xs opacity-60">({item.original_word})</span>
+                      <span className="text-[10px] opacity-60">({item.original_word})</span>
                     )}
                   </motion.button>
                 ))}
               </div>
             </div>
 
-            {/* Debug info */}
-            <details className="text-xs text-neutral-500">
-              <summary className="cursor-pointer hover:text-neutral-700">Debug Info</summary>
-              <div className="mt-2 p-2 bg-neutral-50 rounded-lg font-mono space-y-1">
-                <div>Method: {result.method}</div>
-                <div>Confidence: {(result.confidence * 100).toFixed(0)}%</div>
-                <div>Available: {result.debug.available_glosses.join(', ') || 'none'}</div>
-                <div>Missing: {result.debug.missing_glosses.join(', ') || 'none'}</div>
-              </div>
-            </details>
+            {/* Debug Info - Collapsible */}
+            <div className="border-t border-[var(--panel-border)] pt-3">
+              <button
+                onClick={() => setShowDebug(!showDebug)}
+                className="flex items-center gap-2 text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)] transition-colors"
+              >
+                <motion.div
+                  animate={{ rotate: showDebug ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="h-3 w-3" />
+                </motion.div>
+                <span>Debug Info</span>
+              </button>
+              
+              <AnimatePresence>
+                {showDebug && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-3 p-3 rounded-[var(--radius-md)] bg-[var(--panel-content-bg)] font-mono text-xs space-y-1 text-[var(--color-text-tertiary)]">
+                      <div><span className="text-[var(--color-text-secondary)]">Method:</span> {result.method}</div>
+                      <div><span className="text-[var(--color-text-secondary)]">Confidence:</span> {(result.confidence * 100).toFixed(0)}%</div>
+                      <div><span className="text-[var(--color-success)]">Available:</span> {result.debug.available_glosses.join(', ') || 'none'}</div>
+                      <div><span className="text-[var(--color-error)]">Missing:</span> {result.debug.missing_glosses.join(', ') || 'none'}</div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,17 +1,19 @@
 'use client'
 
 import type { HistoryItem } from '@/models'
-import { Play } from 'lucide-react'
+import { Play, Inbox } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 interface HistoryItemProps {
   item: HistoryItem
   isSelected?: boolean
   onClick: () => void
+  index: number
 }
 
-function HistoryItemComponent({ item, isSelected, onClick }: HistoryItemProps) {
-  const truncatedText = item.text.length > 50
-    ? item.text.slice(0, 50) + '...'
+function HistoryItemComponent({ item, isSelected, onClick, index }: HistoryItemProps) {
+  const truncatedText = item.text.length > 40
+    ? item.text.slice(0, 40) + '...'
     : item.text
 
   const formattedTime = new Date(item.timestamp).toLocaleTimeString([], {
@@ -20,28 +22,38 @@ function HistoryItemComponent({ item, isSelected, onClick }: HistoryItemProps) {
   })
 
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      className={`w-full px-4 py-3 rounded-[var(--radius-lg)] text-left transition-all ${
-        isSelected
-          ? 'bg-[var(--color-primary)]/10 ring-1 ring-[var(--color-primary)]/20'
-          : 'bg-[var(--panel-content-bg)] hover:bg-[var(--panel-content-bg)]/80'
-      }`}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+      className={`w-full history-item ${isSelected ? 'history-item-selected' : ''}`}
     >
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-[var(--color-text-primary)] truncate">
-            {truncatedText}
-          </p>
-          <p className="text-xs text-[var(--color-mid-gray)] mt-0.5">
-            {formattedTime}
-          </p>
-        </div>
-        <div className="w-8 h-8 rounded-full bg-[var(--color-text-primary)] flex items-center justify-center shrink-0">
-          <Play className="h-3.5 w-3.5 text-[var(--panel-content-bg)] ml-0.5" fill="currentColor" />
-        </div>
+      <div className="flex-1 min-w-0 text-left">
+        <p className="text-sm font-medium text-[var(--color-text-primary)] truncate leading-snug">
+          {truncatedText}
+        </p>
+        <p className="text-xs text-[var(--color-text-tertiary)] mt-1">
+          {formattedTime}
+        </p>
       </div>
-    </button>
+      
+      {/* Play button */}
+      <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
+        isSelected 
+          ? 'bg-[var(--color-primary)] shadow-[var(--shadow-primary)]' 
+          : 'bg-[var(--color-text-primary)]'
+      }`}>
+        <Play 
+          className={`h-3.5 w-3.5 ml-0.5 ${
+            isSelected ? 'text-white' : 'text-[var(--panel-bg)]'
+          }`} 
+          fill="currentColor" 
+        />
+      </div>
+    </motion.button>
   )
 }
 
@@ -55,37 +67,70 @@ interface HistoryListProps {
 export function HistoryList({ items, selectedItem, onSelectItem, onClearHistory }: HistoryListProps) {
   if (items.length === 0) {
     return (
-      <div className="text-center py-8 text-[var(--color-mid-gray)] text-sm">
-        No history yet. Type something to get started.
-      </div>
+      <motion.div 
+        className="flex flex-col items-center justify-center py-12 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
+        <div className="w-14 h-14 rounded-2xl bg-[var(--panel-content-bg)] 
+                      flex items-center justify-center mb-4
+                      border border-[var(--panel-border)]">
+          <Inbox className="h-6 w-6 text-[var(--color-text-tertiary)]" />
+        </div>
+        <p className="text-sm font-medium text-[var(--color-text-secondary)] mb-1">
+          No history yet
+        </p>
+        <p className="text-xs text-[var(--color-text-tertiary)]">
+          Type something to get started
+        </p>
+      </motion.div>
     )
   }
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
-          History
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4 pt-4">
+        <h3 className="text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wider">
+          Recent
         </h3>
         {onClearHistory && (
-          <button
+          <motion.button
             onClick={onClearHistory}
-            className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+            className="text-xs font-medium text-[var(--color-text-tertiary)] 
+                     hover:text-[var(--color-error)] transition-colors duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             Clear All
-          </button>
+          </motion.button>
         )}
       </div>
-      <div className="space-y-2 max-h-[400px] overflow-y-auto">
-        {items.map((item) => (
+
+      {/* List */}
+      <div className="space-y-2 max-h-[320px] overflow-y-auto pr-1">
+        {items.slice(0, 10).map((item, index) => (
           <HistoryItemComponent
             key={item.id}
             item={item}
             isSelected={selectedItem?.id === item.id}
             onClick={() => onSelectItem(item)}
+            index={index}
           />
         ))}
       </div>
+
+      {/* Show more indicator */}
+      {items.length > 10 && (
+        <motion.p 
+          className="text-xs text-center text-[var(--color-text-tertiary)] mt-4 py-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          +{items.length - 10} more items
+        </motion.p>
+      )}
     </div>
   )
 }

@@ -4,7 +4,8 @@ import { HistoryList } from './HistoryList'
 import { GlossPicker, type GlossEntry } from '@/components/app/GlossPicker'
 import { TextToGlossInput } from '@/components/app/TextToGlossInput'
 import type { HistoryItem } from '@/models'
-import { ArrowUpRight } from 'lucide-react'
+import { Star, Clock } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 interface LeftPanelProps {
   history: HistoryItem[]
@@ -24,28 +25,41 @@ export function LeftPanel({
   selectedGloss
 }: LeftPanelProps) {
   return (
-    <div className="flex flex-col h-full bg-[var(--panel-bg)] rounded-[var(--radius-xl)] p-[var(--panel-padding)] overflow-hidden transition-shadow hover:shadow-[var(--shadow-panel)]">
-      {/* Text Input with send button */}
-      <div className="mb-4">
+    <motion.div 
+      className="flex flex-col h-full panel p-[var(--panel-padding)] overflow-hidden"
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* Text Input Section */}
+      <div className="mb-6">
         <TextToGlossInput
           onGlossSelect={(gloss, videoId) => {
             if (videoId && onSelectGloss) {
-              onSelectGloss({ gloss: gloss.toLowerCase(), video_id: videoId, frame_count: 0, duration_sec: 0, file_size_kb: 0 })
+              onSelectGloss({ 
+                gloss: gloss.toLowerCase(), 
+                video_id: videoId, 
+                frame_count: 0, 
+                duration_sec: 0, 
+                file_size_kb: 0 
+              })
             }
           }}
         />
       </div>
 
-      {/* Gloss Picker */}
-      <div className="mb-4 pb-4 border-b border-[var(--panel-border)]">
+      {/* Gloss Picker Section */}
+      <div className="mb-6">
+        <div className="divider" />
         <GlossPicker
           onSelectGloss={(entry) => onSelectGloss?.(entry)}
           selectedGloss={selectedGloss}
         />
       </div>
 
-      {/* History section */}
-      <div className="flex-1 overflow-y-auto">
+      {/* History Section */}
+      <div className="flex-1 overflow-y-auto min-h-0">
+        <div className="divider" />
         <HistoryList
           items={history}
           selectedItem={selectedItem}
@@ -54,17 +68,33 @@ export function LeftPanel({
         />
       </div>
 
-      {/* Footer links */}
-      <div className="flex items-center justify-center gap-6 pt-4 mt-4 border-t border-[var(--panel-border)]">
-        <button className="flex items-center gap-1 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
-          <ArrowUpRight className="h-3.5 w-3.5" />
-          View Favorites
-        </button>
-        <button className="flex items-center gap-1 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
-          <ArrowUpRight className="h-3.5 w-3.5" />
-          View History
-        </button>
+      {/* Footer Actions */}
+      <div className="pt-4 mt-4 border-t border-[var(--panel-border)]">
+        <div className="flex items-center justify-center gap-4">
+          <motion.button 
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium
+                       text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]
+                       hover:bg-[var(--panel-content-bg)] rounded-[var(--radius-md)]
+                       transition-all duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Star className="h-4 w-4" />
+            <span>Favorites</span>
+          </motion.button>
+          <motion.button 
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium
+                       text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]
+                       hover:bg-[var(--panel-content-bg)] rounded-[var(--radius-md)]
+                       transition-all duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Clock className="h-4 w-4" />
+            <span>History</span>
+          </motion.button>
+        </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
