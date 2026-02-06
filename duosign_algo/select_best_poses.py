@@ -7,7 +7,7 @@ Analyzes extracted pose data, selects the highest-quality representative
 video for each gloss based on landmark detection metrics, and generates
 comprehensive documentation suitable for academic publication.
 
-Author: DuoSign Team
+Author: Nana Amoako
 Date: 2026-02-06
 """
 
@@ -83,83 +83,79 @@ def analyze_pose_file(pose_path: Path) -> Optional[Dict]:
     """
     Analyze a single .pose file and extract detection metrics.
     
-    Pose file format (MediaPipe):
-    - pose: 33 landmarks (x, y, z, visibility)
-    - face: 468 landmarks
-    - left_hand: 21 landmarks
-    - right_hand: 21 landmarks
+    Pose file format (NumPy .npz archive):
+    - landmarks: (frames, 523, 3) - all landmarks
+    - confidence: (frames, 523) - confidence scores
+    - presence_mask: (frames, 523) - detection mask
+    - landmark_layout: dict with region indices
     """
     try:
-        with open(pose_path, 'r') as f:
-            pose_data = json.load(f)
+        # Load NumPy archive
+        data = np.load(pose_path, allow_pickle=True)
         
-        frames = pose_data.get('data', [])
-        if not frames:
+        landmarks = data['landmarks']  # (frames, 523, 3)
+        confidence = data['confidence']  # (frames, 523)
+        presence_mask = data['presence_mask']  # (frames, 523)
+        layout = data['landmark_layout'].item()  # dict
+        
+        total_frames = landmarks.shape[0]
+        
+        if total_frames == 0:
             return None
         
-        total_frames = len(frames)
+        # Get landmark indices for each region (layout contains [start, end] ranges)
+        pose_range = layout['pose']  # [start, end]
+        face_range = layout['face']
+        left_hand_range = layout['left_hand']
+        right_hand_range = layout['right_hand']
         
-        # Count frames with valid detections
-        pose_detected = 0
-        face_detected = 0
-        left_hand_detected = 0
-        right_hand_detected = 0
-        all_detected = 0
+        # Convert to slice objects (end is exclusive in Python slicing)
+        pose_slice = slice(pose_range[0], pose_range[1])
+        face_slice = slice(face_range[0], face_range[1])
+        left_hand_slice = slice(left_hand_range[0], left_hand_range[1])
+        right_hand_slice = slice(right_hand_range[0], right_hand_range[1])
         
-        pose_confidences = []
-        face_confidences = []
-        left_hand_confidences = []
-        right_hand_confidences = []
+        # Count frames with valid detections (using presence_mask)
+        pose_detected = np.sum(np.any(presence_mask[:, pose_slice], axis=1))
+        face_detected = np.sum(np.any(presence_mask[:, face_slice], axis=1))
+        left_hand_detected = np.sum(np.any(presence_mask[:, left_hand_slice], axis=1))
+        right_hand_detected = np.sum(np.any(presence_mask[:, right_hand_slice], axis=1))
         
-        for frame in frames:
-            # Check pose (33 landmarks)
-            pose = frame.get('pose', [])
-            if pose and len(pose) >= 33:
-                pose_detected += 1
-                # Extract visibility/confidence (4th value in each landmark)
-                confidences = [lm[3] if len(lm) > 3 else 0 for lm in pose if lm]
-                if confidences:
-                    pose_confidences.append(np.mean(confidences))
+        # Check completeness (all regions present in same frame)
+        all_regions_present = (
+            np.any(presence_mask[:, pose_slice], axis=1) &
+            np.any(presence_mask[:, face_slice], axis=1) &
+            np.any(presence_mask[:, left_hand_slice], axis=1) &
+            np.any(presence_mask[:, right_hand_slice], axis=1)
+        )
+        all_detected = np.sum(all_regions_present)
+        
+        # Calculate average confidence scores (only for detected landmarks)
+        def avg_confidence_for_region(region_slice):
+            # Get confidence for this region across all frames
+            region_conf = confidence[:, region_slice]
+            region_mask = presence_mask[:, region_slice]
             
-            # Check face (468 landmarks)
-            face = frame.get('face', [])
-            if face and len(face) >= 468:
-                face_detected += 1
-                confidences = [lm[3] if len(lm) > 3 else 0 for lm in face if lm]
-                if confidences:
-                    face_confidences.append(np.mean(confidences))
-            
-            # Check left hand (21 landmarks)
-            left_hand = frame.get('left_hand', [])
-            if left_hand and len(left_hand) >= 21:
-                left_hand_detected += 1
-                confidences = [lm[3] if len(lm) > 3 else 0 for lm in left_hand if lm]
-                if confidences:
-                    left_hand_confidences.append(np.mean(confidences))
-            
-            # Check right hand (21 landmarks)
-            right_hand = frame.get('right_hand', [])
-            if right_hand and len(right_hand) >= 21:
-                right_hand_detected += 1
-                confidences = [lm[3] if len(lm) > 3 else 0 for lm in right_hand if lm]
-                if confidences:
-                    right_hand_confidences.append(np.mean(confidences))
-            
-            # Check if all regions detected
-            if pose and face and left_hand and right_hand:
-                all_detected += 1
+            # Only average where landmarks are present
+            masked_conf = region_conf[region_mask > 0]
+            return float(np.mean(masked_conf)) if len(masked_conf) > 0 else 0.0
+        
+        pose_conf_avg = avg_confidence_for_region(pose_slice)
+        face_conf_avg = avg_confidence_for_region(face_slice)
+        left_hand_conf_avg = avg_confidence_for_region(left_hand_slice)
+        right_hand_conf_avg = avg_confidence_for_region(right_hand_slice)
         
         return {
             'frame_count': total_frames,
-            'pose_detection_rate': pose_detected / total_frames,
-            'face_detection_rate': face_detected / total_frames,
-            'left_hand_detection_rate': left_hand_detected / total_frames,
-            'right_hand_detection_rate': right_hand_detected / total_frames,
-            'completeness_score': all_detected / total_frames,
-            'pose_confidence_avg': np.mean(pose_confidences) if pose_confidences else 0.0,
-            'face_confidence_avg': np.mean(face_confidences) if face_confidences else 0.0,
-            'left_hand_confidence_avg': np.mean(left_hand_confidences) if left_hand_confidences else 0.0,
-            'right_hand_confidence_avg': np.mean(right_hand_confidences) if right_hand_confidences else 0.0,
+            'pose_detection_rate': float(pose_detected) / total_frames,
+            'face_detection_rate': float(face_detected) / total_frames,
+            'left_hand_detection_rate': float(left_hand_detected) / total_frames,
+            'right_hand_detection_rate': float(right_hand_detected) / total_frames,
+            'completeness_score': float(all_detected) / total_frames,
+            'pose_confidence_avg': pose_conf_avg,
+            'face_confidence_avg': face_conf_avg,
+            'left_hand_confidence_avg': left_hand_conf_avg,
+            'right_hand_confidence_avg': right_hand_conf_avg,
         }
     
     except Exception as e:
@@ -375,6 +371,15 @@ def main():
 def generate_analysis_report(selections: Dict, output_dir: Path):
     """Generate comprehensive markdown analysis report"""
     
+    # Handle empty selections
+    if not selections:
+        print("⚠ No glosses selected - skipping report generation")
+        with open(output_dir / 'analysis_report.md', 'w') as f:
+            f.write("# DuoSign Pose Selection Analysis Report\n\n")
+            f.write("**Status:** No glosses met the minimum quality threshold.\n\n")
+            f.write("Please lower the `--min_detection_rate` threshold or check your pose data quality.\n")
+        return
+    
     # Calculate aggregate statistics
     all_metrics = [data['best'] for data in selections.values()]
     
@@ -396,9 +401,10 @@ def generate_analysis_report(selections: Dict, output_dir: Path):
     worst_overall = min(all_metrics, key=lambda x: x.rank_score)
     
     # Generate report
+    from datetime import datetime
     report = f"""# DuoSign Pose Selection Analysis Report
 
-**Generated:** {Path.ctime(Path.cwd())}  
+**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  
 **Dataset:** WLASL v0.3  
 **Total Glosses Selected:** {len(selections)}
 
