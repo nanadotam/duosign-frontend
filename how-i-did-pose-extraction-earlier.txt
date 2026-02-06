@@ -1,0 +1,86 @@
+[drwxr-xr-x nanaamoako staff     288]  .
+├── [-rw-r--r-- nanaamoako staff    714K]  Excalidraw-duosign-extract-pose-pipeline.png
+├── [-rw-r--r-- nanaamoako staff     163]  how
+├── [-rw-r--r-- nanaamoako staff       0]  how-i-did-pose-extraction-earlier.txt
+├── [-rw-r--r-- nanaamoako staff    7.9K]  README.md
+├── [-rw-r--r-- nanaamoako staff     234]  requirements.txt
+├── [-rw-r--r-- nanaamoako staff     51K]  wlasl_pose_pipeline.py
+└── [drwxr-xr-x nanaamoako staff     320]  wlasl-processed
+    ├── [-rw-r--r-- nanaamoako staff     53K]  missing.txt
+    ├── [-rw-r--r-- nanaamoako staff    248K]  nslt_100.json
+    ├── [-rw-r--r-- nanaamoako staff    688K]  nslt_1000.json
+    ├── [-rw-r--r-- nanaamoako staff    1.1M]  nslt_2000.json
+    ├── [-rw-r--r-- nanaamoako staff    266K]  nslt_300.json
+    ├── [drwxr-xr-x nanaamoako staff     192]  test_subset
+    │   ├── [-rw-r--r-- nanaamoako staff    6.0K]  EXTRACTION_REPORT.md
+    │   ├── [drwxr-xr-x nanaamoako staff    1.1K]  poses
+    │   │   ├── [-rw-r--r-- nanaamoako staff    174K]  05730.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    246K]  05731.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    435K]  05734.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff     33K]  08935.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    339K]  08936.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    477K]  08937.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    385K]  10147.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    233K]  10158.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    497K]  10166.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    155K]  28210.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    432K]  28214.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff     25K]  38544.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    491K]  45436.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    187K]  45438.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    405K]  45443.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff     34K]  56556.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    214K]  56557.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    229K]  56563.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    181K]  57934.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    244K]  57935.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    166K]  57937.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    364K]  63679.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    301K]  64291.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    257K]  64292.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    291K]  64293.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    362K]  66183.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    263K]  66798.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    294K]  66799.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    503K]  69370.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff    361K]  69411.pose
+    │   │   ├── [-rw-r--r-- nanaamoako staff     452]  config.json
+    │   │   ├── [-rw-r--r-- nanaamoako staff     54K]  failures.jsonl
+    │   │   ├── [-rw-r--r-- nanaamoako staff    9.5K]  pipeline.log
+    │   │   └── [-rw-r--r-- nanaamoako staff      95]  summary.json
+    │   ├── [-rw-r--r-- nanaamoako staff    3.9K]  selection.json
+    │   └── [drwxr-xr-x nanaamoako staff    1.0K]  videos
+    │       ├── [-rw-r--r-- nanaamoako staff    400K]  05730.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    675K]  05731.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    582K]  05734.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    440K]  08935.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    213K]  08936.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    580K]  08937.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    145K]  10147.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     37K]  10158.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    905K]  10166.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     26K]  28210.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    814K]  28214.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    648K]  38544.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    666K]  45436.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     28K]  45438.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    755K]  45443.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    565K]  56556.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    544K]  56557.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     43K]  56563.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    583K]  57934.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    609K]  57935.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    337K]  57937.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    601K]  63679.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     53K]  64291.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     45K]  64292.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     53K]  64293.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff     65K]  66183.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    160K]  66798.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    181K]  66799.mp4
+    │       ├── [-rw-r--r-- nanaamoako staff    3.6M]  69370.mp4
+    │       └── [-rw-r--r-- nanaamoako staff    2.7M]  69411.mp4
+    ├── [-rw-r--r-- nanaamoako staff     22K]  wlasl_class_list.txt
+    └── [-rw-r--r-- nanaamoako staff     11M]  WLASL_v0.3.json
+
+5 directories, 79 files
