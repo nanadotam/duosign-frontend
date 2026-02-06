@@ -60,3 +60,7 @@ duosign_algo/wlasl-processed/videos
 duosign_algo/pose_processing/poses_v3/
 duosign_algo/pose_processing/poses_v3/
 public/poses_v3
+from-github/kalidoface-3d
+from-github/kalidokit
+old-git-v-gloss-poses-subset/test_subset/videos/
+old-git-v-gloss-poses-subset/test_subset/poses/

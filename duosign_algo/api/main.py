@@ -32,6 +32,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
+# Text-to-Gloss imports (lazy loaded to avoid startup delay)
+_text_to_gloss_converter = None
+
+def get_text_to_gloss():
+    """Lazy load the text-to-gloss converter."""
+    global _text_to_gloss_converter
+    if _text_to_gloss_converter is None:
+        from .text_to_gloss import get_converter
+        _text_to_gloss_converter = get_converter()
+    return _text_to_gloss_converter
+
 
 # ============================================================================
 # Pydantic Models for Type-Safe API
@@ -116,6 +127,46 @@ class HealthResponse(BaseModel):
     version: str = Field(..., description="API version")
     timestamp: str = Field(..., description="Current server time")
     signs_available: int = Field(..., description="Number of signs available")
+
+
+class TextToGlossRequest(BaseModel):
+    """Request body for text-to-gloss conversion."""
+    text: str = Field(..., min_length=1, max_length=1000, description="English text to convert")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "text": "Can you help me?"
+            }
+        }
+
+
+class GlossItem(BaseModel):
+    """Single gloss item with availability info."""
+    index: int = Field(..., description="Position in gloss sequence")
+    gloss: str = Field(..., description="Gloss notation")
+    original_word: Optional[str] = Field(None, description="Original English word")
+    available: bool = Field(..., description="Whether pose data is available")
+    video_id: Optional[str] = Field(None, description="Video ID if available")
+
+
+class TextToGlossDebug(BaseModel):
+    """Debug information for text-to-gloss conversion."""
+    available_count: int
+    missing_count: int
+    total_count: int
+    missing_glosses: List[str]
+    available_glosses: List[str]
+
+
+class TextToGlossResponse(BaseModel):
+    """Response for text-to-gloss conversion."""
+    text: str = Field(..., description="Original input text")
+    gloss_string: str = Field(..., description="Space-separated gloss notation")
+    glosses: List[GlossItem] = Field(..., description="Indexed glosses with availability")
+    method: str = Field(..., description="Conversion method used")
+    confidence: float = Field(..., description="Availability confidence (0-1)")
+    debug: TextToGlossDebug = Field(..., description="Debug information")
 
 
 # ============================================================================
@@ -419,6 +470,75 @@ async def get_sign_metadata(
         "filter_config": data["filter_config"],
         "metadata": data["metadata"]
     }
+
+
+# ============================================================================
+# Text-to-Gloss Endpoints
+# ============================================================================
+
+@app.post("/api/v1/text-to-gloss", response_model=TextToGlossResponse)
+async def convert_text_to_gloss(request: TextToGlossRequest):
+    """
+    Convert English text to ASL gloss notation.
+    
+    Uses rule-based NLP to transform English into ASL gloss order:
+    - Time markers moved to front
+    - Pronouns converted to IX notation
+    - Verb placement follows ASL grammar
+    - Negation moved to end
+    
+    Returns indexed glosses with availability flags for pose lookup.
+    
+    Example:
+        ```bash
+        curl -X POST "http://localhost:8000/api/v1/text-to-gloss" \\
+          -H "Content-Type: application/json" \\
+          -d '{"text": "Can you help me?"}'
+        ```
+    """
+    try:
+        converter = get_text_to_gloss()
+        result = converter.convert(request.text)
+        return TextToGlossResponse(**result)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Conversion failed: {str(e)}")
+
+
+@app.get("/api/v1/vocabulary")
+async def get_vocabulary_endpoint():
+    """
+    Get available gloss vocabulary.
+    
+    Returns list of glosses that have pose data available.
+    
+    Example:
+        ```bash
+        curl http://localhost:8000/api/v1/vocabulary
+        ```
+    """
+    try:
+        from .vocabulary import get_vocabulary
+        vocab = get_vocabulary()
+        return vocab.get_stats()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to load vocabulary: {str(e)}")
+
+
+@app.get("/api/v1/text-to-gloss/stats")
+async def get_conversion_stats():
+    """
+    Get text-to-gloss conversion statistics.
+    
+    Example:
+        ```bash
+        curl http://localhost:8000/api/v1/text-to-gloss/stats
+        ```
+    """
+    try:
+        converter = get_text_to_gloss()
+        return converter.get_stats()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # ============================================================================

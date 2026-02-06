@@ -3,6 +3,7 @@
 import { TextInput } from './TextInput'
 import { HistoryList } from './HistoryList'
 import { GlossPicker, type GlossEntry } from '@/components/app/GlossPicker'
+import { TextToGlossInput } from '@/components/app/TextToGlossInput'
 import type { HistoryItem } from '@/models'
 
 interface LeftPanelProps {
@@ -26,9 +27,15 @@ export function LeftPanel({
 }: LeftPanelProps) {
   return (
     <div className="flex flex-col h-full bg-white rounded-2xl shadow-sm border border-neutral-100 overflow-hidden">
-      {/* Input section */}
+      {/* Text-to-Gloss section */}
       <div className="p-4 border-b border-neutral-100">
-        <TextInput onSubmit={onSubmit} compact />
+        <TextToGlossInput 
+          onGlossSelect={(gloss, videoId) => {
+            if (videoId && onSelectGloss) {
+              onSelectGloss({ gloss: gloss.toLowerCase(), video_id: videoId, frame_count: 0, duration_sec: 0, file_size_kb: 0 })
+            }
+          }}
+        />
       </div>
 
       {/* Gloss Picker section */}
