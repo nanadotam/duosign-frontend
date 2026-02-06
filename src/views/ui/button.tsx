@@ -4,23 +4,24 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-light)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg",
-        secondary: "bg-neutral-100 text-neutral-900 hover:bg-neutral-200",
-        outline: "border border-neutral-300 bg-transparent hover:bg-neutral-50",
-        ghost: "hover:bg-neutral-100",
-        link: "text-blue-600 underline-offset-4 hover:underline",
-        playback: "bg-neutral-900 text-white hover:bg-neutral-800 shadow-lg",
+        default: "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] rounded-[var(--radius-md)]",
+        cta: "bg-[var(--color-cta)] text-white hover:bg-[var(--color-cta-hover)] active:bg-[var(--color-cta-active)] hover:-translate-y-[1px] active:translate-y-0 shadow-md hover:shadow-lg rounded-[var(--radius-md)] font-semibold uppercase tracking-wide",
+        secondary: "bg-[var(--color-light-gray)] text-[var(--color-text-primary)] hover:bg-[var(--color-panel-gray)] rounded-[var(--radius-md)]",
+        outline: "border border-[var(--color-mid-gray)] bg-transparent hover:bg-[var(--color-light-gray)] rounded-[var(--radius-md)]",
+        ghost: "hover:bg-[var(--color-light-gray)] rounded-[var(--radius-md)]",
+        link: "text-[var(--color-primary)] underline-offset-4 hover:underline",
+        playback: "text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] rounded-full",
       },
       size: {
         default: "h-11 px-6 py-2",
-        sm: "h-9 px-4",
-        lg: "h-14 px-8 text-base",
+        sm: "h-9 px-4 text-xs",
+        lg: "h-14 px-10 py-4 text-base",
         icon: "h-11 w-11",
-        playbackIcon: "h-14 w-14",
+        playbackIcon: "h-12 w-12",
       },
     },
     defaultVariants: {

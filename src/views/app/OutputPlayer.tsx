@@ -1,19 +1,12 @@
 'use client'
 
-/**
- * Output Player View
- *
- * Displays animated sign language output using either a 3D avatar or 2D skeleton.
- * Supports switching between rendering modes and handles playback state.
- */
-
 import { useState } from 'react'
 import { SkeletonRenderer } from '@/components/app/SkeletonRenderer'
 import { AvatarRenderer } from '@/components/app/AvatarRenderer'
 import type { PoseDataV3 } from '@/utils/applyPoseFrame'
 import { motion } from 'framer-motion'
 import { User, Activity } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/views/ui/button'
 
 interface OutputPlayerProps {
   isReady: boolean
@@ -24,9 +17,6 @@ interface OutputPlayerProps {
   onFrameChange?: (frame: number) => void
 }
 
-/**
- * Render mode: Avatar (3D VRM) or Skeleton (2D canvas)
- */
 type RenderMode = 'avatar' | 'skeleton'
 
 export function OutputPlayer({
@@ -37,11 +27,10 @@ export function OutputPlayer({
   currentFrame,
   onFrameChange
 }: OutputPlayerProps) {
-  // State for toggling between avatar and skeleton
   const [renderMode, setRenderMode] = useState<RenderMode>('avatar')
 
   return (
-    <div className="relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden bg-slate-900">
+    <div className="relative w-full h-full min-h-[350px] rounded-[var(--radius-lg)] overflow-hidden bg-[var(--panel-content-bg)]">
       {/* Renderer - Avatar or Skeleton */}
       {isReady && poseData ? (
         <motion.div
@@ -69,13 +58,13 @@ export function OutputPlayer({
           )}
         </motion.div>
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
+        <div className="absolute inset-0 flex items-center justify-center">
           {/* Placeholder avatar silhouette */}
           <motion.div
-            className="w-48 h-64 rounded-full bg-gradient-to-b from-slate-700 to-slate-800 opacity-30"
+            className="w-48 h-64 rounded-full bg-[var(--color-light-gray)] opacity-40"
             animate={{
               scale: [1, 1.02, 1],
-              opacity: [0.2, 0.35, 0.2]
+              opacity: [0.3, 0.45, 0.3]
             }}
             transition={{
               duration: 3,
@@ -84,8 +73,8 @@ export function OutputPlayer({
             }}
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <svg 
-              className="w-32 h-48 text-slate-600" 
+            <svg
+              className="w-32 h-48 text-[var(--color-panel-gray)]"
               viewBox="0 0 100 150"
               fill="currentColor"
             >
@@ -94,7 +83,7 @@ export function OutputPlayer({
             </svg>
           </div>
           <div className="absolute bottom-12 text-center">
-            <p className="text-sm text-slate-400 font-medium">Select a sign to view</p>
+            <p className="text-sm text-[var(--color-mid-gray)] font-medium">Select a sign to view</p>
           </div>
         </div>
       )}
@@ -102,33 +91,25 @@ export function OutputPlayer({
       {/* Render Mode Toggle */}
       {poseData && (
         <div className="absolute top-4 left-4 z-20">
-          <div className="flex items-center gap-2 bg-black/70 backdrop-blur-sm rounded-lg p-1">
+          <div className="flex items-center gap-1 bg-[var(--panel-bg)] rounded-[var(--radius-md)] p-1">
             <Button
               variant={renderMode === 'avatar' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setRenderMode('avatar')}
-              className={`h-8 px-3 transition-all ${
-                renderMode === 'avatar'
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700'
-              }`}
+              className="h-7 px-2.5"
               title="3D Avatar View"
             >
-              <User className="h-4 w-4 mr-1.5" />
+              <User className="h-3.5 w-3.5 mr-1" />
               <span className="text-xs font-medium">Avatar</span>
             </Button>
             <Button
               variant={renderMode === 'skeleton' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setRenderMode('skeleton')}
-              className={`h-8 px-3 transition-all ${
-                renderMode === 'skeleton'
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700'
-              }`}
+              className="h-7 px-2.5"
               title="2D Skeleton View"
             >
-              <Activity className="h-4 w-4 mr-1.5" />
+              <Activity className="h-3.5 w-3.5 mr-1" />
               <span className="text-xs font-medium">Skeleton</span>
             </Button>
           </div>
@@ -138,9 +119,9 @@ export function OutputPlayer({
       {/* Playing indicator */}
       {isPlaying && poseData && (
         <div className="absolute top-4 right-4 z-10">
-          <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-xs font-medium text-neutral-600">Playing</span>
+          <div className="flex items-center gap-2 bg-[var(--panel-bg)] rounded-[var(--radius-full)] px-3 py-1.5">
+            <div className="w-2 h-2 rounded-full bg-[var(--color-success)] animate-pulse" />
+            <span className="text-xs font-medium text-[var(--color-text-secondary)]">Playing</span>
           </div>
         </div>
       )}
@@ -148,8 +129,8 @@ export function OutputPlayer({
       {/* Gloss name indicator */}
       {poseData && (
         <div className="absolute bottom-4 left-4 z-10">
-          <div className="bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
-            <span className="text-xs font-mono text-white uppercase">
+          <div className="bg-[var(--color-text-primary)]/80 rounded-[var(--radius-full)] px-3 py-1.5">
+            <span className="text-xs font-mono text-[var(--panel-content-bg)] uppercase">
               {poseData.source_video?.split('/').pop()?.replace('.pose', '').replace('.json', '') || 'Unknown'}
             </span>
           </div>
@@ -158,5 +139,3 @@ export function OutputPlayer({
     </div>
   )
 }
-
-

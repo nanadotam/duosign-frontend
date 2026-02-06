@@ -1,25 +1,25 @@
 'use client'
 
 import { useState, KeyboardEvent } from 'react'
-import { Input } from '@/views/ui/input'
-import { Button } from '@/views/ui/button'
-import { X } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 interface TextInputProps {
   onSubmit: (text: string) => void
   placeholder?: string
   compact?: boolean
+  disabled?: boolean
 }
 
-export function TextInput({ 
-  onSubmit, 
-  placeholder = "What do you want to sign?",
-  compact = false 
+export function TextInput({
+  onSubmit,
+  placeholder = "Type English text to convert into sign language...",
+  compact = false,
+  disabled = false
 }: TextInputProps) {
   const [value, setValue] = useState('')
 
   const handleSubmit = () => {
-    if (value.trim()) {
+    if (value.trim() && !disabled) {
       onSubmit(value.trim())
       setValue('')
     }
@@ -31,36 +31,28 @@ export function TextInput({
     }
   }
 
-  const handleClear = () => {
-    setValue('')
-  }
-
   return (
     <div className="relative w-full">
-      <Input
+      <input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className={compact ? "h-12 text-base" : "h-16 text-lg"}
-        showCharCount={!compact}
+        disabled={disabled}
+        maxLength={500}
+        className={`w-full bg-[var(--panel-content-bg)] text-[var(--color-text-primary)] placeholder:text-[var(--color-mid-gray)] border-2 border-transparent focus:border-[var(--color-primary-light)] focus:outline-none rounded-[var(--radius-md)] pr-14 transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+          compact ? 'h-12 px-4 text-base' : 'h-14 px-4 text-base'
+        }`}
+        aria-label="Text to translate"
       />
-      {value && (
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleClear}
-          className="absolute right-14 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full"
-          aria-label="Clear input"
-        >
-          <X className="h-4 w-4" />
-        </Button>
-      )}
-      {!compact && (
-        <p className="mt-2 text-center text-sm text-neutral-400">
-          Press Enter to translate into sign language
-        </p>
-      )}
+      <button
+        onClick={handleSubmit}
+        disabled={!value.trim() || disabled}
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center hover:bg-[var(--color-primary-dark)] disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95"
+        aria-label="Send translation"
+      >
+        <ArrowRight className="h-5 w-5" />
+      </button>
     </div>
   )
 }

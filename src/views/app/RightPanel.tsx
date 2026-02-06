@@ -5,7 +5,7 @@ import { PlaybackControls } from './PlaybackControls'
 import { StatusText } from './StatusText'
 import type { AppState, PlaybackState } from '@/models'
 import type { PoseDataV3 } from '@/utils/applyPoseFrame'
-import { AlertCircle, WifiOff } from 'lucide-react'
+import { AlertCircle, WifiOff, Share2 } from 'lucide-react'
 import { Button } from '@/views/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -16,18 +16,24 @@ interface RightPanelProps {
   onRestart: () => void
   onSpeedChange: () => void
   onRetry?: () => void
+  onDownload?: () => void
+  onForward?: () => void
+  onShare?: () => void
   poseData?: PoseDataV3 | null
   currentFrame?: number
   onFrameChange?: (frame: number) => void
 }
 
-export function RightPanel({ 
-  appState, 
-  playback, 
-  onPlayPause, 
-  onRestart, 
+export function RightPanel({
+  appState,
+  playback,
+  onPlayPause,
+  onRestart,
   onSpeedChange,
   onRetry,
+  onDownload,
+  onForward,
+  onShare,
   poseData,
   currentFrame,
   onFrameChange
@@ -38,26 +44,37 @@ export function RightPanel({
   const isOffline = appState === 'OFFLINE'
 
   return (
-    <div className={`flex flex-col h-full bg-white rounded-2xl shadow-sm border overflow-hidden transition-colors ${
-      isError ? 'border-red-200' : isOffline ? 'border-amber-200' : 'border-neutral-100'
+    <div className={`flex flex-col h-full bg-[var(--panel-bg)] rounded-[var(--radius-xl)] overflow-hidden transition-all hover:shadow-[var(--shadow-panel)] ${
+      isError ? 'ring-1 ring-[var(--color-error)]/20' : isOffline ? 'ring-1 ring-[var(--color-warning)]/20' : ''
     }`}>
       {/* Offline banner */}
       <AnimatePresence>
         {isOffline && (
-          <motion.div 
+          <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="bg-amber-50 border-b border-amber-200 px-4 py-3 flex items-center gap-2"
+            className="bg-[var(--color-warning)]/10 border-b border-[var(--color-warning)]/20 px-4 py-3 flex items-center gap-2"
           >
-            <WifiOff className="h-4 w-4 text-amber-600" />
-            <span className="text-sm text-amber-700">You&apos;re offline. Please check your connection.</span>
+            <WifiOff className="h-4 w-4 text-[var(--color-warning)]" />
+            <span className="text-sm text-[var(--color-warning)]">You&apos;re offline. Please check your connection.</span>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Share button */}
+      <div className="flex items-center justify-end p-4 pb-0">
+        <button
+          onClick={onShare}
+          className="p-2 rounded-[var(--radius-md)] text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] transition-colors"
+          aria-label="Share"
+        >
+          <Share2 className="h-5 w-5" />
+        </button>
+      </div>
+
       {/* Main content area */}
-      <div className="flex-1 p-6 flex flex-col items-center justify-center">
+      <div className="flex-1 px-[var(--panel-padding)] pb-2 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           {isError ? (
             <motion.div
@@ -67,18 +84,18 @@ export function RightPanel({
               exit={{ opacity: 0, scale: 0.95 }}
               className="text-center"
             >
-              <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
-                <AlertCircle className="h-8 w-8 text-red-500" />
+              <div className="w-16 h-16 rounded-full bg-[var(--color-error)]/10 flex items-center justify-center mx-auto mb-4">
+                <AlertCircle className="h-8 w-8 text-[var(--color-error)]" />
               </div>
-              <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                Something went wrong
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                Translation failed
               </h3>
-              <p className="text-sm text-neutral-500 mb-4">
-                We couldn&apos;t process your request. Please try again.
+              <p className="text-sm text-[var(--color-text-secondary)] mb-4">
+                Please try again.
               </p>
               {onRetry && (
-                <Button onClick={onRetry}>
-                  Try Again
+                <Button variant="cta" onClick={onRetry}>
+                  RETRY
                 </Button>
               )}
             </motion.div>
@@ -88,10 +105,10 @@ export function RightPanel({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full"
+              className="w-full h-full"
             >
-              <OutputPlayer 
-                isReady={isReady} 
+              <OutputPlayer
+                isReady={isReady}
                 isPlaying={playback.isPlaying}
                 speed={playback.speed}
                 poseData={poseData}
@@ -103,7 +120,7 @@ export function RightPanel({
         </AnimatePresence>
       </div>
 
-      {/* Status text */}
+      {/* Status text / progress bars */}
       <StatusText isProcessing={isProcessing} />
 
       {/* Playback controls */}
@@ -111,17 +128,17 @@ export function RightPanel({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-t border-neutral-100"
         >
           <PlaybackControls
             playback={playback}
             onPlayPause={onPlayPause}
             onRestart={onRestart}
             onSpeedChange={onSpeedChange}
+            onDownload={onDownload}
+            onForward={onForward}
           />
         </motion.div>
       )}
     </div>
   )
 }
-

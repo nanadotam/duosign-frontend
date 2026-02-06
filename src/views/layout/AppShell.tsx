@@ -11,9 +11,9 @@ interface AppShellProps {
 
 export function AppShell({ children, showHeader = true, showFooter = true }: AppShellProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className="min-h-screen flex flex-col bg-[var(--background)]">
       {showHeader && <Header />}
-      <main className="flex-1 pt-[72px]">
+      <main className="flex-1 pt-[var(--header-height)]">
         {children}
       </main>
       {showFooter && <Footer />}

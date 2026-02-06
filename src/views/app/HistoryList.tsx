@@ -2,7 +2,6 @@
 
 import type { HistoryItem } from '@/models'
 import { Play } from 'lucide-react'
-import { Button } from '@/views/ui/button'
 
 interface HistoryItemProps {
   item: HistoryItem
@@ -11,39 +10,36 @@ interface HistoryItemProps {
 }
 
 function HistoryItemComponent({ item, isSelected, onClick }: HistoryItemProps) {
-  const truncatedText = item.text.length > 50 
-    ? item.text.slice(0, 50) + '...' 
+  const truncatedText = item.text.length > 50
+    ? item.text.slice(0, 50) + '...'
     : item.text
 
-  const formattedTime = new Date(item.timestamp).toLocaleTimeString([], { 
-    hour: '2-digit', 
-    minute: '2-digit' 
+  const formattedTime = new Date(item.timestamp).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit'
   })
 
   return (
     <button
       onClick={onClick}
-      className={`w-full p-4 rounded-xl text-left transition-all hover:bg-neutral-100 ${
-        isSelected ? 'bg-blue-50 border border-blue-200' : 'bg-white border border-neutral-100'
+      className={`w-full px-4 py-3 rounded-[var(--radius-lg)] text-left transition-all ${
+        isSelected
+          ? 'bg-[var(--color-primary)]/10 ring-1 ring-[var(--color-primary)]/20'
+          : 'bg-[var(--panel-content-bg)] hover:bg-[var(--panel-content-bg)]/80'
       }`}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-center justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-neutral-900 truncate">
+          <p className="text-sm font-medium text-[var(--color-text-primary)] truncate">
             {truncatedText}
           </p>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[var(--color-mid-gray)] mt-0.5">
             {formattedTime}
           </p>
         </div>
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="h-8 w-8 rounded-full shrink-0"
-          aria-label="Play this translation"
-        >
-          <Play className="h-4 w-4" />
-        </Button>
+        <div className="w-8 h-8 rounded-full bg-[var(--color-text-primary)] flex items-center justify-center shrink-0">
+          <Play className="h-3.5 w-3.5 text-[var(--panel-content-bg)] ml-0.5" fill="currentColor" />
+        </div>
       </div>
     </button>
   )
@@ -59,24 +55,24 @@ interface HistoryListProps {
 export function HistoryList({ items, selectedItem, onSelectItem, onClearHistory }: HistoryListProps) {
   if (items.length === 0) {
     return (
-      <div className="text-center py-8 text-neutral-400 text-sm">
+      <div className="text-center py-8 text-[var(--color-mid-gray)] text-sm">
         No history yet. Type something to get started.
       </div>
     )
   }
 
   return (
-    <div className="space-y-2">
+    <div>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-          Recent
+        <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
+          History
         </h3>
         {onClearHistory && (
-          <button 
+          <button
             onClick={onClearHistory}
-            className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors"
+            className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
           >
-            Clear all
+            Clear All
           </button>
         )}
       </div>

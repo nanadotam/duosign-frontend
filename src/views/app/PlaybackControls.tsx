@@ -1,7 +1,6 @@
 'use client'
 
-import { Button } from '@/views/ui/button'
-import { Play, Pause, RotateCcw, Gauge } from 'lucide-react'
+import { Download, ChevronsLeft, Play, Pause, ChevronsRight, Timer } from 'lucide-react'
 import type { PlaybackState } from '@/models'
 
 interface PlaybackControlsProps {
@@ -9,57 +8,73 @@ interface PlaybackControlsProps {
   onPlayPause: () => void
   onRestart: () => void
   onSpeedChange: () => void
+  onDownload?: () => void
+  onForward?: () => void
 }
 
-export function PlaybackControls({ 
-  playback, 
-  onPlayPause, 
-  onRestart, 
-  onSpeedChange 
+export function PlaybackControls({
+  playback,
+  onPlayPause,
+  onRestart,
+  onSpeedChange,
+  onDownload,
+  onForward
 }: PlaybackControlsProps) {
   const speedLabel = `${playback.speed}x`
 
   return (
-    <div className="flex items-center justify-center gap-4 p-4">
-      {/* Restart */}
-      <Button
-        variant="playback"
-        size="playbackIcon"
-        onClick={onRestart}
-        aria-label="Restart"
-        className="shadow-lg hover:scale-105 transition-transform"
+    <div className="flex items-center justify-center gap-6 py-4 px-6 border-t border-[var(--panel-border)]">
+      {/* Download */}
+      <button
+        onClick={onDownload}
+        className="p-2 rounded-[var(--radius-md)] text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] transition-colors"
+        aria-label="Download"
       >
-        <RotateCcw className="h-6 w-6" />
-      </Button>
+        <Download className="h-5 w-5" />
+      </button>
 
-      {/* Play/Pause - Primary */}
-      <Button
-        variant="default"
-        size="playbackIcon"
+      {/* Rewind */}
+      <button
+        onClick={onRestart}
+        className="p-2 rounded-[var(--radius-md)] text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] transition-colors"
+        aria-label="Rewind"
+      >
+        <ChevronsLeft className="h-6 w-6" />
+      </button>
+
+      {/* Play/Pause */}
+      <button
         onClick={onPlayPause}
+        className="p-2 rounded-[var(--radius-md)] text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] transition-colors"
         aria-label={playback.isPlaying ? "Pause" : "Play"}
-        className="h-16 w-16 shadow-xl hover:scale-105 transition-transform bg-blue-600 hover:bg-blue-700"
       >
         {playback.isPlaying ? (
-          <Pause className="h-7 w-7" />
+          <Pause className="h-6 w-6" />
         ) : (
-          <Play className="h-7 w-7 ml-1" />
+          <Play className="h-6 w-6" />
         )}
-      </Button>
+      </button>
+
+      {/* Forward */}
+      <button
+        onClick={onForward}
+        className="p-2 rounded-[var(--radius-md)] text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] transition-colors"
+        aria-label="Forward"
+      >
+        <ChevronsRight className="h-6 w-6" />
+      </button>
 
       {/* Speed */}
-      <Button
-        variant="playback"
-        size="playbackIcon"
+      <button
         onClick={onSpeedChange}
+        className="p-2 rounded-[var(--radius-md)] text-[var(--color-text-primary)] hover:bg-[var(--color-light-gray)] transition-colors relative"
         aria-label={`Speed: ${speedLabel}`}
-        className="shadow-lg hover:scale-105 transition-transform relative"
       >
-        <Gauge className="h-5 w-5" />
-        <span className="absolute -bottom-1 -right-1 text-[10px] bg-blue-600 text-white rounded-full px-1.5 py-0.5 font-bold">
+        <Timer className="h-5 w-5" />
+        <span className="absolute -top-1 -right-1 text-[9px] bg-[var(--color-primary)] text-white rounded-full w-4 h-4 flex items-center justify-center font-bold">
           {speedLabel}
         </span>
-      </Button>
+      </button>
     </div>
   )
 }
