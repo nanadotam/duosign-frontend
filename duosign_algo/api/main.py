@@ -197,11 +197,11 @@ app.add_middleware(
 
 # Configuration
 # When running from duosign_algo/, __file__ is duosign_algo/api/main.py
-# We need to go: api/main.py -> api -> duosign_algo -> duosign-frontend -> public/poses_v3
-POSES_DIR = Path(__file__).parent.parent.parent / "public" / "poses_v3"
+# We need to go: api/main.py -> api -> duosign_algo -> duosign-frontend -> public/lexicon/ase
+POSES_DIR = Path(__file__).parent.parent.parent / "public" / "lexicon" / "ase"
 if not POSES_DIR.exists():
     # Fallback: try relative to current working directory
-    POSES_DIR = Path("../public/poses_v3").resolve()
+    POSES_DIR = Path("../public/lexicon/ase").resolve()
 POSES_DIR.mkdir(parents=True, exist_ok=True)
 
 # WLASL metadata directory
@@ -537,6 +537,102 @@ async def get_conversion_stats():
     try:
         converter = get_text_to_gloss()
         return converter.get_stats()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================================
+# Pose Landmark Endpoints (Raw Landmark Data)
+# ============================================================================
+
+# Lazy load pose parser
+_pose_parser = None
+
+def get_pose_parser():
+    """Lazy load the pose parser."""
+    global _pose_parser
+    if _pose_parser is None:
+        from .pose_parser import get_parser
+        _pose_parser = get_parser()
+    return _pose_parser
+
+
+@app.get("/api/v1/pose/{gloss}")
+async def get_pose_landmarks(
+    gloss: str = PathParam(..., description="Sign gloss name")
+):
+    """
+    Get raw landmark data for a gloss.
+    
+    Returns parsed landmark coordinates from .pose files for skeleton rendering.
+    Each frame includes pose, face, and hand landmarks with confidence scores.
+    
+    Args:
+        gloss: Sign gloss (e.g., 'hello', 'thank_you')
+    
+    Returns:
+        LandmarkPoseData with frames containing landmark arrays
+    
+    Example:
+        ```bash
+        curl http://localhost:8000/api/v1/pose/hello
+        ```
+    """
+    try:
+        parser = get_pose_parser()
+        return parser.parse(gloss)
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@app.get("/api/v1/pose/{gloss}/debug")
+async def get_pose_debug(
+    gloss: str = PathParam(..., description="Sign gloss name")
+):
+    """
+    Get detailed debug metrics for a pose.
+    
+    Returns per-frame detection rates, confidence statistics, and
+    landmark counts for debugging and analysis.
+    
+    Args:
+        gloss: Sign gloss (e.g., 'hello')
+    
+    Returns:
+        Debug metrics including frame-by-frame analysis
+    
+    Example:
+        ```bash
+        curl http://localhost:8000/api/v1/pose/hello/debug
+        ```
+    """
+    try:
+        parser = get_pose_parser()
+        return parser.parse_debug(gloss)
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@app.get("/api/v1/poses")
+async def list_pose_glosses():
+    """
+    List all available glosses with pose data.
+    
+    Returns list of gloss names that have .pose files available
+    in the selected_poses directory.
+    
+    Example:
+        ```bash
+        curl http://localhost:8000/api/v1/poses
+        ```
+    """
+    try:
+        parser = get_pose_parser()
+        glosses = parser.list_available_glosses()
+        return {
+            "count": len(glosses),
+            "glosses": glosses
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

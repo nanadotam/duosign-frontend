@@ -67,3 +67,6 @@ old-git-v-gloss-poses-subset/test_subset/poses/
 from-github/kalidoface-3d
 from-github/kalidokit
 duosign_algo/selected_poses/
+
+old-commit/
+public/lexicon/ase/

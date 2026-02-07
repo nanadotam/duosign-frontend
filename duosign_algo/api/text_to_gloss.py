@@ -13,7 +13,7 @@ from typing import Dict, List, Set, Tuple, Optional, Any
 from functools import lru_cache
 import logging
 
-from .vocabulary import get_vocabulary
+from .vocabulary import get_vocabulary, FINGERSPELL_ALPHABET
 
 logger = logging.getLogger(__name__)
 
@@ -276,12 +276,18 @@ class TextToGlossConverter:
         """Build gloss tokens from a list of gloss strings."""
         return [{"word": original_text, "gloss": g} for g in glosses]
     
-    def _build_result(self, text: str, gloss_items: List[Dict], method: str) -> Dict:
-        """Build the final result dict with availability info."""
-        # Enrich with availability info
+    def _build_result(self, text: str, gloss_items: List[Dict], method: str, enable_fingerspelling: bool = True) -> Dict:
+        """
+        Build the final result dict with availability info.
+        
+        If enable_fingerspelling is True, unavailable glosses will be expanded
+        to their letter components (F-I-N-G-E-R-S-P-E-L-L).
+        """
+        # Enrich with availability info, optionally fingerspelling
         glosses = []
         available_count = 0
         missing_glosses = []
+        fingerspelled_count = 0
         
         for i, item in enumerate(gloss_items):
             gloss = item["gloss"]
@@ -290,18 +296,58 @@ class TextToGlossConverter:
             
             if is_available:
                 available_count += 1
+                glosses.append({
+                    "index": len(glosses),
+                    "gloss": gloss,
+                    "original_word": item["word"],
+                    "available": True,
+                    "video_id": video_id,
+                    "fingerspelled": False
+                })
+            elif enable_fingerspelling and gloss not in ['IX-1', 'IX-2', 'IX-3', 'IX-1+', 'IX-3+', 'NOT']:
+                # Fingerspell this word: expand to individual letters
+                word_letters = gloss.upper()
+                # Only fingerspell if we have alphabet poses
+                spelled_letters = []
+                for letter in word_letters:
+                    if letter in FINGERSPELL_ALPHABET and self.vocab.is_available(letter):
+                        spelled_letters.append(letter)
+                        fingerspelled_count += 1
+                
+                if spelled_letters:
+                    for letter in spelled_letters:
+                        glosses.append({
+                            "index": len(glosses),
+                            "gloss": letter,
+                            "original_word": item["word"],
+                            "available": True,
+                            "video_id": self.vocab.get_video_id(letter),
+                            "fingerspelled": True
+                        })
+                    available_count += len(spelled_letters)
+                else:
+                    # No letters available, mark as missing
+                    missing_glosses.append(gloss)
+                    glosses.append({
+                        "index": len(glosses),
+                        "gloss": gloss,
+                        "original_word": item["word"],
+                        "available": False,
+                        "video_id": None,
+                        "fingerspelled": False
+                    })
             else:
                 missing_glosses.append(gloss)
-            
-            glosses.append({
-                "index": i,
-                "gloss": gloss,
-                "original_word": item["word"],
-                "available": is_available,
-                "video_id": video_id
-            })
+                glosses.append({
+                    "index": len(glosses),
+                    "gloss": gloss,
+                    "original_word": item["word"],
+                    "available": False,
+                    "video_id": None,
+                    "fingerspelled": False
+                })
         
-        gloss_string = ' '.join(item["gloss"] for item in gloss_items)
+        gloss_string = ' '.join(g["gloss"] for g in glosses)
         total_count = len(glosses)
         
         return {
@@ -313,6 +359,7 @@ class TextToGlossConverter:
             "debug": {
                 "available_count": available_count,
                 "missing_count": len(missing_glosses),
+                "fingerspelled_count": fingerspelled_count,
                 "total_count": total_count,
                 "missing_glosses": missing_glosses,
                 "available_glosses": [g["gloss"] for g in glosses if g["available"]]

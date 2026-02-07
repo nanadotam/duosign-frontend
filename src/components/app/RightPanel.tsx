@@ -4,7 +4,7 @@ import { OutputPlayer } from './OutputPlayer'
 import { PlaybackControls } from './PlaybackControls'
 import { StatusText } from './StatusText'
 import type { AppState, PlaybackState } from '@/lib/types'
-import type { PoseDataV3 } from '@/utils/applyPoseFrame'
+import type { PoseData } from '@/components/app/SkeletonRenderer'
 import { AlertCircle, WifiOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -16,7 +16,7 @@ interface RightPanelProps {
   onRestart: () => void
   onSpeedChange: () => void
   onRetry?: () => void
-  poseData?: PoseDataV3 | null
+  poseData?: PoseData | null
   currentFrame?: number
   onFrameChange?: (frame: number) => void
 }

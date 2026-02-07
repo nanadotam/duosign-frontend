@@ -2,7 +2,7 @@
 
 import { HistoryList } from './HistoryList'
 import { GlossPicker, type GlossEntry } from '@/components/app/GlossPicker'
-import { TextToGlossInput } from '@/components/app/TextToGlossInput'
+import { TextToGlossInput, type GlossItem } from '@/components/app/TextToGlossInput'
 import type { HistoryItem } from '@/models'
 import { Star, Clock } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -14,6 +14,12 @@ interface LeftPanelProps {
   onClearHistory: () => void
   onSelectGloss?: (entry: GlossEntry) => void
   selectedGloss?: string | null
+  /** Called with full gloss sequence when text-to-gloss completes */
+  onSequenceReady?: (glosses: GlossItem[]) => void
+  /** Index of the currently-playing gloss (-1 = none) */
+  activeGlossIndex?: number
+  /** Whether sequence playback is in progress */
+  sequencePlaying?: boolean
 }
 
 export function LeftPanel({
@@ -22,10 +28,13 @@ export function LeftPanel({
   onSelectItem,
   onClearHistory,
   onSelectGloss,
-  selectedGloss
+  selectedGloss,
+  onSequenceReady,
+  activeGlossIndex = -1,
+  sequencePlaying = false
 }: LeftPanelProps) {
   return (
-    <motion.div 
+    <motion.div
       className="flex flex-col h-full panel p-[var(--panel-padding)] overflow-hidden"
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
@@ -36,15 +45,18 @@ export function LeftPanel({
         <TextToGlossInput
           onGlossSelect={(gloss, videoId) => {
             if (videoId && onSelectGloss) {
-              onSelectGloss({ 
-                gloss: gloss.toLowerCase(), 
-                video_id: videoId, 
-                frame_count: 0, 
-                duration_sec: 0, 
-                file_size_kb: 0 
+              onSelectGloss({
+                gloss: gloss.toLowerCase(),
+                video_id: videoId,
+                frame_count: 0,
+                duration_sec: 0,
+                file_size_kb: 0
               })
             }
           }}
+          onSequenceReady={onSequenceReady}
+          activeGlossIndex={activeGlossIndex}
+          sequencePlaying={sequencePlaying}
         />
       </div>
 
@@ -71,7 +83,7 @@ export function LeftPanel({
       {/* Footer Actions */}
       <div className="pt-4 mt-4 border-t border-[var(--panel-border)]">
         <div className="flex items-center justify-center gap-4">
-          <motion.button 
+          <motion.button
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium
                        text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]
                        hover:bg-[var(--panel-content-bg)] rounded-[var(--radius-md)]
@@ -82,7 +94,7 @@ export function LeftPanel({
             <Star className="h-4 w-4" />
             <span>Favorites</span>
           </motion.button>
-          <motion.button 
+          <motion.button
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium
                        text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]
                        hover:bg-[var(--panel-content-bg)] rounded-[var(--radius-md)]

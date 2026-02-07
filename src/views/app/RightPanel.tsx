@@ -4,8 +4,9 @@ import { OutputPlayer } from './OutputPlayer'
 import { PlaybackControls } from './PlaybackControls'
 import { StatusText } from './StatusText'
 import type { AppState, PlaybackState } from '@/models'
-import type { PoseDataV3 } from '@/utils/applyPoseFrame'
-import { AlertCircle, WifiOff, Share2, RefreshCw } from 'lucide-react'
+import type { PoseData } from '@/components/app/SkeletonRenderer'
+import { AlertCircle, WifiOff } from 'lucide-react'
+import { Button } from '@/views/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface RightPanelProps {
@@ -15,12 +16,11 @@ interface RightPanelProps {
   onRestart: () => void
   onSpeedChange: () => void
   onRetry?: () => void
-  onDownload?: () => void
-  onForward?: () => void
-  onShare?: () => void
-  poseData?: PoseDataV3 | null
+  poseData?: PoseData | null
   currentFrame?: number
   onFrameChange?: (frame: number) => void
+  onGlossComplete?: () => void
+  sequencePlaying?: boolean
 }
 
 export function RightPanel({
@@ -30,12 +30,11 @@ export function RightPanel({
   onRestart,
   onSpeedChange,
   onRetry,
-  onDownload,
-  onForward,
-  onShare,
   poseData,
   currentFrame,
-  onFrameChange
+  onFrameChange,
+  onGlossComplete,
+  sequencePlaying
 }: RightPanelProps) {
   const isProcessing = appState === 'PROCESSING'
   const isReady = appState === 'READY'
@@ -43,86 +42,48 @@ export function RightPanel({
   const isOffline = appState === 'OFFLINE'
 
   return (
-    <motion.div 
-      className={`flex flex-col h-full panel overflow-hidden ${
-        isError ? 'ring-2 ring-[var(--color-error)]/20' : 
-        isOffline ? 'ring-2 ring-[var(--color-warning)]/20' : ''
-      }`}
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-    >
-      {/* Offline Banner */}
+    <div className={`flex flex-col h-full bg-white rounded-2xl shadow-sm border overflow-hidden transition-colors ${
+      isError ? 'border-red-200' : isOffline ? 'border-amber-200' : 'border-neutral-100'
+    }`}>
+      {/* Offline banner */}
       <AnimatePresence>
         {isOffline && (
-          <motion.div
+          <motion.div 
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="bg-[var(--color-warning-subtle)] border-b border-[var(--color-warning)]/20 px-5 py-3 flex items-center gap-3"
+            className="bg-amber-50 border-b border-amber-200 px-4 py-3 flex items-center gap-2"
           >
-            <div className="w-8 h-8 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
-              <WifiOff className="h-4 w-4 text-[var(--color-warning)]" />
-            </div>
-            <span className="text-sm font-medium text-[var(--color-warning)]">
-              You&apos;re offline. Please check your connection.
-            </span>
+            <WifiOff className="h-4 w-4 text-amber-600" />
+            <span className="text-sm text-amber-700">You&apos;re offline. Please check your connection.</span>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Header with Share */}
-      <div className="flex items-center justify-end p-4 pb-0">
-        <motion.button
-          onClick={onShare}
-          className="p-2.5 rounded-[var(--radius-md)] text-[var(--color-text-secondary)]
-                     hover:text-[var(--color-text-primary)] hover:bg-[var(--panel-content-bg)]
-                     border border-transparent hover:border-[var(--panel-border)]
-                     transition-all duration-200"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Share"
-        >
-          <Share2 className="h-5 w-5" />
-        </motion.button>
-      </div>
-
-      {/* Main Content Area */}
-      <div className="flex-1 px-[var(--panel-padding)] pb-4 flex flex-col items-center justify-center min-h-0">
+      {/* Main content area */}
+      <div className="flex-1 p-6 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           {isError ? (
             <motion.div
               key="error"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center max-w-sm"
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="text-center"
             >
-              {/* Error Icon */}
-              <div className="w-20 h-20 rounded-2xl bg-[var(--color-error-subtle)] 
-                            flex items-center justify-center mx-auto mb-6
-                            shadow-[0_0_40px_-10px_var(--color-error)]">
-                <AlertCircle className="h-10 w-10 text-[var(--color-error)]" />
+              <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
+                <AlertCircle className="h-8 w-8 text-red-500" />
               </div>
-              
-              <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-2">
-                Translation failed
+              <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                Something went wrong
               </h3>
-              <p className="text-sm text-[var(--color-text-secondary)] mb-6 leading-relaxed">
-                Something went wrong. Please try again or check your connection.
+              <p className="text-sm text-neutral-500 mb-4">
+                We couldn&apos;t process your request. Please try again.
               </p>
-              
               {onRetry && (
-                <motion.button
-                  onClick={onRetry}
-                  className="btn btn-primary"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <RefreshCw className="h-4 w-4" />
-                  <span>Try Again</span>
-                </motion.button>
+                <Button onClick={onRetry}>
+                  Try Again
+                </Button>
               )}
             </motion.div>
           ) : (
@@ -131,7 +92,7 @@ export function RightPanel({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full h-full"
+              className="w-full"
             >
               <OutputPlayer
                 isReady={isReady}
@@ -140,35 +101,33 @@ export function RightPanel({
                 poseData={poseData}
                 currentFrame={currentFrame}
                 onFrameChange={onFrameChange}
+                onComplete={onGlossComplete}
+                loop={!sequencePlaying}
               />
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Status / Progress */}
+      {/* Status text */}
       <StatusText isProcessing={isProcessing} />
 
-      {/* Playback Controls */}
-      <AnimatePresence>
-        {isReady && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <PlaybackControls
-              playback={playback}
-              onPlayPause={onPlayPause}
-              onRestart={onRestart}
-              onSpeedChange={onSpeedChange}
-              onDownload={onDownload}
-              onForward={onForward}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      {/* Playback controls */}
+      {isReady && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="border-t border-neutral-100"
+        >
+          <PlaybackControls
+            playback={playback}
+            onPlayPause={onPlayPause}
+            onRestart={onRestart}
+            onSpeedChange={onSpeedChange}
+          />
+        </motion.div>
+      )}
+    </div>
   )
 }
+

@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "skills", "figma-ui-improvements"]
+  "exclude": ["node_modules", "skills", "figma-ui-improvements", "old-commit"]
 }

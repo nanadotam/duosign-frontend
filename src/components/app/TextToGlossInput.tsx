@@ -2,11 +2,11 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, AlertTriangle, Sparkles, Check, X, ChevronDown, Terminal } from 'lucide-react'
+import { Send, AlertTriangle, Sparkles, Check, X, ChevronDown, Terminal, Play } from 'lucide-react'
 
 const API_BASE_URL = 'http://localhost:8000'
 
-interface GlossItem {
+export interface GlossItem {
   index: number
   gloss: string
   original_word: string | null
@@ -33,9 +33,20 @@ interface TextToGlossResponse {
 
 interface TextToGlossInputProps {
   onGlossSelect?: (gloss: string, videoId: string | null) => void
+  /** Called with full gloss sequence when text-to-gloss completes */
+  onSequenceReady?: (glosses: GlossItem[]) => void
+  /** Index of the currently-playing gloss in the sequence (-1 = none) */
+  activeGlossIndex?: number
+  /** Whether sequence playback is in progress */
+  sequencePlaying?: boolean
 }
 
-export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
+export function TextToGlossInput({
+  onGlossSelect,
+  onSequenceReady,
+  activeGlossIndex = -1,
+  sequencePlaying = false
+}: TextToGlossInputProps) {
   const [inputText, setInputText] = useState('')
   const [result, setResult] = useState<TextToGlossResponse | null>(null)
   const [loading, setLoading] = useState(false)
@@ -61,19 +72,49 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
 
       const data: TextToGlossResponse = await response.json()
       setResult(data)
+
+      // Notify parent with the full gloss sequence for auto-play
+      if (onSequenceReady) {
+        onSequenceReady(data.glosses)
+      }
     } catch (err) {
       console.error('Text-to-gloss conversion failed:', err)
       setError('Could not connect to pose API. Make sure the server is running.')
     } finally {
       setLoading(false)
     }
-  }, [inputText])
+  }, [inputText, onSequenceReady])
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleConvert()
     }
+  }
+
+  const handlePlayAll = useCallback(() => {
+    if (result && onSequenceReady) {
+      onSequenceReady(result.glosses)
+    }
+  }, [result, onSequenceReady])
+
+  /**
+   * Get chip style based on playback state:
+   * - Green: currently playing
+   * - Yellow/amber: queued (not yet played) or already played
+   * - Default: no sequence playing
+   */
+  const getChipClass = (itemIndex: number, available: boolean): string => {
+    if (!available) return 'gloss-chip gloss-chip-unavailable'
+
+    if (sequencePlaying && activeGlossIndex >= 0) {
+      if (itemIndex === activeGlossIndex) {
+        return 'gloss-chip border-2 border-green-500 bg-green-500/20 text-green-300 shadow-[0_0_8px_rgba(34,197,94,0.3)]'
+      }
+      return 'gloss-chip border border-amber-500/50 bg-amber-500/10 text-amber-300'
+    }
+
+    return 'gloss-chip gloss-chip-available'
   }
 
   return (
@@ -83,7 +124,7 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
         <label className="text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wider">
           Enter English Text
         </label>
-        
+
         <div className="relative">
           <textarea
             value={inputText}
@@ -93,7 +134,7 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
             className="input resize-none pr-14"
             rows={2}
           />
-          
+
           {/* Send Button - Inside input */}
           <motion.button
             onClick={handleConvert}
@@ -158,11 +199,32 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
           >
             {/* Gloss String Result */}
             <div className="p-4 rounded-[var(--radius-lg)] bg-gradient-to-br from-[var(--color-primary-subtle)] to-[var(--color-accent-subtle)] border border-[var(--color-primary)]/10">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="h-4 w-4 text-[var(--color-primary)]" />
-                <span className="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wide">
-                  ASL Gloss
-                </span>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-[var(--color-primary)]" />
+                  <span className="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wide">
+                    ASL Gloss
+                  </span>
+                </div>
+                {/* Play All button */}
+                {result.debug.available_count > 0 && !sequencePlaying && (
+                  <motion.button
+                    onClick={handlePlayAll}
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium
+                             bg-green-600 text-white hover:bg-green-700 transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Play className="h-3 w-3" />
+                    <span>Play All</span>
+                  </motion.button>
+                )}
+                {sequencePlaying && (
+                  <span className="flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-green-600/20 text-green-400">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    Playing...
+                  </span>
+                )}
               </div>
               <p className="font-mono text-lg font-semibold text-[var(--color-text-primary)] tracking-wide">
                 {result.gloss_string}
@@ -179,7 +241,7 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
                   {result.debug.available_count}/{result.debug.total_count} available
                 </span>
               </div>
-              
+
               <div className="flex flex-wrap gap-2">
                 {result.glosses.map((item, index) => (
                   <motion.button
@@ -189,8 +251,8 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
                     transition={{ delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => item.available && onGlossSelect?.(item.gloss, item.video_id)}
                     disabled={!item.available}
-                    className={`gloss-chip ${item.available ? 'gloss-chip-available' : 'gloss-chip-unavailable'}`}
-                    title={item.available 
+                    className={getChipClass(item.index, item.available)}
+                    title={item.available
                       ? `Click to play: ${item.gloss}`
                       : `No pose data for: ${item.gloss}`
                     }
@@ -223,7 +285,7 @@ export function TextToGlossInput({ onGlossSelect }: TextToGlossInputProps) {
                 </motion.div>
                 <span>Debug Info</span>
               </button>
-              
+
               <AnimatePresence>
                 {showDebug && (
                   <motion.div

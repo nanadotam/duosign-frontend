@@ -77,7 +77,7 @@ export default function LandingPage() {
             onClick={() => router.push('/app')}
             className="bg-[#FF6B35] hover:bg-[#E55A2B] active:bg-[#CC4F24] text-white font-semibold text-sm uppercase tracking-wider px-10 py-4 rounded-[var(--radius-md)] hover:-translate-y-[2px] active:translate-y-0 transition-all shadow-lg hover:shadow-xl"
           >
-            TRY LIVE DEMO
+            GO TO APP
           </button>
           <Link
             href="/api"
