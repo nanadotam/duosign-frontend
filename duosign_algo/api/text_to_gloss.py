@@ -7,6 +7,7 @@ Author: Nana Amoako
 Date: February 2026
 """
 
+import re
 import spacy
 import time
 from typing import Dict, List, Set, Tuple, Optional, Any
@@ -35,14 +36,16 @@ def load_spacy():
 class ASLGrammar:
     """ASL grammar transformation rules."""
     
+    # Map pronouns to actual ASL glosses (use glosses that exist in vocabulary)
+    # Falls back to literal pronoun if available, otherwise uses ASL notation
     PRONOUNS = {
-        'i': 'IX-1', 'me': 'IX-1', 'my': 'IX-1', 'mine': 'IX-1',
-        'you': 'IX-2', 'your': 'IX-2', 'yours': 'IX-2',
-        'he': 'IX-3', 'him': 'IX-3', 'his': 'IX-3',
-        'she': 'IX-3', 'her': 'IX-3', 'hers': 'IX-3',
-        'it': 'IX-3', 'its': 'IX-3',
-        'we': 'IX-1+', 'us': 'IX-1+', 'our': 'IX-1+', 'ours': 'IX-1+',
-        'they': 'IX-3+', 'them': 'IX-3+', 'their': 'IX-3+', 'theirs': 'IX-3+'
+        'i': 'I', 'me': 'I', 'my': 'I', 'mine': 'I',
+        'you': 'YOU', 'your': 'YOUR', 'yours': 'YOUR',
+        'he': 'HE', 'him': 'HE', 'his': 'HE',
+        'she': 'SHE', 'her': 'SHE', 'hers': 'SHE',
+        'it': 'IT', 'its': 'IT',
+        'we': 'WE', 'us': 'WE', 'our': 'WE', 'ours': 'WE',
+        'they': 'THEY', 'them': 'THEY', 'their': 'THEY', 'theirs': 'THEY'
     }
     
     TEMPORAL = {
@@ -57,9 +60,92 @@ class ASLGrammar:
         'under the weather': 'SICK',
     }
     
+    # Contraction expansion mapping
+    CONTRACTIONS = {
+        "let's": "we go", "lets": "we go",
+        "can't": "can not", "cannot": "can not",
+        "won't": "will not", "wont": "will not",
+        "don't": "do not", "dont": "do not",
+        "doesn't": "does not", "doesnt": "does not",
+        "didn't": "did not", "didnt": "did not",
+        "i'm": "i am", "im": "i am",
+        "you're": "you are", "youre": "you are",
+        "we're": "we are", "were": "we are",
+        "they're": "they are", "theyre": "they are",
+        "he's": "he is", "hes": "he is",
+        "she's": "she is", "shes": "she is",
+        "it's": "it is", "its": "it is",
+        "i've": "i have", "ive": "i have",
+        "you've": "you have", "youve": "you have",
+        "we've": "we have", "weve": "we have",
+        "they've": "they have", "theyve": "they have",
+        "i'll": "i will", "ill": "i will",
+        "you'll": "you will", "youll": "you will",
+        "we'll": "we will", "well": "we will",
+        "they'll": "they will", "theyll": "they will",
+        "i'd": "i would", "id": "i would",
+        "you'd": "you would", "youd": "you would",
+        "we'd": "we would", "wed": "we would",
+        "they'd": "they would", "theyd": "they would",
+        "isn't": "is not", "isnt": "is not",
+        "aren't": "are not", "arent": "are not",
+        "wasn't": "was not", "wasnt": "was not",
+        "weren't": "were not", "werent": "were not",
+        "haven't": "have not", "havent": "have not",
+        "hasn't": "has not", "hasnt": "has not",
+        "hadn't": "had not", "hadnt": "had not",
+        "shouldn't": "should not", "shouldnt": "should not",
+        "wouldn't": "would not", "wouldnt": "would not",
+        "couldn't": "could not", "couldnt": "could not",
+        "that's": "that is", "thats": "that is",
+        "there's": "there is", "theres": "there is",
+        "here's": "here is", "heres": "here is",
+        "what's": "what is", "whats": "what is",
+        "who's": "who is", "whos": "who is",
+        "where's": "where is", "wheres": "where is",
+    }
+    
+    # Synonym fallback mapping (primary word -> list of alternatives)
+    SYNONYMS = {
+        "GO": ["LEAVE", "WALK", "MOVE", "TRAVEL", "DEPART", "RUN"],
+        "EAT": ["FOOD", "HUNGRY", "MEAL", "BREAKFAST", "LUNCH", "DINNER"],
+        "HELP": ["ASSIST", "SUPPORT", "AID"],
+        "WANT": ["WISH", "DESIRE", "NEED", "HOPE"],
+        "LIKE": ["LOVE", "ENJOY", "PREFER", "FAVORITE"],
+        "GOOD": ["GREAT", "FINE", "NICE", "OKAY", "WELL", "EXCELLENT"],
+        "BAD": ["WRONG", "TERRIBLE", "AWFUL", "POOR"],
+        "BIG": ["LARGE", "HUGE", "GIANT", "WIDE"],
+        "SMALL": ["LITTLE", "TINY", "MINI", "SHORT"],
+        "FAST": ["QUICK", "RAPID", "SPEED", "HURRY"],
+        "SLOW": ["CAREFUL", "PATIENT", "WAIT"],
+        "HAPPY": ["GLAD", "JOYFUL", "PLEASED", "EXCITED", "CELEBRATE"],
+        "SAD": ["UPSET", "DEPRESSED", "DOWN", "UNHAPPY", "CRY"],
+        "THINK": ["BELIEVE", "CONSIDER", "WONDER", "KNOW", "UNDERSTAND"],
+        "SEE": ["LOOK", "WATCH", "VIEW", "OBSERVE", "NOTICE"],
+        "SAY": ["TELL", "SPEAK", "TALK", "COMMUNICATE"],
+        "COME": ["ARRIVE", "APPROACH", "VISIT"],
+        "GIVE": ["OFFER", "PROVIDE", "SHARE"],
+        "TAKE": ["GET", "GRAB", "RECEIVE", "ACCEPT"],
+        "MAKE": ["CREATE", "BUILD", "PRODUCE", "PREPARE"],
+        "USE": ["APPLY", "UTILIZE"],
+        "FIND": ["SEARCH", "DISCOVER", "LOCATE"],
+        "PUT": ["PLACE", "SET", "POSITION"],
+        "SHOW": ["DEMONSTRATE", "DISPLAY", "PRESENT"],
+    }
+    
     # Skip words (articles, prepositions, auxiliaries)
     SKIP_WORDS = {'a', 'an', 'the', 'to', 'of', 'for', 'in', 'on', 'at', 'with', 'by'}
     SKIP_VERBS = {'BE', 'AM', 'IS', 'ARE', 'WAS', 'WERE', 'DO', 'DOES', 'DID', 'WILL', 'WOULD', 'COULD', 'SHOULD'}
+    
+    @staticmethod
+    def expand_contractions(text: str) -> str:
+        """Expand contractions to full forms."""
+        result = text
+        for contraction, expansion in ASLGrammar.CONTRACTIONS.items():
+            # Use word boundary regex for accurate replacement
+            pattern = r'\b' + re.escape(contraction) + r'\b'
+            result = re.sub(pattern, expansion, result, flags=re.IGNORECASE)
+        return result
     
     @staticmethod
     def is_temporal(word: str) -> bool:
@@ -189,8 +275,11 @@ class TextToGlossConverter:
             tokens = self._build_gloss_tokens(idiom_gloss.split(), text)
             return self._build_result(text, tokens, "idiom")
         
+        # Expand contractions before parsing (e.g., "let's" -> "we go")
+        expanded_text = ASLGrammar.expand_contractions(text)
+        
         # Parse with spaCy
-        doc = self.nlp(text)
+        doc = self.nlp(expanded_text)
         
         # Extract temporal/spatial
         temporal, spatial = extract_temporal_spatial(doc)
@@ -280,14 +369,21 @@ class TextToGlossConverter:
         """
         Build the final result dict with availability info.
         
-        If enable_fingerspelling is True, unavailable glosses will be expanded
-        to their letter components (F-I-N-G-E-R-S-P-E-L-L).
+        Priority order for unavailable glosses:
+        1. Direct match in vocabulary
+        2. Synonym lookup
+        3. Fingerspelling (if enabled)
+        4. Mark as missing
         """
         # Enrich with availability info, optionally fingerspelling
         glosses = []
         available_count = 0
         missing_glosses = []
         fingerspelled_count = 0
+        synonym_used_count = 0
+        
+        # Special glosses that should not be fingerspelled or synonym-replaced (only NOT)
+        special_glosses = {'NOT'}
         
         for i, item in enumerate(gloss_items):
             gloss = item["gloss"]
@@ -295,6 +391,7 @@ class TextToGlossConverter:
             video_id = self.vocab.get_video_id(gloss) if is_available else None
             
             if is_available:
+                # Direct match found
                 available_count += 1
                 glosses.append({
                     "index": len(glosses),
@@ -302,31 +399,61 @@ class TextToGlossConverter:
                     "original_word": item["word"],
                     "available": True,
                     "video_id": video_id,
-                    "fingerspelled": False
+                    "fingerspelled": False,
+                    "synonym_of": None
                 })
-            elif enable_fingerspelling and gloss not in ['IX-1', 'IX-2', 'IX-3', 'IX-1+', 'IX-3+', 'NOT']:
-                # Fingerspell this word: expand to individual letters
-                word_letters = gloss.upper()
-                # Only fingerspell if we have alphabet poses
-                spelled_letters = []
-                for letter in word_letters:
-                    if letter in FINGERSPELL_ALPHABET and self.vocab.is_available(letter):
-                        spelled_letters.append(letter)
-                        fingerspelled_count += 1
+            elif gloss not in special_glosses:
+                # Try to find a synonym
+                synonym = self._find_synonym(gloss)
                 
-                if spelled_letters:
-                    for letter in spelled_letters:
+                if synonym:
+                    # Synonym found
+                    available_count += 1
+                    synonym_used_count += 1
+                    glosses.append({
+                        "index": len(glosses),
+                        "gloss": synonym,
+                        "original_word": item["word"],
+                        "available": True,
+                        "video_id": self.vocab.get_video_id(synonym),
+                        "fingerspelled": False,
+                        "synonym_of": gloss  # Track original word
+                    })
+                elif enable_fingerspelling:
+                    # Fingerspell this word: expand to individual letters
+                    word_letters = gloss.upper()
+                    spelled_letters = []
+                    for letter in word_letters:
+                        if letter in FINGERSPELL_ALPHABET and self.vocab.is_available(letter):
+                            spelled_letters.append(letter)
+                            fingerspelled_count += 1
+                    
+                    if spelled_letters:
+                        for letter in spelled_letters:
+                            glosses.append({
+                                "index": len(glosses),
+                                "gloss": letter,
+                                "original_word": item["word"],
+                                "available": True,
+                                "video_id": self.vocab.get_video_id(letter),
+                                "fingerspelled": True,
+                                "synonym_of": None
+                            })
+                        available_count += len(spelled_letters)
+                    else:
+                        # No letters available, mark as missing
+                        missing_glosses.append(gloss)
                         glosses.append({
                             "index": len(glosses),
-                            "gloss": letter,
+                            "gloss": gloss,
                             "original_word": item["word"],
-                            "available": True,
-                            "video_id": self.vocab.get_video_id(letter),
-                            "fingerspelled": True
+                            "available": False,
+                            "video_id": None,
+                            "fingerspelled": False,
+                            "synonym_of": None
                         })
-                    available_count += len(spelled_letters)
                 else:
-                    # No letters available, mark as missing
+                    # Neither synonym nor fingerspelling available
                     missing_glosses.append(gloss)
                     glosses.append({
                         "index": len(glosses),
@@ -334,9 +461,11 @@ class TextToGlossConverter:
                         "original_word": item["word"],
                         "available": False,
                         "video_id": None,
-                        "fingerspelled": False
+                        "fingerspelled": False,
+                        "synonym_of": None
                     })
             else:
+                # Special gloss (IX-1, NOT, etc.) - mark as missing but don't modify
                 missing_glosses.append(gloss)
                 glosses.append({
                     "index": len(glosses),
@@ -344,7 +473,8 @@ class TextToGlossConverter:
                     "original_word": item["word"],
                     "available": False,
                     "video_id": None,
-                    "fingerspelled": False
+                    "fingerspelled": False,
+                    "synonym_of": None
                 })
         
         gloss_string = ' '.join(g["gloss"] for g in glosses)
@@ -365,6 +495,35 @@ class TextToGlossConverter:
                 "available_glosses": [g["gloss"] for g in glosses if g["available"]]
             }
         }
+    
+    def _find_synonym(self, gloss: str) -> Optional[str]:
+        """
+        Find an available synonym for a missing gloss.
+        
+        Checks ASLGrammar.SYNONYMS for alternatives that are available in vocabulary.
+        
+        Args:
+            gloss: The missing gloss to find a synonym for
+            
+        Returns:
+            An available synonym, or None if no synonym found
+        """
+        gloss_upper = gloss.upper()
+        
+        # Check if this word has synonyms defined
+        synonyms = ASLGrammar.SYNONYMS.get(gloss_upper, [])
+        for syn in synonyms:
+            if self.vocab.is_available(syn):
+                logger.debug(f"Found synonym for {gloss_upper}: {syn}")
+                return syn
+        
+        # Check reverse mapping: is this word a synonym for something available?
+        for root, syns in ASLGrammar.SYNONYMS.items():
+            if gloss_upper in syns and self.vocab.is_available(root):
+                logger.debug(f"Found root word for {gloss_upper}: {root}")
+                return root
+        
+        return None
     
     def get_stats(self) -> Dict[str, Any]:
         """Get conversion statistics."""

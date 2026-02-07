@@ -1,7 +1,7 @@
 """
 Vocabulary Management for Text-to-Gloss Pipeline
 =================================================
-Load available gloss vocabulary from selected_poses/gloss_video_mapping.json.
+Load available gloss vocabulary from public/lexicon/ase/*.json files.
 
 Author: Nana Amoako
 Date: February 2026
@@ -21,81 +21,72 @@ FINGERSPELL_ALPHABET = set('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 class VocabularyManager:
     """
-    Manages the available gloss vocabulary from pose files.
+    Manages the available gloss vocabulary from JSON pose files.
     
-    Loads from gloss_video_mapping.json which maps gloss names to video info.
+    Scans public/lexicon/ase/*.json to find available glosses.
     """
     
-    def __init__(self, mapping_json_path: Optional[Path] = None):
+    def __init__(self, lexicon_dir: Optional[Path] = None):
         """
         Initialize vocabulary manager.
         
         Args:
-            mapping_json_path: Path to gloss_video_mapping.json. If None, uses default.
+            lexicon_dir: Path to lexicon directory. If None, auto-detects.
         """
-        self.mapping_path = mapping_json_path or self._find_mapping_json()
+        self.lexicon_dir = lexicon_dir or self._find_lexicon_dir()
         self.gloss_to_info: Dict[str, Dict] = {}
         self.available_glosses: Set[str] = set()
         
         self._load_vocabulary()
     
-    def _find_mapping_json(self) -> Path:
-        """Find gloss_video_mapping.json in expected locations."""
+    def _find_lexicon_dir(self) -> Path:
+        """Find the public/lexicon/ase directory."""
         candidates = [
-            Path(__file__).parent.parent / "selected_poses" / "gloss_video_mapping.json",
-            Path("duosign_algo/selected_poses/gloss_video_mapping.json"),
-            Path("selected_poses/gloss_video_mapping.json"),
+            Path(__file__).parent.parent.parent / "public" / "lexicon" / "ase",
+            Path("public/lexicon/ase"),
+            Path("../public/lexicon/ase"),
         ]
         
         for path in candidates:
             if path.exists():
-                logger.info(f"Found vocabulary at: {path}")
+                logger.info(f"Found lexicon directory at: {path}")
                 return path
         
         # Return default even if doesn't exist (will log warning)
+        logger.warning(f"Lexicon directory not found, tried: {candidates}")
         return candidates[0]
     
     def _load_vocabulary(self) -> None:
-        """Load vocabulary from gloss_video_mapping.json."""
-        if not self.mapping_path.exists():
-            logger.warning(f"Vocabulary file not found: {self.mapping_path}")
+        """Load vocabulary by scanning JSON files in lexicon directory."""
+        if not self.lexicon_dir.exists():
+            logger.warning(f"Lexicon directory not found: {self.lexicon_dir}")
             return
         
         try:
-            with open(self.mapping_path, 'r') as f:
-                data = json.load(f)
+            # Scan all .json files in the lexicon directory
+            json_files = list(self.lexicon_dir.glob("*.json"))
             
-            # gloss_video_mapping.json format:
-            # { "hello": { "best_video": "123.pose", "gloss_id": "hello", ... }, ... }
-            for gloss_name, info in data.items():
+            for json_file in json_files:
+                # Skip metadata files (starting with _)
+                if json_file.name.startswith("_"):
+                    continue
+                
+                gloss_name = json_file.stem  # filename without extension
                 gloss_upper = gloss_name.upper()
+                
                 self.gloss_to_info[gloss_upper] = {
-                    "video_file": info.get("best_video", ""),
-                    "gloss_id": info.get("gloss_id", gloss_name),
-                    "detection_rate": info.get("detection_rate", 0),
-                    "confidence_avg": info.get("confidence_avg", 0),
-                    "alternatives": info.get("alternatives", []),
+                    "json_file": json_file.name,
+                    "gloss_id": gloss_name,
+                    "path": str(json_file),
                 }
+                self.available_glosses.add(gloss_upper)
             
-            self.available_glosses = set(self.gloss_to_info.keys())
-            
-            # Also add alphabet letters for fingerspelling
-            # These will use .pose files named a.pose, b.pose, etc.
+            # Mark alphabet letters that are available
             for letter in FINGERSPELL_ALPHABET:
-                if letter not in self.available_glosses:
-                    # Check if letter.pose exists
-                    letter_lower = letter.lower()
-                    if letter_lower in data:
-                        self.gloss_to_info[letter] = {
-                            "video_file": data[letter_lower].get("best_video", f"{letter_lower}.pose"),
-                            "gloss_id": letter,
-                            "detection_rate": data[letter_lower].get("detection_rate", 0),
-                            "confidence_avg": data[letter_lower].get("confidence_avg", 0),
-                            "alternatives": [],
-                        }
-                        self.available_glosses.add(letter)
+                if letter in self.available_glosses:
+                    self.gloss_to_info[letter]["is_letter"] = True
             
-            logger.info(f"Loaded {len(self.available_glosses)} glosses from vocabulary")
+            logger.info(f"Loaded {len(self.available_glosses)} glosses from {self.lexicon_dir}")
             
         except Exception as e:
             logger.error(f"Failed to load vocabulary: {e}")
@@ -109,21 +100,20 @@ class VocabularyManager:
         return gloss.upper() in FINGERSPELL_ALPHABET
     
     def get_video_id(self, gloss: str) -> Optional[str]:
-        """Get a video ID/file for a gloss."""
+        """Get a video ID/file for a gloss (returns the gloss name for loading)."""
         gloss_upper = gloss.upper()
         info = self.gloss_to_info.get(gloss_upper)
         if info:
-            video_file = info.get("video_file", "")
-            # Return just the filename without extension for API compatibility
-            return video_file.replace(".pose", "") if video_file else None
+            # Return the gloss_id (lowercase filename) for API compatibility
+            return info.get("gloss_id", gloss.lower())
         return None
     
     def get_pose_filename(self, gloss: str) -> Optional[str]:
-        """Get the .pose filename for a gloss."""
+        """Get the .json filename for a gloss."""
         gloss_upper = gloss.upper()
         info = self.gloss_to_info.get(gloss_upper)
         if info:
-            return info.get("video_file")
+            return info.get("json_file")
         return None
     
     def get_gloss_info(self, gloss: str) -> Optional[Dict]:
