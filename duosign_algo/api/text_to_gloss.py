@@ -135,7 +135,10 @@ class ASLGrammar:
     
     # Skip words (articles, prepositions, auxiliaries)
     SKIP_WORDS = {'a', 'an', 'the', 'to', 'of', 'for', 'in', 'on', 'at', 'with', 'by'}
-    SKIP_VERBS = {'BE', 'AM', 'IS', 'ARE', 'WAS', 'WERE', 'DO', 'DOES', 'DID', 'WILL', 'WOULD', 'COULD', 'SHOULD'}
+    # SKIP_VERBS = {'BE', 'AM', 'IS', 'ARE', 'WAS', 'WERE', 'DO', 'DOES', 'DID', 'WILL', 'WOULD', 'COULD', 'SHOULD'}
+    
+    # things to leave:
+    SKIP_VERBS = {'BE', 'AM', 'IS', 'ARE', 'WAS', 'WERE'}
     
     @staticmethod
     def expand_contractions(text: str) -> str:

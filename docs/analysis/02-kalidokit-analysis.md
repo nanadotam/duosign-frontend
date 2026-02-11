@@ -527,3 +527,7 @@ function applyToVRM(vrm, pose, face, hand) {
 4. **Runtime flag is critical** - TFJS vs MediaPipe have different coordinate systems
 5. **Visibility thresholds matter** - Adjust for your use case
 6. **Both 2D and 3D needed for Pose** - Don't omit either input
+
+
+
+
