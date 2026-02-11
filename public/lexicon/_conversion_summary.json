@@ -1,0 +1,10011 @@
+{
+  "total": 2000,
+  "converted": 2000,
+  "failed": 0,
+  "files": [
+    {
+      "name": "a",
+      "frames": 30,
+      "size_kb": 556.54
+    },
+    {
+      "name": "a_lot",
+      "frames": 41,
+      "size_kb": 781.43
+    },
+    {
+      "name": "abdomen",
+      "frames": 60,
+      "size_kb": 1112.06
+    },
+    {
+      "name": "able",
+      "frames": 89,
+      "size_kb": 1632.62
+    },
+    {
+      "name": "about",
+      "frames": 47,
+      "size_kb": 878.96
+    },
+    {
+      "name": "above",
+      "frames": 122,
+      "size_kb": 2256.58
+    },
+    {
+      "name": "accent",
+      "frames": 38,
+      "size_kb": 697.75
+    },
+    {
+      "name": "accept",
+      "frames": 39,
+      "size_kb": 743.97
+    },
+    {
+      "name": "accident",
+      "frames": 40,
+      "size_kb": 761.93
+    },
+    {
+      "name": "accomplish",
+      "frames": 36,
+      "size_kb": 686.35
+    },
+    {
+      "name": "accountant",
+      "frames": 66,
+      "size_kb": 1246.35
+    },
+    {
+      "name": "across",
+      "frames": 42,
+      "size_kb": 789.2
+    },
+    {
+      "name": "act",
+      "frames": 87,
+      "size_kb": 1658.2
+    },
+    {
+      "name": "action",
+      "frames": 65,
+      "size_kb": 1238.14
+    },
+    {
+      "name": "active",
+      "frames": 65,
+      "size_kb": 1238.14
+    },
+    {
+      "name": "activity",
+      "frames": 65,
+      "size_kb": 1238.14
+    },
+    {
+      "name": "actor",
+      "frames": 65,
+      "size_kb": 1230.42
+    },
+    {
+      "name": "adapt",
+      "frames": 51,
+      "size_kb": 961.57
+    },
+    {
+      "name": "add",
+      "frames": 27,
+      "size_kb": 514.31
+    },
+    {
+      "name": "address",
+      "frames": 42,
+      "size_kb": 800.48
+    },
+    {
+      "name": "adjective",
+      "frames": 49,
+      "size_kb": 908.78
+    },
+    {
+      "name": "adjust",
+      "frames": 51,
+      "size_kb": 961.57
+    },
+    {
+      "name": "admire",
+      "frames": 95,
+      "size_kb": 1766.19
+    },
+    {
+      "name": "admit",
+      "frames": 38,
+      "size_kb": 705.27
+    },
+    {
+      "name": "adopt",
+      "frames": 39,
+      "size_kb": 743.97
+    },
+    {
+      "name": "adult",
+      "frames": 41,
+      "size_kb": 760.73
+    },
+    {
+      "name": "advanced",
+      "frames": 68,
+      "size_kb": 1295.68
+    },
+    {
+      "name": "advantage",
+      "frames": 32,
+      "size_kb": 599.37
+    },
+    {
+      "name": "adverb",
+      "frames": 97,
+      "size_kb": 1783.56
+    },
+    {
+      "name": "affect",
+      "frames": 133,
+      "size_kb": 2471.18
+    },
+    {
+      "name": "afraid",
+      "frames": 35,
+      "size_kb": 667.21
+    },
+    {
+      "name": "africa",
+      "frames": 41,
+      "size_kb": 755.2
+    },
+    {
+      "name": "after",
+      "frames": 114,
+      "size_kb": 2120.35
+    },
+    {
+      "name": "afternoon",
+      "frames": 37,
+      "size_kb": 705.38
+    },
+    {
+      "name": "again",
+      "frames": 49,
+      "size_kb": 925.67
+    },
+    {
+      "name": "against",
+      "frames": 101,
+      "size_kb": 1872.74
+    },
+    {
+      "name": "age",
+      "frames": 37,
+      "size_kb": 682.59
+    },
+    {
+      "name": "agenda",
+      "frames": 42,
+      "size_kb": 782.62
+    },
+    {
+      "name": "ago",
+      "frames": 38,
+      "size_kb": 706.0
+    },
+    {
+      "name": "agree",
+      "frames": 43,
+      "size_kb": 817.74
+    },
+    {
+      "name": "agreement",
+      "frames": 43,
+      "size_kb": 817.74
+    },
+    {
+      "name": "ahead",
+      "frames": 49,
+      "size_kb": 924.15
+    },
+    {
+      "name": "aid",
+      "frames": 49,
+      "size_kb": 913.5
+    },
+    {
+      "name": "aim",
+      "frames": 106,
+      "size_kb": 1981.85
+    },
+    {
+      "name": "airplane",
+      "frames": 97,
+      "size_kb": 1822.37
+    },
+    {
+      "name": "alarm",
+      "frames": 47,
+      "size_kb": 896.54
+    },
+    {
+      "name": "alcohol",
+      "frames": 29,
+      "size_kb": 549.22
+    },
+    {
+      "name": "algebra",
+      "frames": 36,
+      "size_kb": 686.38
+    },
+    {
+      "name": "all",
+      "frames": 59,
+      "size_kb": 1124.81
+    },
+    {
+      "name": "all_day",
+      "frames": 44,
+      "size_kb": 815.18
+    },
+    {
+      "name": "allergy",
+      "frames": 54,
+      "size_kb": 1015.54
+    },
+    {
+      "name": "alligator",
+      "frames": 54,
+      "size_kb": 1029.45
+    },
+    {
+      "name": "allow",
+      "frames": 43,
+      "size_kb": 817.37
+    },
+    {
+      "name": "almost",
+      "frames": 71,
+      "size_kb": 1354.34
+    },
+    {
+      "name": "alone",
+      "frames": 46,
+      "size_kb": 853.63
+    },
+    {
+      "name": "alphabet",
+      "frames": 35,
+      "size_kb": 649.07
+    },
+    {
+      "name": "already",
+      "frames": 29,
+      "size_kb": 553.02
+    },
+    {
+      "name": "also",
+      "frames": 51,
+      "size_kb": 960.53
+    },
+    {
+      "name": "always",
+      "frames": 57,
+      "size_kb": 1051.37
+    },
+    {
+      "name": "amazing",
+      "frames": 61,
+      "size_kb": 1118.52
+    },
+    {
+      "name": "america",
+      "frames": 65,
+      "size_kb": 1238.84
+    },
+    {
+      "name": "amputate",
+      "frames": 56,
+      "size_kb": 1056.8
+    },
+    {
+      "name": "analyze",
+      "frames": 53,
+      "size_kb": 1010.02
+    },
+    {
+      "name": "anatomy",
+      "frames": 107,
+      "size_kb": 2037.46
+    },
+    {
+      "name": "and",
+      "frames": 57,
+      "size_kb": 1057.2
+    },
+    {
+      "name": "angel",
+      "frames": 35,
+      "size_kb": 665.32
+    },
+    {
+      "name": "angle",
+      "frames": 44,
+      "size_kb": 839.2
+    },
+    {
+      "name": "angry",
+      "frames": 30,
+      "size_kb": 569.75
+    },
+    {
+      "name": "animal",
+      "frames": 54,
+      "size_kb": 1028.89
+    },
+    {
+      "name": "anniversary",
+      "frames": 74,
+      "size_kb": 1410.38
+    },
+    {
+      "name": "announce",
+      "frames": 57,
+      "size_kb": 1086.68
+    },
+    {
+      "name": "annoy",
+      "frames": 85,
+      "size_kb": 1398.88
+    },
+    {
+      "name": "another",
+      "frames": 36,
+      "size_kb": 668.01
+    },
+    {
+      "name": "answer",
+      "frames": 35,
+      "size_kb": 667.69
+    },
+    {
+      "name": "any",
+      "frames": 75,
+      "size_kb": 1388.59
+    },
+    {
+      "name": "anyway",
+      "frames": 54,
+      "size_kb": 1029.34
+    },
+    {
+      "name": "apart",
+      "frames": 49,
+      "size_kb": 934.19
+    },
+    {
+      "name": "apartment",
+      "frames": 25,
+      "size_kb": 462.16
+    },
+    {
+      "name": "apostrophe",
+      "frames": 61,
+      "size_kb": 1143.72
+    },
+    {
+      "name": "appear",
+      "frames": 27,
+      "size_kb": 514.84
+    },
+    {
+      "name": "appetite",
+      "frames": 85,
+      "size_kb": 1569.67
+    },
+    {
+      "name": "apple",
+      "frames": 66,
+      "size_kb": 1216.04
+    },
+    {
+      "name": "appointment",
+      "frames": 48,
+      "size_kb": 914.71
+    },
+    {
+      "name": "appreciate",
+      "frames": 65,
+      "size_kb": 1238.94
+    },
+    {
+      "name": "approach",
+      "frames": 38,
+      "size_kb": 717.67
+    },
+    {
+      "name": "appropriate",
+      "frames": 60,
+      "size_kb": 1145.45
+    },
+    {
+      "name": "approve",
+      "frames": 39,
+      "size_kb": 743.97
+    },
+    {
+      "name": "april",
+      "frames": 63,
+      "size_kb": 1159.48
+    },
+    {
+      "name": "archery",
+      "frames": 48,
+      "size_kb": 914.47
+    },
+    {
+      "name": "area",
+      "frames": 113,
+      "size_kb": 2095.05
+    },
+    {
+      "name": "argue",
+      "frames": 52,
+      "size_kb": 991.01
+    },
+    {
+      "name": "arizona",
+      "frames": 42,
+      "size_kb": 773.6
+    },
+    {
+      "name": "arm",
+      "frames": 35,
+      "size_kb": 667.7
+    },
+    {
+      "name": "army",
+      "frames": 41,
+      "size_kb": 780.69
+    },
+    {
+      "name": "around",
+      "frames": 66,
+      "size_kb": 1258.28
+    },
+    {
+      "name": "arrest",
+      "frames": 36,
+      "size_kb": 685.83
+    },
+    {
+      "name": "arrive",
+      "frames": 47,
+      "size_kb": 884.65
+    },
+    {
+      "name": "arrogant",
+      "frames": 49,
+      "size_kb": 934.37
+    },
+    {
+      "name": "art",
+      "frames": 38,
+      "size_kb": 723.16
+    },
+    {
+      "name": "article",
+      "frames": 37,
+      "size_kb": 704.89
+    },
+    {
+      "name": "artist",
+      "frames": 60,
+      "size_kb": 1128.97
+    },
+    {
+      "name": "asia",
+      "frames": 41,
+      "size_kb": 753.81
+    },
+    {
+      "name": "ask",
+      "frames": 42,
+      "size_kb": 779.83
+    },
+    {
+      "name": "asl",
+      "frames": 53,
+      "size_kb": 983.32
+    },
+    {
+      "name": "assist",
+      "frames": 68,
+      "size_kb": 1251.2
+    },
+    {
+      "name": "assistant",
+      "frames": 68,
+      "size_kb": 1292.05
+    },
+    {
+      "name": "assume",
+      "frames": 133,
+      "size_kb": 2446.39
+    },
+    {
+      "name": "attend",
+      "frames": 45,
+      "size_kb": 858.48
+    },
+    {
+      "name": "attention",
+      "frames": 43,
+      "size_kb": 819.18
+    },
+    {
+      "name": "attitude",
+      "frames": 44,
+      "size_kb": 816.55
+    },
+    {
+      "name": "attorney",
+      "frames": 53,
+      "size_kb": 914.02
+    },
+    {
+      "name": "attract",
+      "frames": 29,
+      "size_kb": 540.64
+    },
+    {
+      "name": "auction",
+      "frames": 55,
+      "size_kb": 1048.03
+    },
+    {
+      "name": "audience",
+      "frames": 34,
+      "size_kb": 648.59
+    },
+    {
+      "name": "audiologist",
+      "frames": 82,
+      "size_kb": 1531.83
+    },
+    {
+      "name": "audiology",
+      "frames": 101,
+      "size_kb": 1857.23
+    },
+    {
+      "name": "august",
+      "frames": 64,
+      "size_kb": 1176.4
+    },
+    {
+      "name": "aunt",
+      "frames": 114,
+      "size_kb": 2086.7
+    },
+    {
+      "name": "australia",
+      "frames": 45,
+      "size_kb": 852.26
+    },
+    {
+      "name": "austria",
+      "frames": 108,
+      "size_kb": 2019.41
+    },
+    {
+      "name": "author",
+      "frames": 72,
+      "size_kb": 1356.69
+    },
+    {
+      "name": "authority",
+      "frames": 44,
+      "size_kb": 837.05
+    },
+    {
+      "name": "autumn",
+      "frames": 52,
+      "size_kb": 990.68
+    },
+    {
+      "name": "available",
+      "frames": 31,
+      "size_kb": 590.49
+    },
+    {
+      "name": "average",
+      "frames": 44,
+      "size_kb": 826.02
+    },
+    {
+      "name": "avoid",
+      "frames": 38,
+      "size_kb": 718.89
+    },
+    {
+      "name": "awake",
+      "frames": 26,
+      "size_kb": 495.88
+    },
+    {
+      "name": "award",
+      "frames": 52,
+      "size_kb": 991.53
+    },
+    {
+      "name": "aware",
+      "frames": 52,
+      "size_kb": 964.05
+    },
+    {
+      "name": "away",
+      "frames": 88,
+      "size_kb": 1617.57
+    },
+    {
+      "name": "awful",
+      "frames": 50,
+      "size_kb": 953.07
+    },
+    {
+      "name": "awkward",
+      "frames": 86,
+      "size_kb": 1634.96
+    },
+    {
+      "name": "b",
+      "frames": 30,
+      "size_kb": 556.65
+    },
+    {
+      "name": "baby",
+      "frames": 53,
+      "size_kb": 1010.72
+    },
+    {
+      "name": "babysitter",
+      "frames": 94,
+      "size_kb": 1784.28
+    },
+    {
+      "name": "back",
+      "frames": 40,
+      "size_kb": 737.45
+    },
+    {
+      "name": "background",
+      "frames": 62,
+      "size_kb": 1149.42
+    },
+    {
+      "name": "backpack",
+      "frames": 55,
+      "size_kb": 1041.03
+    },
+    {
+      "name": "bacon",
+      "frames": 39,
+      "size_kb": 743.43
+    },
+    {
+      "name": "bad",
+      "frames": 32,
+      "size_kb": 602.95
+    },
+    {
+      "name": "bake",
+      "frames": 25,
+      "size_kb": 473.68
+    },
+    {
+      "name": "balance",
+      "frames": 67,
+      "size_kb": 1276.03
+    },
+    {
+      "name": "bald",
+      "frames": 66,
+      "size_kb": 1224.04
+    },
+    {
+      "name": "ball",
+      "frames": 37,
+      "size_kb": 705.69
+    },
+    {
+      "name": "balloon",
+      "frames": 35,
+      "size_kb": 552.06
+    },
+    {
+      "name": "banana",
+      "frames": 37,
+      "size_kb": 699.75
+    },
+    {
+      "name": "bank",
+      "frames": 47,
+      "size_kb": 870.81
+    },
+    {
+      "name": "baptize",
+      "frames": 61,
+      "size_kb": 1163.45
+    },
+    {
+      "name": "bar",
+      "frames": 84,
+      "size_kb": 1601.6
+    },
+    {
+      "name": "barely",
+      "frames": 41,
+      "size_kb": 753.52
+    },
+    {
+      "name": "bark",
+      "frames": 43,
+      "size_kb": 815.49
+    },
+    {
+      "name": "baseball",
+      "frames": 38,
+      "size_kb": 717.48
+    },
+    {
+      "name": "basement",
+      "frames": 57,
+      "size_kb": 1086.18
+    },
+    {
+      "name": "basic",
+      "frames": 68,
+      "size_kb": 1296.99
+    },
+    {
+      "name": "basketball",
+      "frames": 48,
+      "size_kb": 915.6
+    },
+    {
+      "name": "bath",
+      "frames": 45,
+      "size_kb": 857.52
+    },
+    {
+      "name": "bathroom",
+      "frames": 59,
+      "size_kb": 1094.57
+    },
+    {
+      "name": "battery",
+      "frames": 32,
+      "size_kb": 609.88
+    },
+    {
+      "name": "battle",
+      "frames": 66,
+      "size_kb": 1257.74
+    },
+    {
+      "name": "bear",
+      "frames": 121,
+      "size_kb": 2028.6
+    },
+    {
+      "name": "beard",
+      "frames": 43,
+      "size_kb": 813.03
+    },
+    {
+      "name": "beautiful",
+      "frames": 37,
+      "size_kb": 680.59
+    },
+    {
+      "name": "because",
+      "frames": 26,
+      "size_kb": 482.21
+    },
+    {
+      "name": "become",
+      "frames": 112,
+      "size_kb": 2065.54
+    },
+    {
+      "name": "bed",
+      "frames": 103,
+      "size_kb": 1913.53
+    },
+    {
+      "name": "bedroom",
+      "frames": 175,
+      "size_kb": 3243.17
+    },
+    {
+      "name": "bee",
+      "frames": 38,
+      "size_kb": 704.71
+    },
+    {
+      "name": "beer",
+      "frames": 32,
+      "size_kb": 590.42
+    },
+    {
+      "name": "before",
+      "frames": 51,
+      "size_kb": 967.8
+    },
+    {
+      "name": "beg",
+      "frames": 57,
+      "size_kb": 1066.05
+    },
+    {
+      "name": "beginning",
+      "frames": 38,
+      "size_kb": 724.64
+    },
+    {
+      "name": "behavior",
+      "frames": 48,
+      "size_kb": 911.04
+    },
+    {
+      "name": "behind",
+      "frames": 50,
+      "size_kb": 947.91
+    },
+    {
+      "name": "belief",
+      "frames": 56,
+      "size_kb": 1055.2
+    },
+    {
+      "name": "believe",
+      "frames": 56,
+      "size_kb": 1055.2
+    },
+    {
+      "name": "bell",
+      "frames": 63,
+      "size_kb": 1201.5
+    },
+    {
+      "name": "below",
+      "frames": 68,
+      "size_kb": 1296.99
+    },
+    {
+      "name": "belt",
+      "frames": 45,
+      "size_kb": 851.4
+    },
+    {
+      "name": "benefit",
+      "frames": 32,
+      "size_kb": 593.64
+    },
+    {
+      "name": "berry",
+      "frames": 41,
+      "size_kb": 781.35
+    },
+    {
+      "name": "beside",
+      "frames": 46,
+      "size_kb": 877.18
+    },
+    {
+      "name": "best",
+      "frames": 49,
+      "size_kb": 885.91
+    },
+    {
+      "name": "bet",
+      "frames": 32,
+      "size_kb": 601.52
+    },
+    {
+      "name": "better",
+      "frames": 94,
+      "size_kb": 1704.87
+    },
+    {
+      "name": "between",
+      "frames": 47,
+      "size_kb": 896.48
+    },
+    {
+      "name": "bible",
+      "frames": 85,
+      "size_kb": 1615.75
+    },
+    {
+      "name": "bicycle",
+      "frames": 67,
+      "size_kb": 1271.27
+    },
+    {
+      "name": "big",
+      "frames": 50,
+      "size_kb": 951.01
+    },
+    {
+      "name": "bike",
+      "frames": 67,
+      "size_kb": 1271.27
+    },
+    {
+      "name": "binoculars",
+      "frames": 36,
+      "size_kb": 674.35
+    },
+    {
+      "name": "biology",
+      "frames": 64,
+      "size_kb": 1220.61
+    },
+    {
+      "name": "bird",
+      "frames": 84,
+      "size_kb": 1541.61
+    },
+    {
+      "name": "birth",
+      "frames": 41,
+      "size_kb": 782.2
+    },
+    {
+      "name": "birthday",
+      "frames": 65,
+      "size_kb": 1236.21
+    },
+    {
+      "name": "bite",
+      "frames": 49,
+      "size_kb": 933.6
+    },
+    {
+      "name": "bitter",
+      "frames": 31,
+      "size_kb": 574.77
+    },
+    {
+      "name": "black",
+      "frames": 44,
+      "size_kb": 765.6
+    },
+    {
+      "name": "blame",
+      "frames": 41,
+      "size_kb": 775.66
+    },
+    {
+      "name": "blanket",
+      "frames": 48,
+      "size_kb": 914.55
+    },
+    {
+      "name": "blend",
+      "frames": 56,
+      "size_kb": 1068.01
+    },
+    {
+      "name": "bless",
+      "frames": 43,
+      "size_kb": 793.79
+    },
+    {
+      "name": "blind",
+      "frames": 75,
+      "size_kb": 1375.89
+    },
+    {
+      "name": "blood",
+      "frames": 45,
+      "size_kb": 731.45
+    },
+    {
+      "name": "blow",
+      "frames": 30,
+      "size_kb": 554.14
+    },
+    {
+      "name": "blue",
+      "frames": 62,
+      "size_kb": 1138.52
+    },
+    {
+      "name": "boast",
+      "frames": 36,
+      "size_kb": 678.87
+    },
+    {
+      "name": "boat",
+      "frames": 43,
+      "size_kb": 810.52
+    },
+    {
+      "name": "body",
+      "frames": 41,
+      "size_kb": 781.18
+    },
+    {
+      "name": "boil",
+      "frames": 58,
+      "size_kb": 1105.34
+    },
+    {
+      "name": "bone",
+      "frames": 73,
+      "size_kb": 1388.87
+    },
+    {
+      "name": "book",
+      "frames": 38,
+      "size_kb": 718.05
+    },
+    {
+      "name": "bookshelf",
+      "frames": 56,
+      "size_kb": 1011.87
+    },
+    {
+      "name": "bookstore",
+      "frames": 62,
+      "size_kb": 1181.46
+    },
+    {
+      "name": "boots",
+      "frames": 132,
+      "size_kb": 2448.25
+    },
+    {
+      "name": "bored",
+      "frames": 29,
+      "size_kb": 537.81
+    },
+    {
+      "name": "borrow",
+      "frames": 47,
+      "size_kb": 876.52
+    },
+    {
+      "name": "boss",
+      "frames": 47,
+      "size_kb": 871.7
+    },
+    {
+      "name": "both",
+      "frames": 91,
+      "size_kb": 1705.11
+    },
+    {
+      "name": "bother",
+      "frames": 89,
+      "size_kb": 1694.49
+    },
+    {
+      "name": "bottle",
+      "frames": 46,
+      "size_kb": 869.31
+    },
+    {
+      "name": "bottom",
+      "frames": 68,
+      "size_kb": 1296.99
+    },
+    {
+      "name": "bowl",
+      "frames": 55,
+      "size_kb": 1049.25
+    },
+    {
+      "name": "bowling",
+      "frames": 36,
+      "size_kb": 601.36
+    },
+    {
+      "name": "box",
+      "frames": 51,
+      "size_kb": 971.71
+    },
+    {
+      "name": "boxing",
+      "frames": 52,
+      "size_kb": 991.56
+    },
+    {
+      "name": "boy",
+      "frames": 55,
+      "size_kb": 1011.22
+    },
+    {
+      "name": "boyfriend",
+      "frames": 58,
+      "size_kb": 1069.86
+    },
+    {
+      "name": "bra",
+      "frames": 63,
+      "size_kb": 1199.81
+    },
+    {
+      "name": "bracelet",
+      "frames": 51,
+      "size_kb": 966.12
+    },
+    {
+      "name": "brag",
+      "frames": 70,
+      "size_kb": 1320.14
+    },
+    {
+      "name": "braid",
+      "frames": 74,
+      "size_kb": 1411.54
+    },
+    {
+      "name": "brain",
+      "frames": 44,
+      "size_kb": 816.22
+    },
+    {
+      "name": "brave",
+      "frames": 28,
+      "size_kb": 533.26
+    },
+    {
+      "name": "bread",
+      "frames": 31,
+      "size_kb": 590.83
+    },
+    {
+      "name": "break",
+      "frames": 39,
+      "size_kb": 740.84
+    },
+    {
+      "name": "breakdown",
+      "frames": 51,
+      "size_kb": 959.57
+    },
+    {
+      "name": "breakfast",
+      "frames": 60,
+      "size_kb": 1119.2
+    },
+    {
+      "name": "breathe",
+      "frames": 79,
+      "size_kb": 1506.35
+    },
+    {
+      "name": "breeze",
+      "frames": 70,
+      "size_kb": 1330.64
+    },
+    {
+      "name": "bribe",
+      "frames": 52,
+      "size_kb": 991.44
+    },
+    {
+      "name": "bridge",
+      "frames": 27,
+      "size_kb": 514.76
+    },
+    {
+      "name": "brief",
+      "frames": 29,
+      "size_kb": 542.64
+    },
+    {
+      "name": "bright",
+      "frames": 30,
+      "size_kb": 572.15
+    },
+    {
+      "name": "bring",
+      "frames": 33,
+      "size_kb": 629.03
+    },
+    {
+      "name": "brochure",
+      "frames": 49,
+      "size_kb": 919.85
+    },
+    {
+      "name": "broke",
+      "frames": 47,
+      "size_kb": 871.08
+    },
+    {
+      "name": "brother",
+      "frames": 30,
+      "size_kb": 571.79
+    },
+    {
+      "name": "brown",
+      "frames": 32,
+      "size_kb": 594.05
+    },
+    {
+      "name": "brush",
+      "frames": 55,
+      "size_kb": 1021.5
+    },
+    {
+      "name": "buffalo",
+      "frames": 28,
+      "size_kb": 519.41
+    },
+    {
+      "name": "bug",
+      "frames": 43,
+      "size_kb": 791.1
+    },
+    {
+      "name": "build",
+      "frames": 62,
+      "size_kb": 1181.98
+    },
+    {
+      "name": "building",
+      "frames": 33,
+      "size_kb": 628.93
+    },
+    {
+      "name": "bull",
+      "frames": 37,
+      "size_kb": 680.98
+    },
+    {
+      "name": "bully",
+      "frames": 40,
+      "size_kb": 636.04
+    },
+    {
+      "name": "burp",
+      "frames": 37,
+      "size_kb": 686.31
+    },
+    {
+      "name": "bus",
+      "frames": 39,
+      "size_kb": 723.23
+    },
+    {
+      "name": "bush",
+      "frames": 170,
+      "size_kb": 3187.84
+    },
+    {
+      "name": "business",
+      "frames": 39,
+      "size_kb": 743.24
+    },
+    {
+      "name": "busy",
+      "frames": 43,
+      "size_kb": 819.74
+    },
+    {
+      "name": "but",
+      "frames": 29,
+      "size_kb": 553.04
+    },
+    {
+      "name": "butter",
+      "frames": 33,
+      "size_kb": 629.05
+    },
+    {
+      "name": "butterfly",
+      "frames": 39,
+      "size_kb": 731.87
+    },
+    {
+      "name": "button",
+      "frames": 29,
+      "size_kb": 537.84
+    },
+    {
+      "name": "buy",
+      "frames": 30,
+      "size_kb": 572.24
+    },
+    {
+      "name": "bye",
+      "frames": 55,
+      "size_kb": 1019.33
+    },
+    {
+      "name": "cabbage",
+      "frames": 51,
+      "size_kb": 945.66
+    },
+    {
+      "name": "cabinet",
+      "frames": 70,
+      "size_kb": 1330.85
+    },
+    {
+      "name": "cafeteria",
+      "frames": 33,
+      "size_kb": 608.59
+    },
+    {
+      "name": "cake",
+      "frames": 106,
+      "size_kb": 1991.4
+    },
+    {
+      "name": "calculate",
+      "frames": 35,
+      "size_kb": 666.65
+    },
+    {
+      "name": "calculator",
+      "frames": 62,
+      "size_kb": 1182.57
+    },
+    {
+      "name": "calculus",
+      "frames": 35,
+      "size_kb": 667.34
+    },
+    {
+      "name": "california",
+      "frames": 34,
+      "size_kb": 626.76
+    },
+    {
+      "name": "call",
+      "frames": 34,
+      "size_kb": 648.47
+    },
+    {
+      "name": "calm",
+      "frames": 70,
+      "size_kb": 1334.58
+    },
+    {
+      "name": "camel",
+      "frames": 113,
+      "size_kb": 2002.41
+    },
+    {
+      "name": "camera",
+      "frames": 35,
+      "size_kb": 666.94
+    },
+    {
+      "name": "camp",
+      "frames": 38,
+      "size_kb": 724.17
+    },
+    {
+      "name": "camping",
+      "frames": 66,
+      "size_kb": 1257.21
+    },
+    {
+      "name": "can",
+      "frames": 40,
+      "size_kb": 761.73
+    },
+    {
+      "name": "canada",
+      "frames": 33,
+      "size_kb": 611.48
+    },
+    {
+      "name": "cancel",
+      "frames": 50,
+      "size_kb": 949.87
+    },
+    {
+      "name": "candidate",
+      "frames": 113,
+      "size_kb": 2070.95
+    },
+    {
+      "name": "candle",
+      "frames": 50,
+      "size_kb": 838.8
+    },
+    {
+      "name": "candy",
+      "frames": 30,
+      "size_kb": 552.49
+    },
+    {
+      "name": "cannot",
+      "frames": 21,
+      "size_kb": 400.31
+    },
+    {
+      "name": "canoe",
+      "frames": 59,
+      "size_kb": 1121.16
+    },
+    {
+      "name": "captain",
+      "frames": 49,
+      "size_kb": 908.8
+    },
+    {
+      "name": "caption",
+      "frames": 52,
+      "size_kb": 985.02
+    },
+    {
+      "name": "car",
+      "frames": 57,
+      "size_kb": 1086.24
+    },
+    {
+      "name": "card",
+      "frames": 33,
+      "size_kb": 628.8
+    },
+    {
+      "name": "cards",
+      "frames": 65,
+      "size_kb": 1237.64
+    },
+    {
+      "name": "care",
+      "frames": 26,
+      "size_kb": 491.41
+    },
+    {
+      "name": "careful",
+      "frames": 26,
+      "size_kb": 491.41
+    },
+    {
+      "name": "careless",
+      "frames": 49,
+      "size_kb": 907.97
+    },
+    {
+      "name": "carnival",
+      "frames": 63,
+      "size_kb": 1198.23
+    },
+    {
+      "name": "carrot",
+      "frames": 49,
+      "size_kb": 900.99
+    },
+    {
+      "name": "carry",
+      "frames": 45,
+      "size_kb": 857.12
+    },
+    {
+      "name": "cat",
+      "frames": 62,
+      "size_kb": 1148.91
+    },
+    {
+      "name": "catch",
+      "frames": 32,
+      "size_kb": 610.13
+    },
+    {
+      "name": "category",
+      "frames": 50,
+      "size_kb": 953.08
+    },
+    {
+      "name": "caterpillar",
+      "frames": 123,
+      "size_kb": 2283.52
+    },
+    {
+      "name": "catholic",
+      "frames": 36,
+      "size_kb": 661.09
+    },
+    {
+      "name": "cause",
+      "frames": 55,
+      "size_kb": 1049.05
+    },
+    {
+      "name": "ceiling",
+      "frames": 106,
+      "size_kb": 1958.62
+    },
+    {
+      "name": "celebrate",
+      "frames": 53,
+      "size_kb": 1010.22
+    },
+    {
+      "name": "cemetery",
+      "frames": 40,
+      "size_kb": 762.98
+    },
+    {
+      "name": "cent",
+      "frames": 26,
+      "size_kb": 478.6
+    },
+    {
+      "name": "center",
+      "frames": 59,
+      "size_kb": 1121.01
+    },
+    {
+      "name": "cereal",
+      "frames": 45,
+      "size_kb": 843.47
+    },
+    {
+      "name": "certificate",
+      "frames": 45,
+      "size_kb": 858.62
+    },
+    {
+      "name": "chain",
+      "frames": 72,
+      "size_kb": 1372.25
+    },
+    {
+      "name": "chair",
+      "frames": 30,
+      "size_kb": 570.31
+    },
+    {
+      "name": "challenge",
+      "frames": 50,
+      "size_kb": 953.61
+    },
+    {
+      "name": "champion",
+      "frames": 48,
+      "size_kb": 915.78
+    },
+    {
+      "name": "chance",
+      "frames": 29,
+      "size_kb": 542.43
+    },
+    {
+      "name": "change",
+      "frames": 51,
+      "size_kb": 961.57
+    },
+    {
+      "name": "chapter",
+      "frames": 136,
+      "size_kb": 2407.09
+    },
+    {
+      "name": "character",
+      "frames": 38,
+      "size_kb": 699.56
+    },
+    {
+      "name": "chase",
+      "frames": 43,
+      "size_kb": 818.74
+    },
+    {
+      "name": "chat",
+      "frames": 53,
+      "size_kb": 1010.5
+    },
+    {
+      "name": "cheap",
+      "frames": 31,
+      "size_kb": 587.89
+    },
+    {
+      "name": "cheat",
+      "frames": 41,
+      "size_kb": 781.5
+    },
+    {
+      "name": "check",
+      "frames": 27,
+      "size_kb": 514.47
+    },
+    {
+      "name": "cheerleader",
+      "frames": 52,
+      "size_kb": 981.77
+    },
+    {
+      "name": "cheese",
+      "frames": 50,
+      "size_kb": 945.97
+    },
+    {
+      "name": "chemical",
+      "frames": 79,
+      "size_kb": 1506.3
+    },
+    {
+      "name": "chemistry",
+      "frames": 66,
+      "size_kb": 1256.01
+    },
+    {
+      "name": "cherry",
+      "frames": 29,
+      "size_kb": 552.71
+    },
+    {
+      "name": "chicago",
+      "frames": 48,
+      "size_kb": 891.74
+    },
+    {
+      "name": "chicken",
+      "frames": 65,
+      "size_kb": 1181.93
+    },
+    {
+      "name": "child",
+      "frames": 30,
+      "size_kb": 556.13
+    },
+    {
+      "name": "children",
+      "frames": 47,
+      "size_kb": 896.41
+    },
+    {
+      "name": "china",
+      "frames": 33,
+      "size_kb": 610.54
+    },
+    {
+      "name": "chocolate",
+      "frames": 60,
+      "size_kb": 1144.07
+    },
+    {
+      "name": "choice",
+      "frames": 53,
+      "size_kb": 1010.36
+    },
+    {
+      "name": "choir",
+      "frames": 53,
+      "size_kb": 1009.54
+    },
+    {
+      "name": "choke",
+      "frames": 31,
+      "size_kb": 571.07
+    },
+    {
+      "name": "choose",
+      "frames": 53,
+      "size_kb": 1010.36
+    },
+    {
+      "name": "chop",
+      "frames": 70,
+      "size_kb": 1327.55
+    },
+    {
+      "name": "christ",
+      "frames": 36,
+      "size_kb": 667.91
+    },
+    {
+      "name": "christian",
+      "frames": 71,
+      "size_kb": 1323.88
+    },
+    {
+      "name": "christmas",
+      "frames": 45,
+      "size_kb": 821.52
+    },
+    {
+      "name": "church",
+      "frames": 38,
+      "size_kb": 724.65
+    },
+    {
+      "name": "cigarette",
+      "frames": 38,
+      "size_kb": 723.92
+    },
+    {
+      "name": "circle",
+      "frames": 121,
+      "size_kb": 2261.95
+    },
+    {
+      "name": "city",
+      "frames": 45,
+      "size_kb": 857.84
+    },
+    {
+      "name": "class",
+      "frames": 62,
+      "size_kb": 1182.21
+    },
+    {
+      "name": "classroom",
+      "frames": 77,
+      "size_kb": 1462.61
+    },
+    {
+      "name": "clean",
+      "frames": 28,
+      "size_kb": 519.64
+    },
+    {
+      "name": "clear",
+      "frames": 30,
+      "size_kb": 572.15
+    },
+    {
+      "name": "clever",
+      "frames": 44,
+      "size_kb": 804.18
+    },
+    {
+      "name": "click",
+      "frames": 27,
+      "size_kb": 497.42
+    },
+    {
+      "name": "climb",
+      "frames": 55,
+      "size_kb": 1035.2
+    },
+    {
+      "name": "clock",
+      "frames": 80,
+      "size_kb": 1523.48
+    },
+    {
+      "name": "close",
+      "frames": 44,
+      "size_kb": 839.26
+    },
+    {
+      "name": "closet",
+      "frames": 137,
+      "size_kb": 2561.21
+    },
+    {
+      "name": "clothes",
+      "frames": 35,
+      "size_kb": 666.81
+    },
+    {
+      "name": "cloud",
+      "frames": 56,
+      "size_kb": 1021.77
+    },
+    {
+      "name": "clown",
+      "frames": 60,
+      "size_kb": 1102.89
+    },
+    {
+      "name": "clueless",
+      "frames": 85,
+      "size_kb": 1555.97
+    },
+    {
+      "name": "clumsy",
+      "frames": 86,
+      "size_kb": 1634.96
+    },
+    {
+      "name": "coach",
+      "frames": 99,
+      "size_kb": 1816.57
+    },
+    {
+      "name": "coat",
+      "frames": 44,
+      "size_kb": 838.27
+    },
+    {
+      "name": "cochlear_implant",
+      "frames": 32,
+      "size_kb": 590.26
+    },
+    {
+      "name": "coconut",
+      "frames": 29,
+      "size_kb": 543.09
+    },
+    {
+      "name": "coffee",
+      "frames": 49,
+      "size_kb": 934.31
+    },
+    {
+      "name": "cold",
+      "frames": 31,
+      "size_kb": 591.16
+    },
+    {
+      "name": "collect",
+      "frames": 38,
+      "size_kb": 724.48
+    },
+    {
+      "name": "college",
+      "frames": 50,
+      "size_kb": 949.13
+    },
+    {
+      "name": "color",
+      "frames": 55,
+      "size_kb": 1020.03
+    },
+    {
+      "name": "comb",
+      "frames": 77,
+      "size_kb": 1429.0
+    },
+    {
+      "name": "come",
+      "frames": 43,
+      "size_kb": 815.15
+    },
+    {
+      "name": "come_here",
+      "frames": 45,
+      "size_kb": 831.97
+    },
+    {
+      "name": "comfortable",
+      "frames": 68,
+      "size_kb": 1285.04
+    },
+    {
+      "name": "comma",
+      "frames": 23,
+      "size_kb": 426.56
+    },
+    {
+      "name": "command",
+      "frames": 90,
+      "size_kb": 1637.92
+    },
+    {
+      "name": "comment",
+      "frames": 79,
+      "size_kb": 1467.76
+    },
+    {
+      "name": "commit",
+      "frames": 38,
+      "size_kb": 724.3
+    },
+    {
+      "name": "committee",
+      "frames": 40,
+      "size_kb": 742.14
+    },
+    {
+      "name": "common",
+      "frames": 67,
+      "size_kb": 1273.16
+    },
+    {
+      "name": "common_sense",
+      "frames": 39,
+      "size_kb": 722.87
+    },
+    {
+      "name": "community",
+      "frames": 50,
+      "size_kb": 952.75
+    },
+    {
+      "name": "commute",
+      "frames": 46,
+      "size_kb": 849.04
+    },
+    {
+      "name": "company",
+      "frames": 38,
+      "size_kb": 704.89
+    },
+    {
+      "name": "compare",
+      "frames": 49,
+      "size_kb": 933.73
+    },
+    {
+      "name": "compete",
+      "frames": 55,
+      "size_kb": 1048.59
+    },
+    {
+      "name": "complain",
+      "frames": 54,
+      "size_kb": 1000.82
+    },
+    {
+      "name": "complete",
+      "frames": 50,
+      "size_kb": 950.26
+    },
+    {
+      "name": "complex",
+      "frames": 42,
+      "size_kb": 792.85
+    },
+    {
+      "name": "compromise",
+      "frames": 43,
+      "size_kb": 817.74
+    },
+    {
+      "name": "computer",
+      "frames": 88,
+      "size_kb": 1677.33
+    },
+    {
+      "name": "concentrate",
+      "frames": 43,
+      "size_kb": 819.18
+    },
+    {
+      "name": "concept",
+      "frames": 38,
+      "size_kb": 698.59
+    },
+    {
+      "name": "concern",
+      "frames": 49,
+      "size_kb": 934.15
+    },
+    {
+      "name": "conflict",
+      "frames": 29,
+      "size_kb": 553.1
+    },
+    {
+      "name": "confront",
+      "frames": 38,
+      "size_kb": 717.67
+    },
+    {
+      "name": "confused",
+      "frames": 75,
+      "size_kb": 1411.49
+    },
+    {
+      "name": "congratulations",
+      "frames": 58,
+      "size_kb": 1032.22
+    },
+    {
+      "name": "congress",
+      "frames": 41,
+      "size_kb": 760.65
+    },
+    {
+      "name": "connect",
+      "frames": 92,
+      "size_kb": 1706.03
+    },
+    {
+      "name": "conquer",
+      "frames": 28,
+      "size_kb": 533.8
+    },
+    {
+      "name": "consider",
+      "frames": 52,
+      "size_kb": 991.12
+    },
+    {
+      "name": "constitution",
+      "frames": 39,
+      "size_kb": 697.7
+    },
+    {
+      "name": "construct",
+      "frames": 62,
+      "size_kb": 1181.98
+    },
+    {
+      "name": "consume",
+      "frames": 28,
+      "size_kb": 519.44
+    },
+    {
+      "name": "contact",
+      "frames": 55,
+      "size_kb": 1047.99
+    },
+    {
+      "name": "contest",
+      "frames": 55,
+      "size_kb": 1048.59
+    },
+    {
+      "name": "continue",
+      "frames": 29,
+      "size_kb": 552.99
+    },
+    {
+      "name": "contract",
+      "frames": 41,
+      "size_kb": 781.87
+    },
+    {
+      "name": "contribute",
+      "frames": 28,
+      "size_kb": 534.26
+    },
+    {
+      "name": "control",
+      "frames": 42,
+      "size_kb": 797.49
+    },
+    {
+      "name": "conversation",
+      "frames": 65,
+      "size_kb": 1238.38
+    },
+    {
+      "name": "convert",
+      "frames": 51,
+      "size_kb": 961.57
+    },
+    {
+      "name": "convince",
+      "frames": 48,
+      "size_kb": 914.06
+    },
+    {
+      "name": "cook",
+      "frames": 46,
+      "size_kb": 866.41
+    },
+    {
+      "name": "cookie",
+      "frames": 57,
+      "size_kb": 1074.34
+    },
+    {
+      "name": "cool",
+      "frames": 55,
+      "size_kb": 1047.78
+    },
+    {
+      "name": "cooperate",
+      "frames": 47,
+      "size_kb": 880.87
+    },
+    {
+      "name": "cop",
+      "frames": 33,
+      "size_kb": 609.12
+    },
+    {
+      "name": "copy",
+      "frames": 52,
+      "size_kb": 991.92
+    },
+    {
+      "name": "corn",
+      "frames": 54,
+      "size_kb": 1006.82
+    },
+    {
+      "name": "corner",
+      "frames": 55,
+      "size_kb": 1048.67
+    },
+    {
+      "name": "correct",
+      "frames": 50,
+      "size_kb": 949.87
+    },
+    {
+      "name": "cost",
+      "frames": 32,
+      "size_kb": 609.56
+    },
+    {
+      "name": "couch",
+      "frames": 38,
+      "size_kb": 717.2
+    },
+    {
+      "name": "cough",
+      "frames": 45,
+      "size_kb": 833.76
+    },
+    {
+      "name": "counsel",
+      "frames": 56,
+      "size_kb": 1048.83
+    },
+    {
+      "name": "counselor",
+      "frames": 50,
+      "size_kb": 943.04
+    },
+    {
+      "name": "count",
+      "frames": 48,
+      "size_kb": 905.46
+    },
+    {
+      "name": "country",
+      "frames": 70,
+      "size_kb": 1334.94
+    },
+    {
+      "name": "court",
+      "frames": 51,
+      "size_kb": 965.05
+    },
+    {
+      "name": "cousin",
+      "frames": 39,
+      "size_kb": 723.26
+    },
+    {
+      "name": "cover",
+      "frames": 46,
+      "size_kb": 866.64
+    },
+    {
+      "name": "cow",
+      "frames": 89,
+      "size_kb": 1697.68
+    },
+    {
+      "name": "crab",
+      "frames": 38,
+      "size_kb": 724.32
+    },
+    {
+      "name": "cracker",
+      "frames": 49,
+      "size_kb": 933.83
+    },
+    {
+      "name": "crash",
+      "frames": 47,
+      "size_kb": 894.71
+    },
+    {
+      "name": "crave",
+      "frames": 102,
+      "size_kb": 1877.89
+    },
+    {
+      "name": "crazy",
+      "frames": 69,
+      "size_kb": 1279.79
+    },
+    {
+      "name": "create",
+      "frames": 36,
+      "size_kb": 685.01
+    },
+    {
+      "name": "crocodile",
+      "frames": 54,
+      "size_kb": 1029.45
+    },
+    {
+      "name": "cross",
+      "frames": 58,
+      "size_kb": 1070.03
+    },
+    {
+      "name": "crown",
+      "frames": 32,
+      "size_kb": 610.33
+    },
+    {
+      "name": "cruel",
+      "frames": 51,
+      "size_kb": 968.71
+    },
+    {
+      "name": "crush",
+      "frames": 35,
+      "size_kb": 667.27
+    },
+    {
+      "name": "cry",
+      "frames": 32,
+      "size_kb": 610.24
+    },
+    {
+      "name": "cuba",
+      "frames": 41,
+      "size_kb": 757.67
+    },
+    {
+      "name": "culture",
+      "frames": 48,
+      "size_kb": 914.62
+    },
+    {
+      "name": "cup",
+      "frames": 40,
+      "size_kb": 749.54
+    },
+    {
+      "name": "curious",
+      "frames": 48,
+      "size_kb": 884.86
+    },
+    {
+      "name": "curriculum",
+      "frames": 34,
+      "size_kb": 648.39
+    },
+    {
+      "name": "curse",
+      "frames": 36,
+      "size_kb": 686.18
+    },
+    {
+      "name": "curtain",
+      "frames": 48,
+      "size_kb": 820.01
+    },
+    {
+      "name": "customer",
+      "frames": 40,
+      "size_kb": 762.74
+    },
+    {
+      "name": "cut",
+      "frames": 72,
+      "size_kb": 1372.72
+    },
+    {
+      "name": "cute",
+      "frames": 35,
+      "size_kb": 649.89
+    },
+    {
+      "name": "d",
+      "frames": 30,
+      "size_kb": 556.7
+    },
+    {
+      "name": "dad",
+      "frames": 47,
+      "size_kb": 871.05
+    },
+    {
+      "name": "daily",
+      "frames": 38,
+      "size_kb": 704.45
+    },
+    {
+      "name": "damage",
+      "frames": 47,
+      "size_kb": 887.01
+    },
+    {
+      "name": "dance",
+      "frames": 47,
+      "size_kb": 894.3
+    },
+    {
+      "name": "dancer",
+      "frames": 72,
+      "size_kb": 1356.31
+    },
+    {
+      "name": "danger",
+      "frames": 64,
+      "size_kb": 1217.85
+    },
+    {
+      "name": "dangerous",
+      "frames": 64,
+      "size_kb": 1217.85
+    },
+    {
+      "name": "dark",
+      "frames": 50,
+      "size_kb": 953.33
+    },
+    {
+      "name": "date",
+      "frames": 32,
+      "size_kb": 610.15
+    },
+    {
+      "name": "daughter",
+      "frames": 30,
+      "size_kb": 571.95
+    },
+    {
+      "name": "dawn",
+      "frames": 113,
+      "size_kb": 2103.54
+    },
+    {
+      "name": "day",
+      "frames": 35,
+      "size_kb": 667.25
+    },
+    {
+      "name": "dead",
+      "frames": 36,
+      "size_kb": 685.76
+    },
+    {
+      "name": "deaf",
+      "frames": 38,
+      "size_kb": 701.59
+    },
+    {
+      "name": "death",
+      "frames": 36,
+      "size_kb": 685.76
+    },
+    {
+      "name": "debate",
+      "frames": 60,
+      "size_kb": 1141.35
+    },
+    {
+      "name": "debt",
+      "frames": 37,
+      "size_kb": 702.13
+    },
+    {
+      "name": "december",
+      "frames": 104,
+      "size_kb": 1935.98
+    },
+    {
+      "name": "decide",
+      "frames": 46,
+      "size_kb": 870.48
+    },
+    {
+      "name": "decorate",
+      "frames": 45,
+      "size_kb": 858.04
+    },
+    {
+      "name": "decrease",
+      "frames": 47,
+      "size_kb": 888.62
+    },
+    {
+      "name": "deduct",
+      "frames": 30,
+      "size_kb": 570.96
+    },
+    {
+      "name": "deep",
+      "frames": 51,
+      "size_kb": 971.73
+    },
+    {
+      "name": "deer",
+      "frames": 50,
+      "size_kb": 953.54
+    },
+    {
+      "name": "defeat",
+      "frames": 31,
+      "size_kb": 581.12
+    },
+    {
+      "name": "defend",
+      "frames": 24,
+      "size_kb": 450.84
+    },
+    {
+      "name": "degree",
+      "frames": 48,
+      "size_kb": 911.7
+    },
+    {
+      "name": "delay",
+      "frames": 36,
+      "size_kb": 683.81
+    },
+    {
+      "name": "delicious",
+      "frames": 28,
+      "size_kb": 517.92
+    },
+    {
+      "name": "deliver",
+      "frames": 33,
+      "size_kb": 629.03
+    },
+    {
+      "name": "demand",
+      "frames": 39,
+      "size_kb": 744.85
+    },
+    {
+      "name": "democrat",
+      "frames": 53,
+      "size_kb": 982.37
+    },
+    {
+      "name": "demonstrate",
+      "frames": 47,
+      "size_kb": 895.91
+    },
+    {
+      "name": "dentist",
+      "frames": 33,
+      "size_kb": 612.42
+    },
+    {
+      "name": "deny",
+      "frames": 33,
+      "size_kb": 618.74
+    },
+    {
+      "name": "deodorant",
+      "frames": 50,
+      "size_kb": 906.07
+    },
+    {
+      "name": "department",
+      "frames": 40,
+      "size_kb": 762.45
+    },
+    {
+      "name": "depend",
+      "frames": 48,
+      "size_kb": 914.77
+    },
+    {
+      "name": "deposit",
+      "frames": 59,
+      "size_kb": 1125.77
+    },
+    {
+      "name": "depressed",
+      "frames": 42,
+      "size_kb": 800.75
+    },
+    {
+      "name": "descend",
+      "frames": 111,
+      "size_kb": 2061.47
+    },
+    {
+      "name": "describe",
+      "frames": 53,
+      "size_kb": 1007.16
+    },
+    {
+      "name": "desert",
+      "frames": 91,
+      "size_kb": 1666.6
+    },
+    {
+      "name": "design",
+      "frames": 38,
+      "size_kb": 723.16
+    },
+    {
+      "name": "desk",
+      "frames": 40,
+      "size_kb": 762.84
+    },
+    {
+      "name": "dessert",
+      "frames": 40,
+      "size_kb": 762.94
+    },
+    {
+      "name": "destroy",
+      "frames": 47,
+      "size_kb": 887.01
+    },
+    {
+      "name": "detach",
+      "frames": 35,
+      "size_kb": 666.82
+    },
+    {
+      "name": "detective",
+      "frames": 45,
+      "size_kb": 835.22
+    },
+    {
+      "name": "determine",
+      "frames": 76,
+      "size_kb": 1407.06
+    },
+    {
+      "name": "develop",
+      "frames": 39,
+      "size_kb": 741.92
+    },
+    {
+      "name": "devil",
+      "frames": 47,
+      "size_kb": 879.87
+    },
+    {
+      "name": "diabetes",
+      "frames": 31,
+      "size_kb": 572.19
+    },
+    {
+      "name": "diamond",
+      "frames": 66,
+      "size_kb": 1257.54
+    },
+    {
+      "name": "diaper",
+      "frames": 40,
+      "size_kb": 762.92
+    },
+    {
+      "name": "diarrhea",
+      "frames": 32,
+      "size_kb": 609.24
+    },
+    {
+      "name": "dice",
+      "frames": 51,
+      "size_kb": 946.0
+    },
+    {
+      "name": "dictionary",
+      "frames": 52,
+      "size_kb": 983.86
+    },
+    {
+      "name": "die",
+      "frames": 36,
+      "size_kb": 685.76
+    },
+    {
+      "name": "different",
+      "frames": 44,
+      "size_kb": 839.34
+    },
+    {
+      "name": "difficult",
+      "frames": 50,
+      "size_kb": 952.85
+    },
+    {
+      "name": "dig",
+      "frames": 44,
+      "size_kb": 835.48
+    },
+    {
+      "name": "dime",
+      "frames": 114,
+      "size_kb": 2095.23
+    },
+    {
+      "name": "dining_room",
+      "frames": 67,
+      "size_kb": 1239.29
+    },
+    {
+      "name": "dinner",
+      "frames": 52,
+      "size_kb": 990.36
+    },
+    {
+      "name": "dinosaur",
+      "frames": 34,
+      "size_kb": 638.0
+    },
+    {
+      "name": "diploma",
+      "frames": 48,
+      "size_kb": 911.7
+    },
+    {
+      "name": "director",
+      "frames": 57,
+      "size_kb": 1082.38
+    },
+    {
+      "name": "dirt",
+      "frames": 77,
+      "size_kb": 1434.37
+    },
+    {
+      "name": "dirty",
+      "frames": 52,
+      "size_kb": 964.48
+    },
+    {
+      "name": "disagree",
+      "frames": 39,
+      "size_kb": 726.63
+    },
+    {
+      "name": "disappear",
+      "frames": 37,
+      "size_kb": 704.28
+    },
+    {
+      "name": "discipline",
+      "frames": 32,
+      "size_kb": 609.91
+    },
+    {
+      "name": "disconnect",
+      "frames": 35,
+      "size_kb": 666.82
+    },
+    {
+      "name": "discount",
+      "frames": 53,
+      "size_kb": 1010.28
+    },
+    {
+      "name": "discover",
+      "frames": 34,
+      "size_kb": 634.52
+    },
+    {
+      "name": "discuss",
+      "frames": 47,
+      "size_kb": 894.76
+    },
+    {
+      "name": "disgust",
+      "frames": 62,
+      "size_kb": 1144.78
+    },
+    {
+      "name": "disgusted",
+      "frames": 58,
+      "size_kb": 1070.21
+    },
+    {
+      "name": "dismiss",
+      "frames": 25,
+      "size_kb": 469.74
+    },
+    {
+      "name": "dissolve",
+      "frames": 69,
+      "size_kb": 1310.71
+    },
+    {
+      "name": "disturb",
+      "frames": 32,
+      "size_kb": 609.53
+    },
+    {
+      "name": "dive",
+      "frames": 33,
+      "size_kb": 622.14
+    },
+    {
+      "name": "divide",
+      "frames": 32,
+      "size_kb": 608.99
+    },
+    {
+      "name": "division",
+      "frames": 32,
+      "size_kb": 608.99
+    },
+    {
+      "name": "divorce",
+      "frames": 38,
+      "size_kb": 724.51
+    },
+    {
+      "name": "dizzy",
+      "frames": 57,
+      "size_kb": 684.9
+    },
+    {
+      "name": "doctor",
+      "frames": 54,
+      "size_kb": 1029.26
+    },
+    {
+      "name": "document",
+      "frames": 84,
+      "size_kb": 1557.91
+    },
+    {
+      "name": "dog",
+      "frames": 51,
+      "size_kb": 877.64
+    },
+    {
+      "name": "doll",
+      "frames": 76,
+      "size_kb": 1391.85
+    },
+    {
+      "name": "dollar",
+      "frames": 44,
+      "size_kb": 838.91
+    },
+    {
+      "name": "dolphin",
+      "frames": 32,
+      "size_kb": 599.27
+    },
+    {
+      "name": "don't_want",
+      "frames": 57,
+      "size_kb": 1085.87
+    },
+    {
+      "name": "done",
+      "frames": 29,
+      "size_kb": 553.02
+    },
+    {
+      "name": "door",
+      "frames": 89,
+      "size_kb": 1649.8
+    },
+    {
+      "name": "dorm",
+      "frames": 39,
+      "size_kb": 720.31
+    },
+    {
+      "name": "dormitory",
+      "frames": 30,
+      "size_kb": 556.38
+    },
+    {
+      "name": "double",
+      "frames": 40,
+      "size_kb": 759.85
+    },
+    {
+      "name": "doubt",
+      "frames": 52,
+      "size_kb": 964.32
+    },
+    {
+      "name": "down",
+      "frames": 44,
+      "size_kb": 816.39
+    },
+    {
+      "name": "downstairs",
+      "frames": 43,
+      "size_kb": 793.79
+    },
+    {
+      "name": "drag",
+      "frames": 51,
+      "size_kb": 951.5
+    },
+    {
+      "name": "dragon",
+      "frames": 71,
+      "size_kb": 1305.53
+    },
+    {
+      "name": "drama",
+      "frames": 87,
+      "size_kb": 1658.2
+    },
+    {
+      "name": "draw",
+      "frames": 38,
+      "size_kb": 723.16
+    },
+    {
+      "name": "drawer",
+      "frames": 35,
+      "size_kb": 667.63
+    },
+    {
+      "name": "dream",
+      "frames": 49,
+      "size_kb": 908.4
+    },
+    {
+      "name": "dress",
+      "frames": 35,
+      "size_kb": 666.81
+    },
+    {
+      "name": "drink",
+      "frames": 43,
+      "size_kb": 789.81
+    },
+    {
+      "name": "drive",
+      "frames": 56,
+      "size_kb": 1067.45
+    },
+    {
+      "name": "drop",
+      "frames": 26,
+      "size_kb": 486.86
+    },
+    {
+      "name": "drug",
+      "frames": 45,
+      "size_kb": 841.62
+    },
+    {
+      "name": "drum",
+      "frames": 41,
+      "size_kb": 764.57
+    },
+    {
+      "name": "drunk",
+      "frames": 30,
+      "size_kb": 555.35
+    },
+    {
+      "name": "dry",
+      "frames": 29,
+      "size_kb": 538.01
+    },
+    {
+      "name": "duck",
+      "frames": 56,
+      "size_kb": 1037.63
+    },
+    {
+      "name": "due",
+      "frames": 37,
+      "size_kb": 702.13
+    },
+    {
+      "name": "dull",
+      "frames": 29,
+      "size_kb": 537.81
+    },
+    {
+      "name": "dumb",
+      "frames": 85,
+      "size_kb": 1539.89
+    },
+    {
+      "name": "during",
+      "frames": 55,
+      "size_kb": 1038.97
+    },
+    {
+      "name": "dusk",
+      "frames": 35,
+      "size_kb": 640.82
+    },
+    {
+      "name": "duty",
+      "frames": 23,
+      "size_kb": 438.81
+    },
+    {
+      "name": "dvd",
+      "frames": 43,
+      "size_kb": 798.02
+    },
+    {
+      "name": "dye",
+      "frames": 43,
+      "size_kb": 803.83
+    },
+    {
+      "name": "e",
+      "frames": 30,
+      "size_kb": 556.75
+    },
+    {
+      "name": "each",
+      "frames": 109,
+      "size_kb": 2034.79
+    },
+    {
+      "name": "eagle",
+      "frames": 102,
+      "size_kb": 1863.87
+    },
+    {
+      "name": "ear",
+      "frames": 23,
+      "size_kb": 426.88
+    },
+    {
+      "name": "early",
+      "frames": 28,
+      "size_kb": 519.98
+    },
+    {
+      "name": "earn",
+      "frames": 38,
+      "size_kb": 724.48
+    },
+    {
+      "name": "earring",
+      "frames": 87,
+      "size_kb": 1615.14
+    },
+    {
+      "name": "earth",
+      "frames": 47,
+      "size_kb": 895.84
+    },
+    {
+      "name": "earthquake",
+      "frames": 71,
+      "size_kb": 1323.52
+    },
+    {
+      "name": "east",
+      "frames": 37,
+      "size_kb": 681.31
+    },
+    {
+      "name": "easter",
+      "frames": 47,
+      "size_kb": 896.23
+    },
+    {
+      "name": "easy",
+      "frames": 38,
+      "size_kb": 724.25
+    },
+    {
+      "name": "eat",
+      "frames": 50,
+      "size_kb": 927.73
+    },
+    {
+      "name": "economy",
+      "frames": 55,
+      "size_kb": 1036.73
+    },
+    {
+      "name": "educate",
+      "frames": 44,
+      "size_kb": 838.04
+    },
+    {
+      "name": "education",
+      "frames": 38,
+      "size_kb": 723.81
+    },
+    {
+      "name": "effort",
+      "frames": 32,
+      "size_kb": 610.05
+    },
+    {
+      "name": "egg",
+      "frames": 43,
+      "size_kb": 819.32
+    },
+    {
+      "name": "egypt",
+      "frames": 28,
+      "size_kb": 516.83
+    },
+    {
+      "name": "eight",
+      "frames": 56,
+      "size_kb": 1031.67
+    },
+    {
+      "name": "eighteen",
+      "frames": 30,
+      "size_kb": 556.52
+    },
+    {
+      "name": "either",
+      "frames": 44,
+      "size_kb": 838.69
+    },
+    {
+      "name": "electrician",
+      "frames": 78,
+      "size_kb": 1464.89
+    },
+    {
+      "name": "electricity",
+      "frames": 32,
+      "size_kb": 609.88
+    },
+    {
+      "name": "elementary",
+      "frames": 39,
+      "size_kb": 743.07
+    },
+    {
+      "name": "elephant",
+      "frames": 39,
+      "size_kb": 717.2
+    },
+    {
+      "name": "elevator",
+      "frames": 59,
+      "size_kb": 1122.28
+    },
+    {
+      "name": "else",
+      "frames": 36,
+      "size_kb": 668.01
+    },
+    {
+      "name": "email",
+      "frames": 44,
+      "size_kb": 838.33
+    },
+    {
+      "name": "embarrass",
+      "frames": 53,
+      "size_kb": 1010.56
+    },
+    {
+      "name": "emergency",
+      "frames": 50,
+      "size_kb": 927.82
+    },
+    {
+      "name": "emotion",
+      "frames": 61,
+      "size_kb": 1163.21
+    },
+    {
+      "name": "empty",
+      "frames": 28,
+      "size_kb": 533.5
+    },
+    {
+      "name": "encourage",
+      "frames": 53,
+      "size_kb": 1010.37
+    },
+    {
+      "name": "end",
+      "frames": 33,
+      "size_kb": 629.23
+    },
+    {
+      "name": "energy",
+      "frames": 38,
+      "size_kb": 724.51
+    },
+    {
+      "name": "engage",
+      "frames": 62,
+      "size_kb": 1152.46
+    },
+    {
+      "name": "engagement",
+      "frames": 60,
+      "size_kb": 1144.49
+    },
+    {
+      "name": "engine",
+      "frames": 46,
+      "size_kb": 877.19
+    },
+    {
+      "name": "engineer",
+      "frames": 65,
+      "size_kb": 1237.37
+    },
+    {
+      "name": "england",
+      "frames": 34,
+      "size_kb": 585.44
+    },
+    {
+      "name": "english",
+      "frames": 108,
+      "size_kb": 1972.64
+    },
+    {
+      "name": "enjoy",
+      "frames": 65,
+      "size_kb": 1238.94
+    },
+    {
+      "name": "enormous",
+      "frames": 57,
+      "size_kb": 1082.71
+    },
+    {
+      "name": "enough",
+      "frames": 45,
+      "size_kb": 858.66
+    },
+    {
+      "name": "enter",
+      "frames": 50,
+      "size_kb": 951.23
+    },
+    {
+      "name": "envelope",
+      "frames": 54,
+      "size_kb": 1029.61
+    },
+    {
+      "name": "environment",
+      "frames": 78,
+      "size_kb": 1456.27
+    },
+    {
+      "name": "equal",
+      "frames": 47,
+      "size_kb": 895.92
+    },
+    {
+      "name": "erase",
+      "frames": 37,
+      "size_kb": 705.82
+    },
+    {
+      "name": "eraser",
+      "frames": 50,
+      "size_kb": 946.22
+    },
+    {
+      "name": "escape",
+      "frames": 38,
+      "size_kb": 721.25
+    },
+    {
+      "name": "establish",
+      "frames": 63,
+      "size_kb": 1201.27
+    },
+    {
+      "name": "eternity",
+      "frames": 33,
+      "size_kb": 610.45
+    },
+    {
+      "name": "europe",
+      "frames": 38,
+      "size_kb": 701.17
+    },
+    {
+      "name": "evaluate",
+      "frames": 132,
+      "size_kb": 2451.21
+    },
+    {
+      "name": "evening",
+      "frames": 39,
+      "size_kb": 730.33
+    },
+    {
+      "name": "event",
+      "frames": 32,
+      "size_kb": 609.93
+    },
+    {
+      "name": "every",
+      "frames": 47,
+      "size_kb": 895.88
+    },
+    {
+      "name": "every_monday",
+      "frames": 54,
+      "size_kb": 1009.37
+    },
+    {
+      "name": "every_tuesday",
+      "frames": 53,
+      "size_kb": 994.06
+    },
+    {
+      "name": "everyday",
+      "frames": 38,
+      "size_kb": 704.45
+    },
+    {
+      "name": "everything",
+      "frames": 76,
+      "size_kb": 1446.13
+    },
+    {
+      "name": "evidence",
+      "frames": 37,
+      "size_kb": 695.81
+    },
+    {
+      "name": "exact",
+      "frames": 54,
+      "size_kb": 1027.03
+    },
+    {
+      "name": "exaggerate",
+      "frames": 57,
+      "size_kb": 1069.17
+    },
+    {
+      "name": "example",
+      "frames": 47,
+      "size_kb": 895.91
+    },
+    {
+      "name": "except",
+      "frames": 35,
+      "size_kb": 659.86
+    },
+    {
+      "name": "exchange",
+      "frames": 55,
+      "size_kb": 1048.87
+    },
+    {
+      "name": "excited",
+      "frames": 67,
+      "size_kb": 1234.99
+    },
+    {
+      "name": "excuse",
+      "frames": 25,
+      "size_kb": 469.74
+    },
+    {
+      "name": "exercise",
+      "frames": 67,
+      "size_kb": 1274.8
+    },
+    {
+      "name": "exhibit",
+      "frames": 29,
+      "size_kb": 552.84
+    },
+    {
+      "name": "expand",
+      "frames": 44,
+      "size_kb": 839.23
+    },
+    {
+      "name": "expect",
+      "frames": 38,
+      "size_kb": 715.23
+    },
+    {
+      "name": "expensive",
+      "frames": 32,
+      "size_kb": 608.62
+    },
+    {
+      "name": "experience",
+      "frames": 65,
+      "size_kb": 1205.23
+    },
+    {
+      "name": "experiment",
+      "frames": 65,
+      "size_kb": 1237.83
+    },
+    {
+      "name": "expert",
+      "frames": 30,
+      "size_kb": 552.32
+    },
+    {
+      "name": "explain",
+      "frames": 53,
+      "size_kb": 1007.16
+    },
+    {
+      "name": "explode",
+      "frames": 45,
+      "size_kb": 846.53
+    },
+    {
+      "name": "express",
+      "frames": 59,
+      "size_kb": 1095.7
+    },
+    {
+      "name": "eye",
+      "frames": 34,
+      "size_kb": 624.6
+    },
+    {
+      "name": "eyeglasses",
+      "frames": 33,
+      "size_kb": 628.99
+    },
+    {
+      "name": "eyes",
+      "frames": 51,
+      "size_kb": 945.63
+    },
+    {
+      "name": "f",
+      "frames": 30,
+      "size_kb": 556.82
+    },
+    {
+      "name": "face",
+      "frames": 49,
+      "size_kb": 903.37
+    },
+    {
+      "name": "fact",
+      "frames": 37,
+      "size_kb": 695.81
+    },
+    {
+      "name": "faculty",
+      "frames": 77,
+      "size_kb": 1410.34
+    },
+    {
+      "name": "fail",
+      "frames": 52,
+      "size_kb": 960.41
+    },
+    {
+      "name": "fairy",
+      "frames": 35,
+      "size_kb": 665.32
+    },
+    {
+      "name": "fake",
+      "frames": 31,
+      "size_kb": 570.65
+    },
+    {
+      "name": "fall_in_love",
+      "frames": 103,
+      "size_kb": 1914.26
+    },
+    {
+      "name": "familiar",
+      "frames": 52,
+      "size_kb": 964.05
+    },
+    {
+      "name": "family",
+      "frames": 60,
+      "size_kb": 1144.03
+    },
+    {
+      "name": "famous",
+      "frames": 56,
+      "size_kb": 1067.61
+    },
+    {
+      "name": "fancy",
+      "frames": 38,
+      "size_kb": 698.64
+    },
+    {
+      "name": "far",
+      "frames": 76,
+      "size_kb": 1443.87
+    },
+    {
+      "name": "farm",
+      "frames": 37,
+      "size_kb": 678.7
+    },
+    {
+      "name": "farmer",
+      "frames": 86,
+      "size_kb": 1582.71
+    },
+    {
+      "name": "fast",
+      "frames": 33,
+      "size_kb": 628.92
+    },
+    {
+      "name": "fat",
+      "frames": 45,
+      "size_kb": 857.59
+    },
+    {
+      "name": "father",
+      "frames": 28,
+      "size_kb": 519.26
+    },
+    {
+      "name": "fault",
+      "frames": 25,
+      "size_kb": 475.6
+    },
+    {
+      "name": "favorite",
+      "frames": 46,
+      "size_kb": 853.55
+    },
+    {
+      "name": "fear",
+      "frames": 35,
+      "size_kb": 667.21
+    },
+    {
+      "name": "february",
+      "frames": 41,
+      "size_kb": 760.26
+    },
+    {
+      "name": "federal",
+      "frames": 42,
+      "size_kb": 775.33
+    },
+    {
+      "name": "feed",
+      "frames": 28,
+      "size_kb": 534.26
+    },
+    {
+      "name": "feedback",
+      "frames": 30,
+      "size_kb": 562.97
+    },
+    {
+      "name": "feel",
+      "frames": 93,
+      "size_kb": 1724.71
+    },
+    {
+      "name": "fence",
+      "frames": 38,
+      "size_kb": 714.82
+    },
+    {
+      "name": "festival",
+      "frames": 63,
+      "size_kb": 1200.7
+    },
+    {
+      "name": "few",
+      "frames": 38,
+      "size_kb": 705.08
+    },
+    {
+      "name": "fight",
+      "frames": 47,
+      "size_kb": 883.7
+    },
+    {
+      "name": "final",
+      "frames": 33,
+      "size_kb": 629.23
+    },
+    {
+      "name": "finally",
+      "frames": 26,
+      "size_kb": 495.24
+    },
+    {
+      "name": "finance",
+      "frames": 44,
+      "size_kb": 839.48
+    },
+    {
+      "name": "find",
+      "frames": 32,
+      "size_kb": 593.92
+    },
+    {
+      "name": "fine",
+      "frames": 32,
+      "size_kb": 609.56
+    },
+    {
+      "name": "fingerspell",
+      "frames": 56,
+      "size_kb": 1036.14
+    },
+    {
+      "name": "finish",
+      "frames": 29,
+      "size_kb": 553.02
+    },
+    {
+      "name": "fire",
+      "frames": 49,
+      "size_kb": 933.84
+    },
+    {
+      "name": "firefighter",
+      "frames": 41,
+      "size_kb": 757.67
+    },
+    {
+      "name": "first",
+      "frames": 27,
+      "size_kb": 515.03
+    },
+    {
+      "name": "fish",
+      "frames": 33,
+      "size_kb": 628.65
+    },
+    {
+      "name": "fishing",
+      "frames": 108,
+      "size_kb": 2005.1
+    },
+    {
+      "name": "five",
+      "frames": 38,
+      "size_kb": 699.92
+    },
+    {
+      "name": "fix",
+      "frames": 40,
+      "size_kb": 762.54
+    },
+    {
+      "name": "flag",
+      "frames": 33,
+      "size_kb": 525.29
+    },
+    {
+      "name": "flatter",
+      "frames": 54,
+      "size_kb": 1027.78
+    },
+    {
+      "name": "flexible",
+      "frames": 65,
+      "size_kb": 1236.92
+    },
+    {
+      "name": "flirt",
+      "frames": 30,
+      "size_kb": 570.54
+    },
+    {
+      "name": "flood",
+      "frames": 82,
+      "size_kb": 1542.9
+    },
+    {
+      "name": "floor",
+      "frames": 46,
+      "size_kb": 864.95
+    },
+    {
+      "name": "florida",
+      "frames": 38,
+      "size_kb": 703.22
+    },
+    {
+      "name": "flower",
+      "frames": 28,
+      "size_kb": 519.55
+    },
+    {
+      "name": "flute",
+      "frames": 58,
+      "size_kb": 1059.47
+    },
+    {
+      "name": "fly",
+      "frames": 42,
+      "size_kb": 799.93
+    },
+    {
+      "name": "fold",
+      "frames": 58,
+      "size_kb": 1103.51
+    },
+    {
+      "name": "follow",
+      "frames": 43,
+      "size_kb": 818.74
+    },
+    {
+      "name": "food",
+      "frames": 50,
+      "size_kb": 927.73
+    },
+    {
+      "name": "fool",
+      "frames": 65,
+      "size_kb": 1239.02
+    },
+    {
+      "name": "football",
+      "frames": 37,
+      "size_kb": 705.46
+    },
+    {
+      "name": "for",
+      "frames": 22,
+      "size_kb": 405.14
+    },
+    {
+      "name": "forbid",
+      "frames": 38,
+      "size_kb": 721.77
+    },
+    {
+      "name": "forest",
+      "frames": 50,
+      "size_kb": 872.16
+    },
+    {
+      "name": "forever",
+      "frames": 30,
+      "size_kb": 554.57
+    },
+    {
+      "name": "forget",
+      "frames": 66,
+      "size_kb": 1203.08
+    },
+    {
+      "name": "forgive",
+      "frames": 28,
+      "size_kb": 529.77
+    },
+    {
+      "name": "fork",
+      "frames": 32,
+      "size_kb": 602.29
+    },
+    {
+      "name": "form",
+      "frames": 36,
+      "size_kb": 685.01
+    },
+    {
+      "name": "former",
+      "frames": 60,
+      "size_kb": 1112.61
+    },
+    {
+      "name": "four",
+      "frames": 28,
+      "size_kb": 519.05
+    },
+    {
+      "name": "fourth",
+      "frames": 29,
+      "size_kb": 539.1
+    },
+    {
+      "name": "fox",
+      "frames": 51,
+      "size_kb": 937.45
+    },
+    {
+      "name": "france",
+      "frames": 38,
+      "size_kb": 691.49
+    },
+    {
+      "name": "free",
+      "frames": 41,
+      "size_kb": 712.22
+    },
+    {
+      "name": "freeway",
+      "frames": 27,
+      "size_kb": 515.11
+    },
+    {
+      "name": "freeze",
+      "frames": 32,
+      "size_kb": 603.29
+    },
+    {
+      "name": "french",
+      "frames": 38,
+      "size_kb": 691.49
+    },
+    {
+      "name": "french_fries",
+      "frames": 47,
+      "size_kb": 871.97
+    },
+    {
+      "name": "friday",
+      "frames": 59,
+      "size_kb": 1115.31
+    },
+    {
+      "name": "friend",
+      "frames": 58,
+      "size_kb": 1106.19
+    },
+    {
+      "name": "friendly",
+      "frames": 40,
+      "size_kb": 762.28
+    },
+    {
+      "name": "frog",
+      "frames": 36,
+      "size_kb": 663.53
+    },
+    {
+      "name": "from",
+      "frames": 44,
+      "size_kb": 839.25
+    },
+    {
+      "name": "from_now_on",
+      "frames": 38,
+      "size_kb": 724.73
+    },
+    {
+      "name": "front",
+      "frames": 38,
+      "size_kb": 722.05
+    },
+    {
+      "name": "fruit",
+      "frames": 92,
+      "size_kb": 1684.5
+    },
+    {
+      "name": "full",
+      "frames": 38,
+      "size_kb": 715.11
+    },
+    {
+      "name": "fun",
+      "frames": 55,
+      "size_kb": 1024.89
+    },
+    {
+      "name": "function",
+      "frames": 75,
+      "size_kb": 1422.17
+    },
+    {
+      "name": "funeral",
+      "frames": 79,
+      "size_kb": 1477.85
+    },
+    {
+      "name": "funny",
+      "frames": 37,
+      "size_kb": 683.02
+    },
+    {
+      "name": "furniture",
+      "frames": 33,
+      "size_kb": 612.46
+    },
+    {
+      "name": "future",
+      "frames": 44,
+      "size_kb": 815.78
+    },
+    {
+      "name": "g",
+      "frames": 30,
+      "size_kb": 556.86
+    },
+    {
+      "name": "gallaudet",
+      "frames": 29,
+      "size_kb": 532.44
+    },
+    {
+      "name": "gamble",
+      "frames": 42,
+      "size_kb": 774.35
+    },
+    {
+      "name": "game",
+      "frames": 32,
+      "size_kb": 609.88
+    },
+    {
+      "name": "gang",
+      "frames": 48,
+      "size_kb": 889.99
+    },
+    {
+      "name": "garage",
+      "frames": 37,
+      "size_kb": 705.55
+    },
+    {
+      "name": "gas",
+      "frames": 53,
+      "size_kb": 1010.94
+    },
+    {
+      "name": "gasoline",
+      "frames": 53,
+      "size_kb": 1010.94
+    },
+    {
+      "name": "gather",
+      "frames": 56,
+      "size_kb": 1067.16
+    },
+    {
+      "name": "gay",
+      "frames": 52,
+      "size_kb": 963.82
+    },
+    {
+      "name": "general",
+      "frames": 55,
+      "size_kb": 1044.96
+    },
+    {
+      "name": "generation",
+      "frames": 44,
+      "size_kb": 835.57
+    },
+    {
+      "name": "geography",
+      "frames": 47,
+      "size_kb": 895.84
+    },
+    {
+      "name": "geometry",
+      "frames": 43,
+      "size_kb": 820.01
+    },
+    {
+      "name": "german",
+      "frames": 43,
+      "size_kb": 810.03
+    },
+    {
+      "name": "germany",
+      "frames": 43,
+      "size_kb": 810.03
+    },
+    {
+      "name": "get",
+      "frames": 46,
+      "size_kb": 876.42
+    },
+    {
+      "name": "get_up",
+      "frames": 51,
+      "size_kb": 958.15
+    },
+    {
+      "name": "ghost",
+      "frames": 39,
+      "size_kb": 742.97
+    },
+    {
+      "name": "gift",
+      "frames": 47,
+      "size_kb": 895.52
+    },
+    {
+      "name": "giraffe",
+      "frames": 69,
+      "size_kb": 1264.88
+    },
+    {
+      "name": "girl",
+      "frames": 51,
+      "size_kb": 939.02
+    },
+    {
+      "name": "girlfriend",
+      "frames": 63,
+      "size_kb": 1188.24
+    },
+    {
+      "name": "give",
+      "frames": 39,
+      "size_kb": 742.68
+    },
+    {
+      "name": "give_up",
+      "frames": 50,
+      "size_kb": 949.49
+    },
+    {
+      "name": "glass",
+      "frames": 91,
+      "size_kb": 1662.25
+    },
+    {
+      "name": "glasses",
+      "frames": 33,
+      "size_kb": 628.99
+    },
+    {
+      "name": "gloves",
+      "frames": 56,
+      "size_kb": 1055.6
+    },
+    {
+      "name": "go",
+      "frames": 45,
+      "size_kb": 858.48
+    },
+    {
+      "name": "goal",
+      "frames": 44,
+      "size_kb": 827.09
+    },
+    {
+      "name": "goat",
+      "frames": 73,
+      "size_kb": 1326.78
+    },
+    {
+      "name": "god",
+      "frames": 34,
+      "size_kb": 627.02
+    },
+    {
+      "name": "gold",
+      "frames": 34,
+      "size_kb": 626.76
+    },
+    {
+      "name": "golf",
+      "frames": 60,
+      "size_kb": 1106.22
+    },
+    {
+      "name": "gone",
+      "frames": 49,
+      "size_kb": 931.74
+    },
+    {
+      "name": "good",
+      "frames": 58,
+      "size_kb": 1080.66
+    },
+    {
+      "name": "goodbye",
+      "frames": 55,
+      "size_kb": 1019.33
+    },
+    {
+      "name": "gorilla",
+      "frames": 42,
+      "size_kb": 800.47
+    },
+    {
+      "name": "gossip",
+      "frames": 43,
+      "size_kb": 819.68
+    },
+    {
+      "name": "government",
+      "frames": 44,
+      "size_kb": 812.98
+    },
+    {
+      "name": "grab",
+      "frames": 33,
+      "size_kb": 628.21
+    },
+    {
+      "name": "graduate",
+      "frames": 59,
+      "size_kb": 1120.62
+    },
+    {
+      "name": "graduation",
+      "frames": 59,
+      "size_kb": 1120.62
+    },
+    {
+      "name": "grammar",
+      "frames": 34,
+      "size_kb": 648.54
+    },
+    {
+      "name": "grandfather",
+      "frames": 94,
+      "size_kb": 1720.59
+    },
+    {
+      "name": "grandma",
+      "frames": 44,
+      "size_kb": 816.31
+    },
+    {
+      "name": "grandmother",
+      "frames": 44,
+      "size_kb": 816.31
+    },
+    {
+      "name": "grapes",
+      "frames": 44,
+      "size_kb": 839.33
+    },
+    {
+      "name": "grass",
+      "frames": 43,
+      "size_kb": 791.17
+    },
+    {
+      "name": "grateful",
+      "frames": 33,
+      "size_kb": 629.75
+    },
+    {
+      "name": "gray",
+      "frames": 41,
+      "size_kb": 781.6
+    },
+    {
+      "name": "great",
+      "frames": 51,
+      "size_kb": 972.27
+    },
+    {
+      "name": "greece",
+      "frames": 30,
+      "size_kb": 553.67
+    },
+    {
+      "name": "green",
+      "frames": 45,
+      "size_kb": 834.65
+    },
+    {
+      "name": "grey",
+      "frames": 89,
+      "size_kb": 1650.76
+    },
+    {
+      "name": "group",
+      "frames": 50,
+      "size_kb": 953.08
+    },
+    {
+      "name": "grow",
+      "frames": 52,
+      "size_kb": 980.99
+    },
+    {
+      "name": "grow_up",
+      "frames": 45,
+      "size_kb": 826.0
+    },
+    {
+      "name": "guess",
+      "frames": 34,
+      "size_kb": 619.45
+    },
+    {
+      "name": "guide",
+      "frames": 50,
+      "size_kb": 950.84
+    },
+    {
+      "name": "guilty",
+      "frames": 37,
+      "size_kb": 683.08
+    },
+    {
+      "name": "guitar",
+      "frames": 41,
+      "size_kb": 781.38
+    },
+    {
+      "name": "gum",
+      "frames": 77,
+      "size_kb": 1404.29
+    },
+    {
+      "name": "gun",
+      "frames": 36,
+      "size_kb": 668.13
+    },
+    {
+      "name": "gymnastics",
+      "frames": 47,
+      "size_kb": 896.62
+    },
+    {
+      "name": "h",
+      "frames": 30,
+      "size_kb": 556.72
+    },
+    {
+      "name": "habit",
+      "frames": 36,
+      "size_kb": 686.22
+    },
+    {
+      "name": "hair",
+      "frames": 39,
+      "size_kb": 718.23
+    },
+    {
+      "name": "haircut",
+      "frames": 62,
+      "size_kb": 1181.78
+    },
+    {
+      "name": "half",
+      "frames": 46,
+      "size_kb": 852.77
+    },
+    {
+      "name": "halloween",
+      "frames": 55,
+      "size_kb": 829.5
+    },
+    {
+      "name": "hamburger",
+      "frames": 53,
+      "size_kb": 989.27
+    },
+    {
+      "name": "hammer",
+      "frames": 67,
+      "size_kb": 1243.52
+    },
+    {
+      "name": "hang_up",
+      "frames": 31,
+      "size_kb": 570.3
+    },
+    {
+      "name": "hanukkah",
+      "frames": 49,
+      "size_kb": 934.21
+    },
+    {
+      "name": "happen",
+      "frames": 46,
+      "size_kb": 874.39
+    },
+    {
+      "name": "happy",
+      "frames": 61,
+      "size_kb": 1162.38
+    },
+    {
+      "name": "hard",
+      "frames": 44,
+      "size_kb": 837.43
+    },
+    {
+      "name": "hard_of_hearing",
+      "frames": 46,
+      "size_kb": 854.9
+    },
+    {
+      "name": "hat",
+      "frames": 34,
+      "size_kb": 625.48
+    },
+    {
+      "name": "hate",
+      "frames": 32,
+      "size_kb": 606.04
+    },
+    {
+      "name": "have",
+      "frames": 26,
+      "size_kb": 495.0
+    },
+    {
+      "name": "hawaii",
+      "frames": 98,
+      "size_kb": 1848.49
+    },
+    {
+      "name": "head",
+      "frames": 56,
+      "size_kb": 1032.38
+    },
+    {
+      "name": "headache",
+      "frames": 45,
+      "size_kb": 857.87
+    },
+    {
+      "name": "health",
+      "frames": 28,
+      "size_kb": 533.26
+    },
+    {
+      "name": "heap",
+      "frames": 39,
+      "size_kb": 736.55
+    },
+    {
+      "name": "hear",
+      "frames": 38,
+      "size_kb": 699.03
+    },
+    {
+      "name": "hearing",
+      "frames": 45,
+      "size_kb": 830.26
+    },
+    {
+      "name": "hearing_aid",
+      "frames": 38,
+      "size_kb": 705.06
+    },
+    {
+      "name": "heart",
+      "frames": 37,
+      "size_kb": 705.48
+    },
+    {
+      "name": "heart_attack",
+      "frames": 48,
+      "size_kb": 893.03
+    },
+    {
+      "name": "heaven",
+      "frames": 62,
+      "size_kb": 1111.58
+    },
+    {
+      "name": "heavy",
+      "frames": 50,
+      "size_kb": 948.56
+    },
+    {
+      "name": "helicopter",
+      "frames": 41,
+      "size_kb": 781.64
+    },
+    {
+      "name": "hello",
+      "frames": 31,
+      "size_kb": 574.5
+    },
+    {
+      "name": "helmet",
+      "frames": 68,
+      "size_kb": 1294.54
+    },
+    {
+      "name": "help",
+      "frames": 53,
+      "size_kb": 1009.84
+    },
+    {
+      "name": "her",
+      "frames": 60,
+      "size_kb": 1132.0
+    },
+    {
+      "name": "here",
+      "frames": 58,
+      "size_kb": 1105.75
+    },
+    {
+      "name": "herself",
+      "frames": 40,
+      "size_kb": 763.34
+    },
+    {
+      "name": "hide",
+      "frames": 94,
+      "size_kb": 1760.0
+    },
+    {
+      "name": "high",
+      "frames": 43,
+      "size_kb": 797.9
+    },
+    {
+      "name": "high_school",
+      "frames": 36,
+      "size_kb": 667.46
+    },
+    {
+      "name": "highway",
+      "frames": 27,
+      "size_kb": 515.11
+    },
+    {
+      "name": "hill",
+      "frames": 76,
+      "size_kb": 1407.58
+    },
+    {
+      "name": "hippopotamus",
+      "frames": 148,
+      "size_kb": 2764.71
+    },
+    {
+      "name": "his",
+      "frames": 34,
+      "size_kb": 631.07
+    },
+    {
+      "name": "history",
+      "frames": 57,
+      "size_kb": 1060.0
+    },
+    {
+      "name": "hit",
+      "frames": 41,
+      "size_kb": 779.98
+    },
+    {
+      "name": "hockey",
+      "frames": 36,
+      "size_kb": 673.46
+    },
+    {
+      "name": "hold",
+      "frames": 94,
+      "size_kb": 1739.83
+    },
+    {
+      "name": "holy",
+      "frames": 38,
+      "size_kb": 716.17
+    },
+    {
+      "name": "home",
+      "frames": 88,
+      "size_kb": 1612.81
+    },
+    {
+      "name": "homework",
+      "frames": 47,
+      "size_kb": 885.1
+    },
+    {
+      "name": "honest",
+      "frames": 44,
+      "size_kb": 839.4
+    },
+    {
+      "name": "honey",
+      "frames": 81,
+      "size_kb": 1485.59
+    },
+    {
+      "name": "honor",
+      "frames": 48,
+      "size_kb": 901.04
+    },
+    {
+      "name": "hop",
+      "frames": 42,
+      "size_kb": 795.55
+    },
+    {
+      "name": "hope",
+      "frames": 38,
+      "size_kb": 715.23
+    },
+    {
+      "name": "horse",
+      "frames": 57,
+      "size_kb": 1057.24
+    },
+    {
+      "name": "hospital",
+      "frames": 54,
+      "size_kb": 1027.24
+    },
+    {
+      "name": "host",
+      "frames": 36,
+      "size_kb": 685.18
+    },
+    {
+      "name": "hot",
+      "frames": 35,
+      "size_kb": 644.29
+    },
+    {
+      "name": "hot_dog",
+      "frames": 27,
+      "size_kb": 508.18
+    },
+    {
+      "name": "hour",
+      "frames": 55,
+      "size_kb": 1047.98
+    },
+    {
+      "name": "house",
+      "frames": 46,
+      "size_kb": 876.81
+    },
+    {
+      "name": "how",
+      "frames": 32,
+      "size_kb": 610.57
+    },
+    {
+      "name": "hug",
+      "frames": 51,
+      "size_kb": 960.35
+    },
+    {
+      "name": "human",
+      "frames": 53,
+      "size_kb": 996.21
+    },
+    {
+      "name": "humble",
+      "frames": 45,
+      "size_kb": 847.99
+    },
+    {
+      "name": "hungry",
+      "frames": 29,
+      "size_kb": 537.44
+    },
+    {
+      "name": "hunt",
+      "frames": 49,
+      "size_kb": 931.62
+    },
+    {
+      "name": "hurricane",
+      "frames": 40,
+      "size_kb": 762.21
+    },
+    {
+      "name": "hurry",
+      "frames": 55,
+      "size_kb": 1044.52
+    },
+    {
+      "name": "hurt",
+      "frames": 54,
+      "size_kb": 1029.23
+    },
+    {
+      "name": "husband",
+      "frames": 44,
+      "size_kb": 829.74
+    },
+    {
+      "name": "i",
+      "frames": 30,
+      "size_kb": 556.56
+    },
+    {
+      "name": "ice_cream",
+      "frames": 39,
+      "size_kb": 720.41
+    },
+    {
+      "name": "idea",
+      "frames": 34,
+      "size_kb": 630.78
+    },
+    {
+      "name": "identify",
+      "frames": 70,
+      "size_kb": 1333.45
+    },
+    {
+      "name": "if",
+      "frames": 35,
+      "size_kb": 644.58
+    },
+    {
+      "name": "ignore",
+      "frames": 48,
+      "size_kb": 889.91
+    },
+    {
+      "name": "ill",
+      "frames": 84,
+      "size_kb": 1563.2
+    },
+    {
+      "name": "illegal",
+      "frames": 38,
+      "size_kb": 721.77
+    },
+    {
+      "name": "image",
+      "frames": 28,
+      "size_kb": 534.21
+    },
+    {
+      "name": "impact",
+      "frames": 41,
+      "size_kb": 779.98
+    },
+    {
+      "name": "important",
+      "frames": 38,
+      "size_kb": 717.03
+    },
+    {
+      "name": "impossible",
+      "frames": 49,
+      "size_kb": 923.14
+    },
+    {
+      "name": "improve",
+      "frames": 42,
+      "size_kb": 801.34
+    },
+    {
+      "name": "in",
+      "frames": 23,
+      "size_kb": 438.84
+    },
+    {
+      "name": "include",
+      "frames": 57,
+      "size_kb": 1085.63
+    },
+    {
+      "name": "increase",
+      "frames": 59,
+      "size_kb": 1117.16
+    },
+    {
+      "name": "independent",
+      "frames": 39,
+      "size_kb": 733.82
+    },
+    {
+      "name": "india",
+      "frames": 40,
+      "size_kb": 742.35
+    },
+    {
+      "name": "individual",
+      "frames": 82,
+      "size_kb": 1527.52
+    },
+    {
+      "name": "infection",
+      "frames": 67,
+      "size_kb": 1242.04
+    },
+    {
+      "name": "influence",
+      "frames": 33,
+      "size_kb": 616.78
+    },
+    {
+      "name": "inform",
+      "frames": 72,
+      "size_kb": 1257.72
+    },
+    {
+      "name": "information",
+      "frames": 44,
+      "size_kb": 827.83
+    },
+    {
+      "name": "innocent",
+      "frames": 30,
+      "size_kb": 566.1
+    },
+    {
+      "name": "insect",
+      "frames": 43,
+      "size_kb": 791.1
+    },
+    {
+      "name": "inside",
+      "frames": 41,
+      "size_kb": 782.08
+    },
+    {
+      "name": "inspect",
+      "frames": 69,
+      "size_kb": 1316.13
+    },
+    {
+      "name": "inspire",
+      "frames": 56,
+      "size_kb": 1067.78
+    },
+    {
+      "name": "instead",
+      "frames": 47,
+      "size_kb": 894.55
+    },
+    {
+      "name": "institute",
+      "frames": 35,
+      "size_kb": 667.51
+    },
+    {
+      "name": "insurance",
+      "frames": 67,
+      "size_kb": 1242.04
+    },
+    {
+      "name": "interest",
+      "frames": 60,
+      "size_kb": 1144.44
+    },
+    {
+      "name": "interesting",
+      "frames": 39,
+      "size_kb": 733.39
+    },
+    {
+      "name": "international",
+      "frames": 66,
+      "size_kb": 1252.79
+    },
+    {
+      "name": "internet",
+      "frames": 37,
+      "size_kb": 695.75
+    },
+    {
+      "name": "interpret",
+      "frames": 41,
+      "size_kb": 767.95
+    },
+    {
+      "name": "interpreter",
+      "frames": 63,
+      "size_kb": 1180.54
+    },
+    {
+      "name": "interrupt",
+      "frames": 83,
+      "size_kb": 1578.01
+    },
+    {
+      "name": "intersection",
+      "frames": 31,
+      "size_kb": 590.85
+    },
+    {
+      "name": "interview",
+      "frames": 70,
+      "size_kb": 1299.11
+    },
+    {
+      "name": "introduce",
+      "frames": 66,
+      "size_kb": 1226.92
+    },
+    {
+      "name": "invest",
+      "frames": 28,
+      "size_kb": 526.63
+    },
+    {
+      "name": "investigate",
+      "frames": 69,
+      "size_kb": 1316.13
+    },
+    {
+      "name": "invite",
+      "frames": 49,
+      "size_kb": 909.41
+    },
+    {
+      "name": "involve",
+      "frames": 57,
+      "size_kb": 1085.63
+    },
+    {
+      "name": "iran",
+      "frames": 50,
+      "size_kb": 953.26
+    },
+    {
+      "name": "ireland",
+      "frames": 40,
+      "size_kb": 762.35
+    },
+    {
+      "name": "iron",
+      "frames": 74,
+      "size_kb": 1369.72
+    },
+    {
+      "name": "island",
+      "frames": 60,
+      "size_kb": 1144.44
+    },
+    {
+      "name": "israel",
+      "frames": 31,
+      "size_kb": 570.62
+    },
+    {
+      "name": "italy",
+      "frames": 31,
+      "size_kb": 572.32
+    },
+    {
+      "name": "j",
+      "frames": 61,
+      "size_kb": 1131.85
+    },
+    {
+      "name": "jacket",
+      "frames": 44,
+      "size_kb": 838.27
+    },
+    {
+      "name": "jail",
+      "frames": 49,
+      "size_kb": 923.42
+    },
+    {
+      "name": "january",
+      "frames": 57,
+      "size_kb": 1057.43
+    },
+    {
+      "name": "japan",
+      "frames": 26,
+      "size_kb": 495.28
+    },
+    {
+      "name": "jealous",
+      "frames": 87,
+      "size_kb": 1576.0
+    },
+    {
+      "name": "jesus",
+      "frames": 39,
+      "size_kb": 743.96
+    },
+    {
+      "name": "jewelry",
+      "frames": 43,
+      "size_kb": 819.88
+    },
+    {
+      "name": "jewish",
+      "frames": 47,
+      "size_kb": 871.49
+    },
+    {
+      "name": "join",
+      "frames": 41,
+      "size_kb": 781.68
+    },
+    {
+      "name": "joke",
+      "frames": 56,
+      "size_kb": 1066.5
+    },
+    {
+      "name": "journey",
+      "frames": 54,
+      "size_kb": 1003.94
+    },
+    {
+      "name": "joy",
+      "frames": 61,
+      "size_kb": 1162.38
+    },
+    {
+      "name": "judge",
+      "frames": 51,
+      "size_kb": 965.05
+    },
+    {
+      "name": "july",
+      "frames": 66,
+      "size_kb": 1224.56
+    },
+    {
+      "name": "jump",
+      "frames": 88,
+      "size_kb": 1660.03
+    },
+    {
+      "name": "june",
+      "frames": 52,
+      "size_kb": 958.66
+    },
+    {
+      "name": "k",
+      "frames": 30,
+      "size_kb": 557.07
+    },
+    {
+      "name": "kangaroo",
+      "frames": 38,
+      "size_kb": 724.58
+    },
+    {
+      "name": "karate",
+      "frames": 33,
+      "size_kb": 616.36
+    },
+    {
+      "name": "keep",
+      "frames": 60,
+      "size_kb": 1135.34
+    },
+    {
+      "name": "key",
+      "frames": 46,
+      "size_kb": 876.83
+    },
+    {
+      "name": "keyboard",
+      "frames": 66,
+      "size_kb": 1257.75
+    },
+    {
+      "name": "kick",
+      "frames": 39,
+      "size_kb": 737.65
+    },
+    {
+      "name": "kid",
+      "frames": 59,
+      "size_kb": 1070.19
+    },
+    {
+      "name": "kill",
+      "frames": 30,
+      "size_kb": 564.26
+    },
+    {
+      "name": "kindergarten",
+      "frames": 51,
+      "size_kb": 960.23
+    },
+    {
+      "name": "king",
+      "frames": 33,
+      "size_kb": 607.27
+    },
+    {
+      "name": "kiss",
+      "frames": 33,
+      "size_kb": 629.62
+    },
+    {
+      "name": "kitchen",
+      "frames": 49,
+      "size_kb": 921.62
+    },
+    {
+      "name": "kneel",
+      "frames": 41,
+      "size_kb": 776.38
+    },
+    {
+      "name": "knife",
+      "frames": 57,
+      "size_kb": 1085.41
+    },
+    {
+      "name": "knock",
+      "frames": 42,
+      "size_kb": 801.08
+    },
+    {
+      "name": "know",
+      "frames": 52,
+      "size_kb": 964.05
+    },
+    {
+      "name": "label",
+      "frames": 35,
+      "size_kb": 659.83
+    },
+    {
+      "name": "lady",
+      "frames": 42,
+      "size_kb": 778.87
+    },
+    {
+      "name": "lamp",
+      "frames": 75,
+      "size_kb": 1377.39
+    },
+    {
+      "name": "land",
+      "frames": 78,
+      "size_kb": 1479.64
+    },
+    {
+      "name": "language",
+      "frames": 37,
+      "size_kb": 705.44
+    },
+    {
+      "name": "laptop",
+      "frames": 126,
+      "size_kb": 2348.65
+    },
+    {
+      "name": "large",
+      "frames": 50,
+      "size_kb": 951.01
+    },
+    {
+      "name": "last",
+      "frames": 33,
+      "size_kb": 629.23
+    },
+    {
+      "name": "last_week",
+      "frames": 38,
+      "size_kb": 710.33
+    },
+    {
+      "name": "last_year",
+      "frames": 69,
+      "size_kb": 1287.88
+    },
+    {
+      "name": "late",
+      "frames": 51,
+      "size_kb": 945.65
+    },
+    {
+      "name": "later",
+      "frames": 37,
+      "size_kb": 704.9
+    },
+    {
+      "name": "laugh",
+      "frames": 57,
+      "size_kb": 1085.85
+    },
+    {
+      "name": "laundry",
+      "frames": 50,
+      "size_kb": 952.53
+    },
+    {
+      "name": "law",
+      "frames": 35,
+      "size_kb": 655.33
+    },
+    {
+      "name": "lawyer",
+      "frames": 53,
+      "size_kb": 914.02
+    },
+    {
+      "name": "lazy",
+      "frames": 35,
+      "size_kb": 649.52
+    },
+    {
+      "name": "lead",
+      "frames": 50,
+      "size_kb": 950.84
+    },
+    {
+      "name": "leader",
+      "frames": 84,
+      "size_kb": 1568.33
+    },
+    {
+      "name": "leaf",
+      "frames": 61,
+      "size_kb": 1146.47
+    },
+    {
+      "name": "league",
+      "frames": 36,
+      "size_kb": 675.75
+    },
+    {
+      "name": "leak",
+      "frames": 37,
+      "size_kb": 705.49
+    },
+    {
+      "name": "learn",
+      "frames": 135,
+      "size_kb": 2521.42
+    },
+    {
+      "name": "leave",
+      "frames": 42,
+      "size_kb": 801.03
+    },
+    {
+      "name": "lecture",
+      "frames": 72,
+      "size_kb": 1334.68
+    },
+    {
+      "name": "left",
+      "frames": 38,
+      "size_kb": 699.03
+    },
+    {
+      "name": "legal",
+      "frames": 106,
+      "size_kb": 1960.93
+    },
+    {
+      "name": "lemon",
+      "frames": 86,
+      "size_kb": 1582.4
+    },
+    {
+      "name": "lend",
+      "frames": 47,
+      "size_kb": 876.52
+    },
+    {
+      "name": "lesbian",
+      "frames": 44,
+      "size_kb": 816.25
+    },
+    {
+      "name": "less",
+      "frames": 44,
+      "size_kb": 838.64
+    },
+    {
+      "name": "lesson",
+      "frames": 45,
+      "size_kb": 857.76
+    },
+    {
+      "name": "let",
+      "frames": 35,
+      "size_kb": 667.47
+    },
+    {
+      "name": "letter",
+      "frames": 34,
+      "size_kb": 648.57
+    },
+    {
+      "name": "lettuce",
+      "frames": 61,
+      "size_kb": 1125.6
+    },
+    {
+      "name": "liability",
+      "frames": 25,
+      "size_kb": 475.5
+    },
+    {
+      "name": "librarian",
+      "frames": 72,
+      "size_kb": 1335.68
+    },
+    {
+      "name": "library",
+      "frames": 77,
+      "size_kb": 1416.14
+    },
+    {
+      "name": "license",
+      "frames": 48,
+      "size_kb": 914.35
+    },
+    {
+      "name": "lie",
+      "frames": 49,
+      "size_kb": 908.75
+    },
+    {
+      "name": "lift",
+      "frames": 32,
+      "size_kb": 609.49
+    },
+    {
+      "name": "light",
+      "frames": 50,
+      "size_kb": 953.4
+    },
+    {
+      "name": "lightning",
+      "frames": 44,
+      "size_kb": 837.63
+    },
+    {
+      "name": "like",
+      "frames": 30,
+      "size_kb": 556.23
+    },
+    {
+      "name": "limit",
+      "frames": 35,
+      "size_kb": 632.09
+    },
+    {
+      "name": "line",
+      "frames": 56,
+      "size_kb": 1067.12
+    },
+    {
+      "name": "linguistics",
+      "frames": 39,
+      "size_kb": 741.07
+    },
+    {
+      "name": "lion",
+      "frames": 49,
+      "size_kb": 879.28
+    },
+    {
+      "name": "lip",
+      "frames": 45,
+      "size_kb": 834.75
+    },
+    {
+      "name": "lipstick",
+      "frames": 38,
+      "size_kb": 705.06
+    },
+    {
+      "name": "list",
+      "frames": 59,
+      "size_kb": 1124.68
+    },
+    {
+      "name": "listen",
+      "frames": 34,
+      "size_kb": 626.77
+    },
+    {
+      "name": "little_bit",
+      "frames": 83,
+      "size_kb": 1538.82
+    },
+    {
+      "name": "live",
+      "frames": 29,
+      "size_kb": 551.93
+    },
+    {
+      "name": "loan",
+      "frames": 95,
+      "size_kb": 1751.56
+    },
+    {
+      "name": "lobster",
+      "frames": 46,
+      "size_kb": 872.58
+    },
+    {
+      "name": "local",
+      "frames": 122,
+      "size_kb": 2287.77
+    },
+    {
+      "name": "lock",
+      "frames": 45,
+      "size_kb": 857.47
+    },
+    {
+      "name": "lonely",
+      "frames": 114,
+      "size_kb": 2100.88
+    },
+    {
+      "name": "long",
+      "frames": 34,
+      "size_kb": 648.33
+    },
+    {
+      "name": "look_at",
+      "frames": 69,
+      "size_kb": 1267.12
+    },
+    {
+      "name": "look_for",
+      "frames": 93,
+      "size_kb": 1692.35
+    },
+    {
+      "name": "lord",
+      "frames": 44,
+      "size_kb": 815.31
+    },
+    {
+      "name": "lose",
+      "frames": 33,
+      "size_kb": 621.83
+    },
+    {
+      "name": "loud",
+      "frames": 56,
+      "size_kb": 1065.48
+    },
+    {
+      "name": "lousy",
+      "frames": 28,
+      "size_kb": 511.94
+    },
+    {
+      "name": "love",
+      "frames": 121,
+      "size_kb": 2254.36
+    },
+    {
+      "name": "lucky",
+      "frames": 33,
+      "size_kb": 608.01
+    },
+    {
+      "name": "lunch",
+      "frames": 58,
+      "size_kb": 1092.52
+    },
+    {
+      "name": "m",
+      "frames": 30,
+      "size_kb": 556.93
+    },
+    {
+      "name": "machine",
+      "frames": 46,
+      "size_kb": 877.19
+    },
+    {
+      "name": "mad",
+      "frames": 94,
+      "size_kb": 1713.39
+    },
+    {
+      "name": "magazine",
+      "frames": 104,
+      "size_kb": 1940.56
+    },
+    {
+      "name": "magic",
+      "frames": 23,
+      "size_kb": 438.49
+    },
+    {
+      "name": "mainstream",
+      "frames": 38,
+      "size_kb": 714.65
+    },
+    {
+      "name": "major",
+      "frames": 48,
+      "size_kb": 901.81
+    },
+    {
+      "name": "make",
+      "frames": 36,
+      "size_kb": 685.01
+    },
+    {
+      "name": "man",
+      "frames": 155,
+      "size_kb": 2833.68
+    },
+    {
+      "name": "manage",
+      "frames": 42,
+      "size_kb": 797.49
+    },
+    {
+      "name": "manager",
+      "frames": 57,
+      "size_kb": 1082.38
+    },
+    {
+      "name": "many",
+      "frames": 41,
+      "size_kb": 781.43
+    },
+    {
+      "name": "march",
+      "frames": 34,
+      "size_kb": 633.61
+    },
+    {
+      "name": "marry",
+      "frames": 47,
+      "size_kb": 887.48
+    },
+    {
+      "name": "match",
+      "frames": 43,
+      "size_kb": 819.96
+    },
+    {
+      "name": "math",
+      "frames": 33,
+      "size_kb": 628.5
+    },
+    {
+      "name": "mature",
+      "frames": 37,
+      "size_kb": 691.65
+    },
+    {
+      "name": "maximum",
+      "frames": 35,
+      "size_kb": 660.97
+    },
+    {
+      "name": "maybe",
+      "frames": 71,
+      "size_kb": 1348.02
+    },
+    {
+      "name": "me",
+      "frames": 27,
+      "size_kb": 500.87
+    },
+    {
+      "name": "mean",
+      "frames": 42,
+      "size_kb": 800.29
+    },
+    {
+      "name": "meaning",
+      "frames": 53,
+      "size_kb": 988.04
+    },
+    {
+      "name": "measure",
+      "frames": 50,
+      "size_kb": 953.6
+    },
+    {
+      "name": "meat",
+      "frames": 29,
+      "size_kb": 550.28
+    },
+    {
+      "name": "mechanic",
+      "frames": 58,
+      "size_kb": 1098.01
+    },
+    {
+      "name": "medicine",
+      "frames": 49,
+      "size_kb": 934.01
+    },
+    {
+      "name": "meet",
+      "frames": 48,
+      "size_kb": 915.08
+    },
+    {
+      "name": "meeting",
+      "frames": 58,
+      "size_kb": 1106.0
+    },
+    {
+      "name": "melody",
+      "frames": 51,
+      "size_kb": 973.2
+    },
+    {
+      "name": "melt",
+      "frames": 69,
+      "size_kb": 1310.71
+    },
+    {
+      "name": "member",
+      "frames": 43,
+      "size_kb": 797.1
+    },
+    {
+      "name": "memorize",
+      "frames": 37,
+      "size_kb": 686.04
+    },
+    {
+      "name": "mention",
+      "frames": 33,
+      "size_kb": 618.13
+    },
+    {
+      "name": "message",
+      "frames": 38,
+      "size_kb": 719.57
+    },
+    {
+      "name": "metal",
+      "frames": 65,
+      "size_kb": 1188.95
+    },
+    {
+      "name": "mexico",
+      "frames": 43,
+      "size_kb": 798.0
+    },
+    {
+      "name": "microphone",
+      "frames": 61,
+      "size_kb": 1131.07
+    },
+    {
+      "name": "microscope",
+      "frames": 34,
+      "size_kb": 486.88
+    },
+    {
+      "name": "microwave",
+      "frames": 34,
+      "size_kb": 648.34
+    },
+    {
+      "name": "middle",
+      "frames": 55,
+      "size_kb": 1044.08
+    },
+    {
+      "name": "midnight",
+      "frames": 47,
+      "size_kb": 893.28
+    },
+    {
+      "name": "military",
+      "frames": 41,
+      "size_kb": 780.69
+    },
+    {
+      "name": "milk",
+      "frames": 39,
+      "size_kb": 723.25
+    },
+    {
+      "name": "mind",
+      "frames": 44,
+      "size_kb": 816.22
+    },
+    {
+      "name": "mine",
+      "frames": 28,
+      "size_kb": 519.43
+    },
+    {
+      "name": "minus",
+      "frames": 30,
+      "size_kb": 572.62
+    },
+    {
+      "name": "minute",
+      "frames": 29,
+      "size_kb": 552.86
+    },
+    {
+      "name": "mirror",
+      "frames": 45,
+      "size_kb": 831.76
+    },
+    {
+      "name": "miss",
+      "frames": 46,
+      "size_kb": 853.32
+    },
+    {
+      "name": "mistake",
+      "frames": 86,
+      "size_kb": 1574.23
+    },
+    {
+      "name": "misunderstand",
+      "frames": 115,
+      "size_kb": 2114.75
+    },
+    {
+      "name": "mix",
+      "frames": 51,
+      "size_kb": 966.47
+    },
+    {
+      "name": "mock",
+      "frames": 45,
+      "size_kb": 858.47
+    },
+    {
+      "name": "mom",
+      "frames": 74,
+      "size_kb": 1352.46
+    },
+    {
+      "name": "monday",
+      "frames": 57,
+      "size_kb": 1074.79
+    },
+    {
+      "name": "money",
+      "frames": 44,
+      "size_kb": 839.48
+    },
+    {
+      "name": "monkey",
+      "frames": 54,
+      "size_kb": 1027.47
+    },
+    {
+      "name": "monster",
+      "frames": 27,
+      "size_kb": 514.77
+    },
+    {
+      "name": "month",
+      "frames": 20,
+      "size_kb": 381.57
+    },
+    {
+      "name": "monthly",
+      "frames": 68,
+      "size_kb": 1295.54
+    },
+    {
+      "name": "moon",
+      "frames": 91,
+      "size_kb": 1664.14
+    },
+    {
+      "name": "moose",
+      "frames": 31,
+      "size_kb": 587.04
+    },
+    {
+      "name": "more",
+      "frames": 22,
+      "size_kb": 419.41
+    },
+    {
+      "name": "morning",
+      "frames": 56,
+      "size_kb": 1053.19
+    },
+    {
+      "name": "mosquito",
+      "frames": 59,
+      "size_kb": 1095.48
+    },
+    {
+      "name": "most",
+      "frames": 45,
+      "size_kb": 845.3
+    },
+    {
+      "name": "mother",
+      "frames": 68,
+      "size_kb": 1243.87
+    },
+    {
+      "name": "motivate",
+      "frames": 31,
+      "size_kb": 576.02
+    },
+    {
+      "name": "motor",
+      "frames": 46,
+      "size_kb": 877.19
+    },
+    {
+      "name": "motorcycle",
+      "frames": 31,
+      "size_kb": 591.15
+    },
+    {
+      "name": "mountain",
+      "frames": 80,
+      "size_kb": 1523.5
+    },
+    {
+      "name": "mouse",
+      "frames": 47,
+      "size_kb": 871.97
+    },
+    {
+      "name": "mouth",
+      "frames": 50,
+      "size_kb": 927.37
+    },
+    {
+      "name": "move",
+      "frames": 44,
+      "size_kb": 838.47
+    },
+    {
+      "name": "movie",
+      "frames": 44,
+      "size_kb": 836.88
+    },
+    {
+      "name": "much",
+      "frames": 53,
+      "size_kb": 1011.18
+    },
+    {
+      "name": "multiply",
+      "frames": 35,
+      "size_kb": 666.65
+    },
+    {
+      "name": "murder",
+      "frames": 30,
+      "size_kb": 564.26
+    },
+    {
+      "name": "muscle",
+      "frames": 44,
+      "size_kb": 838.95
+    },
+    {
+      "name": "museum",
+      "frames": 88,
+      "size_kb": 1640.1
+    },
+    {
+      "name": "mushroom",
+      "frames": 47,
+      "size_kb": 896.58
+    },
+    {
+      "name": "music",
+      "frames": 51,
+      "size_kb": 973.2
+    },
+    {
+      "name": "must",
+      "frames": 33,
+      "size_kb": 612.51
+    },
+    {
+      "name": "mustache",
+      "frames": 35,
+      "size_kb": 658.34
+    },
+    {
+      "name": "my",
+      "frames": 28,
+      "size_kb": 519.43
+    },
+    {
+      "name": "myself",
+      "frames": 25,
+      "size_kb": 463.87
+    },
+    {
+      "name": "n",
+      "frames": 30,
+      "size_kb": 557.01
+    },
+    {
+      "name": "name",
+      "frames": 53,
+      "size_kb": 1010.36
+    },
+    {
+      "name": "napkin",
+      "frames": 68,
+      "size_kb": 1261.46
+    },
+    {
+      "name": "narrow",
+      "frames": 35,
+      "size_kb": 667.8
+    },
+    {
+      "name": "nation",
+      "frames": 39,
+      "size_kb": 742.23
+    },
+    {
+      "name": "near",
+      "frames": 64,
+      "size_kb": 1221.26
+    },
+    {
+      "name": "necessary",
+      "frames": 45,
+      "size_kb": 835.1
+    },
+    {
+      "name": "neck",
+      "frames": 35,
+      "size_kb": 649.77
+    },
+    {
+      "name": "necklace",
+      "frames": 37,
+      "size_kb": 696.93
+    },
+    {
+      "name": "need",
+      "frames": 45,
+      "size_kb": 835.1
+    },
+    {
+      "name": "negative",
+      "frames": 105,
+      "size_kb": 2003.22
+    },
+    {
+      "name": "negotiate",
+      "frames": 109,
+      "size_kb": 2030.28
+    },
+    {
+      "name": "neighbor",
+      "frames": 35,
+      "size_kb": 660.51
+    },
+    {
+      "name": "nephew",
+      "frames": 39,
+      "size_kb": 723.41
+    },
+    {
+      "name": "nervous",
+      "frames": 51,
+      "size_kb": 972.13
+    },
+    {
+      "name": "network",
+      "frames": 105,
+      "size_kb": 1960.33
+    },
+    {
+      "name": "neutral",
+      "frames": 32,
+      "size_kb": 600.29
+    },
+    {
+      "name": "never",
+      "frames": 36,
+      "size_kb": 668.26
+    },
+    {
+      "name": "new",
+      "frames": 47,
+      "size_kb": 887.79
+    },
+    {
+      "name": "new_york",
+      "frames": 33,
+      "size_kb": 626.37
+    },
+    {
+      "name": "newspaper",
+      "frames": 39,
+      "size_kb": 742.97
+    },
+    {
+      "name": "next",
+      "frames": 33,
+      "size_kb": 629.13
+    },
+    {
+      "name": "nice",
+      "frames": 83,
+      "size_kb": 1545.7
+    },
+    {
+      "name": "nickel",
+      "frames": 29,
+      "size_kb": 534.69
+    },
+    {
+      "name": "niece",
+      "frames": 70,
+      "size_kb": 1286.67
+    },
+    {
+      "name": "night",
+      "frames": 56,
+      "size_kb": 1050.64
+    },
+    {
+      "name": "nine",
+      "frames": 43,
+      "size_kb": 791.69
+    },
+    {
+      "name": "nineteen",
+      "frames": 75,
+      "size_kb": 1379.0
+    },
+    {
+      "name": "no",
+      "frames": 44,
+      "size_kb": 816.72
+    },
+    {
+      "name": "none",
+      "frames": 35,
+      "size_kb": 667.52
+    },
+    {
+      "name": "noon",
+      "frames": 45,
+      "size_kb": 857.17
+    },
+    {
+      "name": "normal",
+      "frames": 39,
+      "size_kb": 742.23
+    },
+    {
+      "name": "north",
+      "frames": 80,
+      "size_kb": 1463.16
+    },
+    {
+      "name": "northwest",
+      "frames": 42,
+      "size_kb": 772.83
+    },
+    {
+      "name": "nose",
+      "frames": 49,
+      "size_kb": 909.17
+    },
+    {
+      "name": "not",
+      "frames": 66,
+      "size_kb": 1243.69
+    },
+    {
+      "name": "not_yet",
+      "frames": 49,
+      "size_kb": 908.74
+    },
+    {
+      "name": "nothing",
+      "frames": 45,
+      "size_kb": 858.32
+    },
+    {
+      "name": "notice",
+      "frames": 57,
+      "size_kb": 1087.18
+    },
+    {
+      "name": "november",
+      "frames": 59,
+      "size_kb": 1086.84
+    },
+    {
+      "name": "now",
+      "frames": 41,
+      "size_kb": 782.08
+    },
+    {
+      "name": "number",
+      "frames": 32,
+      "size_kb": 610.54
+    },
+    {
+      "name": "numerous",
+      "frames": 41,
+      "size_kb": 781.43
+    },
+    {
+      "name": "nun",
+      "frames": 47,
+      "size_kb": 892.56
+    },
+    {
+      "name": "nurse",
+      "frames": 37,
+      "size_kb": 698.11
+    },
+    {
+      "name": "nut",
+      "frames": 64,
+      "size_kb": 1176.55
+    },
+    {
+      "name": "o",
+      "frames": 30,
+      "size_kb": 556.81
+    },
+    {
+      "name": "objective",
+      "frames": 80,
+      "size_kb": 1429.22
+    },
+    {
+      "name": "obsess",
+      "frames": 64,
+      "size_kb": 1206.18
+    },
+    {
+      "name": "obtain",
+      "frames": 46,
+      "size_kb": 876.42
+    },
+    {
+      "name": "occur",
+      "frames": 46,
+      "size_kb": 874.39
+    },
+    {
+      "name": "ocean",
+      "frames": 57,
+      "size_kb": 1077.08
+    },
+    {
+      "name": "october",
+      "frames": 108,
+      "size_kb": 1982.01
+    },
+    {
+      "name": "octopus",
+      "frames": 37,
+      "size_kb": 692.39
+    },
+    {
+      "name": "odd",
+      "frames": 45,
+      "size_kb": 811.75
+    },
+    {
+      "name": "odor",
+      "frames": 85,
+      "size_kb": 1557.79
+    },
+    {
+      "name": "off",
+      "frames": 96,
+      "size_kb": 1774.22
+    },
+    {
+      "name": "offer",
+      "frames": 43,
+      "size_kb": 820.41
+    },
+    {
+      "name": "office",
+      "frames": 54,
+      "size_kb": 1011.44
+    },
+    {
+      "name": "often",
+      "frames": 45,
+      "size_kb": 842.25
+    },
+    {
+      "name": "ok",
+      "frames": 21,
+      "size_kb": 389.73
+    },
+    {
+      "name": "old",
+      "frames": 65,
+      "size_kb": 1192.97
+    },
+    {
+      "name": "olympics",
+      "frames": 80,
+      "size_kb": 1523.04
+    },
+    {
+      "name": "on",
+      "frames": 53,
+      "size_kb": 998.47
+    },
+    {
+      "name": "once",
+      "frames": 47,
+      "size_kb": 896.51
+    },
+    {
+      "name": "one",
+      "frames": 28,
+      "size_kb": 519.22
+    },
+    {
+      "name": "onion",
+      "frames": 31,
+      "size_kb": 575.02
+    },
+    {
+      "name": "only",
+      "frames": 50,
+      "size_kb": 927.57
+    },
+    {
+      "name": "open",
+      "frames": 53,
+      "size_kb": 1010.42
+    },
+    {
+      "name": "operate",
+      "frames": 29,
+      "size_kb": 553.34
+    },
+    {
+      "name": "opinion",
+      "frames": 51,
+      "size_kb": 939.33
+    },
+    {
+      "name": "opposite",
+      "frames": 45,
+      "size_kb": 858.31
+    },
+    {
+      "name": "or",
+      "frames": 33,
+      "size_kb": 612.1
+    },
+    {
+      "name": "oral",
+      "frames": 66,
+      "size_kb": 1216.79
+    },
+    {
+      "name": "orange",
+      "frames": 41,
+      "size_kb": 760.67
+    },
+    {
+      "name": "order",
+      "frames": 55,
+      "size_kb": 1048.36
+    },
+    {
+      "name": "organize",
+      "frames": 55,
+      "size_kb": 1048.36
+    },
+    {
+      "name": "other",
+      "frames": 36,
+      "size_kb": 668.01
+    },
+    {
+      "name": "our",
+      "frames": 64,
+      "size_kb": 1186.83
+    },
+    {
+      "name": "out",
+      "frames": 27,
+      "size_kb": 507.21
+    },
+    {
+      "name": "outside",
+      "frames": 48,
+      "size_kb": 907.84
+    },
+    {
+      "name": "over",
+      "frames": 49,
+      "size_kb": 925.67
+    },
+    {
+      "name": "overcome",
+      "frames": 28,
+      "size_kb": 533.8
+    },
+    {
+      "name": "overlook",
+      "frames": 64,
+      "size_kb": 1174.03
+    },
+    {
+      "name": "overwhelm",
+      "frames": 31,
+      "size_kb": 549.62
+    },
+    {
+      "name": "owe",
+      "frames": 37,
+      "size_kb": 702.13
+    },
+    {
+      "name": "owl",
+      "frames": 44,
+      "size_kb": 827.74
+    },
+    {
+      "name": "p",
+      "frames": 30,
+      "size_kb": 556.78
+    },
+    {
+      "name": "pack",
+      "frames": 56,
+      "size_kb": 1063.49
+    },
+    {
+      "name": "page",
+      "frames": 40,
+      "size_kb": 759.78
+    },
+    {
+      "name": "pain",
+      "frames": 54,
+      "size_kb": 1029.23
+    },
+    {
+      "name": "paint",
+      "frames": 48,
+      "size_kb": 775.49
+    },
+    {
+      "name": "painter",
+      "frames": 66,
+      "size_kb": 1240.12
+    },
+    {
+      "name": "pants",
+      "frames": 43,
+      "size_kb": 820.08
+    },
+    {
+      "name": "paper",
+      "frames": 84,
+      "size_kb": 1557.91
+    },
+    {
+      "name": "parachute",
+      "frames": 70,
+      "size_kb": 1328.81
+    },
+    {
+      "name": "parade",
+      "frames": 110,
+      "size_kb": 2049.8
+    },
+    {
+      "name": "paragraph",
+      "frames": 44,
+      "size_kb": 836.54
+    },
+    {
+      "name": "parallel",
+      "frames": 34,
+      "size_kb": 648.18
+    },
+    {
+      "name": "parents",
+      "frames": 31,
+      "size_kb": 563.46
+    },
+    {
+      "name": "part",
+      "frames": 51,
+      "size_kb": 970.79
+    },
+    {
+      "name": "party",
+      "frames": 45,
+      "size_kb": 858.02
+    },
+    {
+      "name": "pass",
+      "frames": 33,
+      "size_kb": 629.31
+    },
+    {
+      "name": "past",
+      "frames": 45,
+      "size_kb": 830.05
+    },
+    {
+      "name": "path",
+      "frames": 52,
+      "size_kb": 987.74
+    },
+    {
+      "name": "patient",
+      "frames": 36,
+      "size_kb": 668.27
+    },
+    {
+      "name": "pause",
+      "frames": 41,
+      "size_kb": 782.02
+    },
+    {
+      "name": "pay",
+      "frames": 38,
+      "size_kb": 724.31
+    },
+    {
+      "name": "pay_attention",
+      "frames": 43,
+      "size_kb": 819.18
+    },
+    {
+      "name": "peace",
+      "frames": 85,
+      "size_kb": 1592.73
+    },
+    {
+      "name": "peaceful",
+      "frames": 67,
+      "size_kb": 1260.78
+    },
+    {
+      "name": "peach",
+      "frames": 36,
+      "size_kb": 667.61
+    },
+    {
+      "name": "peanut_butter",
+      "frames": 44,
+      "size_kb": 835.74
+    },
+    {
+      "name": "pear",
+      "frames": 37,
+      "size_kb": 705.9
+    },
+    {
+      "name": "peel",
+      "frames": 65,
+      "size_kb": 1240.29
+    },
+    {
+      "name": "penalty",
+      "frames": 32,
+      "size_kb": 609.91
+    },
+    {
+      "name": "pencil",
+      "frames": 29,
+      "size_kb": 552.97
+    },
+    {
+      "name": "pennsylvania",
+      "frames": 61,
+      "size_kb": 1131.94
+    },
+    {
+      "name": "penny",
+      "frames": 78,
+      "size_kb": 1415.86
+    },
+    {
+      "name": "people",
+      "frames": 65,
+      "size_kb": 1237.96
+    },
+    {
+      "name": "pepper",
+      "frames": 91,
+      "size_kb": 1663.62
+    },
+    {
+      "name": "percent",
+      "frames": 44,
+      "size_kb": 816.38
+    },
+    {
+      "name": "perfect",
+      "frames": 49,
+      "size_kb": 933.74
+    },
+    {
+      "name": "perfume",
+      "frames": 35,
+      "size_kb": 647.74
+    },
+    {
+      "name": "period",
+      "frames": 70,
+      "size_kb": 1331.05
+    },
+    {
+      "name": "permit",
+      "frames": 43,
+      "size_kb": 817.37
+    },
+    {
+      "name": "person",
+      "frames": 53,
+      "size_kb": 996.21
+    },
+    {
+      "name": "personality",
+      "frames": 53,
+      "size_kb": 982.81
+    },
+    {
+      "name": "perspective",
+      "frames": 81,
+      "size_kb": 1544.28
+    },
+    {
+      "name": "pet",
+      "frames": 36,
+      "size_kb": 686.65
+    },
+    {
+      "name": "philadelphia",
+      "frames": 39,
+      "size_kb": 722.71
+    },
+    {
+      "name": "philosophy",
+      "frames": 34,
+      "size_kb": 630.78
+    },
+    {
+      "name": "phone",
+      "frames": 32,
+      "size_kb": 593.76
+    },
+    {
+      "name": "photographer",
+      "frames": 61,
+      "size_kb": 1130.77
+    },
+    {
+      "name": "phrase",
+      "frames": 87,
+      "size_kb": 1654.76
+    },
+    {
+      "name": "physician",
+      "frames": 54,
+      "size_kb": 1029.26
+    },
+    {
+      "name": "physics",
+      "frames": 35,
+      "size_kb": 666.98
+    },
+    {
+      "name": "piano",
+      "frames": 70,
+      "size_kb": 1335.02
+    },
+    {
+      "name": "pick",
+      "frames": 51,
+      "size_kb": 946.04
+    },
+    {
+      "name": "pickle",
+      "frames": 24,
+      "size_kb": 445.3
+    },
+    {
+      "name": "picture",
+      "frames": 28,
+      "size_kb": 534.21
+    },
+    {
+      "name": "pie",
+      "frames": 31,
+      "size_kb": 590.55
+    },
+    {
+      "name": "piece",
+      "frames": 51,
+      "size_kb": 970.79
+    },
+    {
+      "name": "pig",
+      "frames": 33,
+      "size_kb": 609.57
+    },
+    {
+      "name": "pillow",
+      "frames": 53,
+      "size_kb": 1010.57
+    },
+    {
+      "name": "pilot",
+      "frames": 48,
+      "size_kb": 900.21
+    },
+    {
+      "name": "pink",
+      "frames": 96,
+      "size_kb": 1756.9
+    },
+    {
+      "name": "pity",
+      "frames": 83,
+      "size_kb": 1581.43
+    },
+    {
+      "name": "pizza",
+      "frames": 40,
+      "size_kb": 736.57
+    },
+    {
+      "name": "place",
+      "frames": 94,
+      "size_kb": 1763.98
+    },
+    {
+      "name": "plan",
+      "frames": 45,
+      "size_kb": 857.89
+    },
+    {
+      "name": "plant",
+      "frames": 43,
+      "size_kb": 814.18
+    },
+    {
+      "name": "plate",
+      "frames": 31,
+      "size_kb": 591.4
+    },
+    {
+      "name": "play",
+      "frames": 87,
+      "size_kb": 1658.2
+    },
+    {
+      "name": "player",
+      "frames": 40,
+      "size_kb": 761.56
+    },
+    {
+      "name": "please",
+      "frames": 44,
+      "size_kb": 816.15
+    },
+    {
+      "name": "plenty",
+      "frames": 53,
+      "size_kb": 994.28
+    },
+    {
+      "name": "plus",
+      "frames": 35,
+      "size_kb": 667.26
+    },
+    {
+      "name": "pneumonia",
+      "frames": 56,
+      "size_kb": 1066.79
+    },
+    {
+      "name": "pocket",
+      "frames": 97,
+      "size_kb": 1775.67
+    },
+    {
+      "name": "point",
+      "frames": 40,
+      "size_kb": 763.32
+    },
+    {
+      "name": "polar_bear",
+      "frames": 77,
+      "size_kb": 1448.58
+    },
+    {
+      "name": "police",
+      "frames": 33,
+      "size_kb": 609.12
+    },
+    {
+      "name": "policeman",
+      "frames": 52,
+      "size_kb": 964.21
+    },
+    {
+      "name": "policy",
+      "frames": 57,
+      "size_kb": 1082.85
+    },
+    {
+      "name": "polite",
+      "frames": 38,
+      "size_kb": 705.03
+    },
+    {
+      "name": "politics",
+      "frames": 36,
+      "size_kb": 664.89
+    },
+    {
+      "name": "poop",
+      "frames": 28,
+      "size_kb": 533.58
+    },
+    {
+      "name": "poor",
+      "frames": 45,
+      "size_kb": 855.68
+    },
+    {
+      "name": "popcorn",
+      "frames": 62,
+      "size_kb": 1175.4
+    },
+    {
+      "name": "popular",
+      "frames": 48,
+      "size_kb": 914.67
+    },
+    {
+      "name": "position",
+      "frames": 111,
+      "size_kb": 2079.12
+    },
+    {
+      "name": "positive",
+      "frames": 35,
+      "size_kb": 667.26
+    },
+    {
+      "name": "possible",
+      "frames": 53,
+      "size_kb": 1010.76
+    },
+    {
+      "name": "post",
+      "frames": 100,
+      "size_kb": 1859.94
+    },
+    {
+      "name": "postpone",
+      "frames": 48,
+      "size_kb": 906.94
+    },
+    {
+      "name": "potato",
+      "frames": 50,
+      "size_kb": 953.16
+    },
+    {
+      "name": "potential",
+      "frames": 44,
+      "size_kb": 839.11
+    },
+    {
+      "name": "pound",
+      "frames": 50,
+      "size_kb": 952.77
+    },
+    {
+      "name": "pour",
+      "frames": 82,
+      "size_kb": 1518.71
+    },
+    {
+      "name": "poverty",
+      "frames": 45,
+      "size_kb": 855.68
+    },
+    {
+      "name": "power",
+      "frames": 38,
+      "size_kb": 724.51
+    },
+    {
+      "name": "practice",
+      "frames": 57,
+      "size_kb": 1086.87
+    },
+    {
+      "name": "praise",
+      "frames": 75,
+      "size_kb": 1383.38
+    },
+    {
+      "name": "pray",
+      "frames": 72,
+      "size_kb": 1353.0
+    },
+    {
+      "name": "preach",
+      "frames": 74,
+      "size_kb": 1368.34
+    },
+    {
+      "name": "preacher",
+      "frames": 51,
+      "size_kb": 953.15
+    },
+    {
+      "name": "precious",
+      "frames": 85,
+      "size_kb": 1589.33
+    },
+    {
+      "name": "precipitation",
+      "frames": 39,
+      "size_kb": 743.96
+    },
+    {
+      "name": "precise",
+      "frames": 54,
+      "size_kb": 1027.03
+    },
+    {
+      "name": "predict",
+      "frames": 53,
+      "size_kb": 996.64
+    },
+    {
+      "name": "prefer",
+      "frames": 88,
+      "size_kb": 1612.17
+    },
+    {
+      "name": "pregnant",
+      "frames": 37,
+      "size_kb": 686.85
+    },
+    {
+      "name": "prepare",
+      "frames": 76,
+      "size_kb": 1445.92
+    },
+    {
+      "name": "preschool",
+      "frames": 49,
+      "size_kb": 915.7
+    },
+    {
+      "name": "present",
+      "frames": 30,
+      "size_kb": 572.51
+    },
+    {
+      "name": "presentation",
+      "frames": 37,
+      "size_kb": 686.46
+    },
+    {
+      "name": "president",
+      "frames": 47,
+      "size_kb": 895.92
+    },
+    {
+      "name": "pressure",
+      "frames": 80,
+      "size_kb": 1493.06
+    },
+    {
+      "name": "pretty",
+      "frames": 33,
+      "size_kb": 589.01
+    },
+    {
+      "name": "prevent",
+      "frames": 37,
+      "size_kb": 704.99
+    },
+    {
+      "name": "price",
+      "frames": 32,
+      "size_kb": 609.56
+    },
+    {
+      "name": "pride",
+      "frames": 35,
+      "size_kb": 649.36
+    },
+    {
+      "name": "priest",
+      "frames": 84,
+      "size_kb": 1535.37
+    },
+    {
+      "name": "prince",
+      "frames": 30,
+      "size_kb": 556.96
+    },
+    {
+      "name": "princess",
+      "frames": 128,
+      "size_kb": 2343.81
+    },
+    {
+      "name": "principal",
+      "frames": 48,
+      "size_kb": 915.37
+    },
+    {
+      "name": "principle",
+      "frames": 57,
+      "size_kb": 1082.85
+    },
+    {
+      "name": "print",
+      "frames": 35,
+      "size_kb": 664.73
+    },
+    {
+      "name": "printer",
+      "frames": 39,
+      "size_kb": 742.97
+    },
+    {
+      "name": "priority",
+      "frames": 36,
+      "size_kb": 676.9
+    },
+    {
+      "name": "prison",
+      "frames": 49,
+      "size_kb": 923.42
+    },
+    {
+      "name": "private",
+      "frames": 88,
+      "size_kb": 1608.35
+    },
+    {
+      "name": "problem",
+      "frames": 50,
+      "size_kb": 952.85
+    },
+    {
+      "name": "process",
+      "frames": 56,
+      "size_kb": 1067.14
+    },
+    {
+      "name": "procrastinate",
+      "frames": 48,
+      "size_kb": 906.94
+    },
+    {
+      "name": "professional",
+      "frames": 36,
+      "size_kb": 676.81
+    },
+    {
+      "name": "professor",
+      "frames": 56,
+      "size_kb": 1057.9
+    },
+    {
+      "name": "profit",
+      "frames": 50,
+      "size_kb": 927.17
+    },
+    {
+      "name": "program",
+      "frames": 106,
+      "size_kb": 1981.53
+    },
+    {
+      "name": "progress",
+      "frames": 56,
+      "size_kb": 1067.14
+    },
+    {
+      "name": "project",
+      "frames": 95,
+      "size_kb": 1769.13
+    },
+    {
+      "name": "promise",
+      "frames": 38,
+      "size_kb": 724.3
+    },
+    {
+      "name": "promote",
+      "frames": 68,
+      "size_kb": 1295.68
+    },
+    {
+      "name": "proof",
+      "frames": 37,
+      "size_kb": 695.81
+    },
+    {
+      "name": "propaganda",
+      "frames": 40,
+      "size_kb": 751.2
+    },
+    {
+      "name": "proper",
+      "frames": 60,
+      "size_kb": 1145.45
+    },
+    {
+      "name": "prostitute",
+      "frames": 39,
+      "size_kb": 723.76
+    },
+    {
+      "name": "protect",
+      "frames": 24,
+      "size_kb": 450.84
+    },
+    {
+      "name": "proud",
+      "frames": 35,
+      "size_kb": 649.36
+    },
+    {
+      "name": "prove",
+      "frames": 37,
+      "size_kb": 695.81
+    },
+    {
+      "name": "provide",
+      "frames": 28,
+      "size_kb": 534.26
+    },
+    {
+      "name": "psychologist",
+      "frames": 59,
+      "size_kb": 1104.62
+    },
+    {
+      "name": "psychology",
+      "frames": 47,
+      "size_kb": 879.25
+    },
+    {
+      "name": "public",
+      "frames": 56,
+      "size_kb": 1038.07
+    },
+    {
+      "name": "publish",
+      "frames": 35,
+      "size_kb": 664.73
+    },
+    {
+      "name": "pull",
+      "frames": 47,
+      "size_kb": 880.39
+    },
+    {
+      "name": "pumpkin",
+      "frames": 38,
+      "size_kb": 723.11
+    },
+    {
+      "name": "punish",
+      "frames": 32,
+      "size_kb": 609.91
+    },
+    {
+      "name": "purchase",
+      "frames": 30,
+      "size_kb": 572.24
+    },
+    {
+      "name": "pure",
+      "frames": 85,
+      "size_kb": 1580.35
+    },
+    {
+      "name": "purple",
+      "frames": 34,
+      "size_kb": 630.88
+    },
+    {
+      "name": "purpose",
+      "frames": 50,
+      "size_kb": 953.46
+    },
+    {
+      "name": "pursue",
+      "frames": 43,
+      "size_kb": 818.74
+    },
+    {
+      "name": "push",
+      "frames": 28,
+      "size_kb": 533.87
+    },
+    {
+      "name": "put",
+      "frames": 44,
+      "size_kb": 838.47
+    },
+    {
+      "name": "put_off",
+      "frames": 48,
+      "size_kb": 906.94
+    },
+    {
+      "name": "puzzled",
+      "frames": 29,
+      "size_kb": 533.79
+    },
+    {
+      "name": "q",
+      "frames": 44,
+      "size_kb": 809.32
+    },
+    {
+      "name": "quality",
+      "frames": 96,
+      "size_kb": 1764.6
+    },
+    {
+      "name": "quarrel",
+      "frames": 52,
+      "size_kb": 991.01
+    },
+    {
+      "name": "quarter",
+      "frames": 77,
+      "size_kb": 1409.78
+    },
+    {
+      "name": "queen",
+      "frames": 81,
+      "size_kb": 1477.47
+    },
+    {
+      "name": "question",
+      "frames": 60,
+      "size_kb": 1103.98
+    },
+    {
+      "name": "quick",
+      "frames": 33,
+      "size_kb": 628.92
+    },
+    {
+      "name": "quiet",
+      "frames": 35,
+      "size_kb": 662.67
+    },
+    {
+      "name": "quit",
+      "frames": 30,
+      "size_kb": 567.42
+    },
+    {
+      "name": "quote",
+      "frames": 33,
+      "size_kb": 628.85
+    },
+    {
+      "name": "r",
+      "frames": 30,
+      "size_kb": 556.81
+    },
+    {
+      "name": "rabbit",
+      "frames": 61,
+      "size_kb": 1162.43
+    },
+    {
+      "name": "raccoon",
+      "frames": 44,
+      "size_kb": 838.67
+    },
+    {
+      "name": "race",
+      "frames": 55,
+      "size_kb": 1048.59
+    },
+    {
+      "name": "radio",
+      "frames": 64,
+      "size_kb": 1133.89
+    },
+    {
+      "name": "rage",
+      "frames": 30,
+      "size_kb": 569.75
+    },
+    {
+      "name": "rain",
+      "frames": 39,
+      "size_kb": 743.96
+    },
+    {
+      "name": "rainbow",
+      "frames": 72,
+      "size_kb": 1350.77
+    },
+    {
+      "name": "rake",
+      "frames": 53,
+      "size_kb": 1010.36
+    },
+    {
+      "name": "rat",
+      "frames": 36,
+      "size_kb": 668.08
+    },
+    {
+      "name": "rather",
+      "frames": 71,
+      "size_kb": 1295.54
+    },
+    {
+      "name": "read",
+      "frames": 33,
+      "size_kb": 583.55
+    },
+    {
+      "name": "ready",
+      "frames": 42,
+      "size_kb": 801.04
+    },
+    {
+      "name": "real",
+      "frames": 75,
+      "size_kb": 1368.89
+    },
+    {
+      "name": "realize",
+      "frames": 49,
+      "size_kb": 903.52
+    },
+    {
+      "name": "really",
+      "frames": 51,
+      "size_kb": 972.02
+    },
+    {
+      "name": "reason",
+      "frames": 49,
+      "size_kb": 903.52
+    },
+    {
+      "name": "receive",
+      "frames": 46,
+      "size_kb": 876.42
+    },
+    {
+      "name": "recent",
+      "frames": 86,
+      "size_kb": 1571.83
+    },
+    {
+      "name": "recliner",
+      "frames": 41,
+      "size_kb": 781.88
+    },
+    {
+      "name": "recognize",
+      "frames": 57,
+      "size_kb": 1087.18
+    },
+    {
+      "name": "recommend",
+      "frames": 43,
+      "size_kb": 820.41
+    },
+    {
+      "name": "recover",
+      "frames": 28,
+      "size_kb": 533.26
+    },
+    {
+      "name": "red",
+      "frames": 32,
+      "size_kb": 593.79
+    },
+    {
+      "name": "reduce",
+      "frames": 44,
+      "size_kb": 838.64
+    },
+    {
+      "name": "refer",
+      "frames": 40,
+      "size_kb": 761.74
+    },
+    {
+      "name": "referee",
+      "frames": 73,
+      "size_kb": 1334.56
+    },
+    {
+      "name": "refuse",
+      "frames": 75,
+      "size_kb": 1368.95
+    },
+    {
+      "name": "regular",
+      "frames": 60,
+      "size_kb": 1145.45
+    },
+    {
+      "name": "rehearse",
+      "frames": 57,
+      "size_kb": 1086.87
+    },
+    {
+      "name": "reject",
+      "frames": 37,
+      "size_kb": 705.29
+    },
+    {
+      "name": "relate",
+      "frames": 44,
+      "size_kb": 839.49
+    },
+    {
+      "name": "relationship",
+      "frames": 34,
+      "size_kb": 648.12
+    },
+    {
+      "name": "relax",
+      "frames": 94,
+      "size_kb": 1756.2
+    },
+    {
+      "name": "release",
+      "frames": 35,
+      "size_kb": 666.82
+    },
+    {
+      "name": "relief",
+      "frames": 42,
+      "size_kb": 799.88
+    },
+    {
+      "name": "religion",
+      "frames": 35,
+      "size_kb": 649.7
+    },
+    {
+      "name": "rely",
+      "frames": 48,
+      "size_kb": 914.77
+    },
+    {
+      "name": "remember",
+      "frames": 44,
+      "size_kb": 838.77
+    },
+    {
+      "name": "remote_control",
+      "frames": 38,
+      "size_kb": 705.6
+    },
+    {
+      "name": "remove",
+      "frames": 88,
+      "size_kb": 1640.61
+    },
+    {
+      "name": "rent",
+      "frames": 37,
+      "size_kb": 705.16
+    },
+    {
+      "name": "repeat",
+      "frames": 49,
+      "size_kb": 925.67
+    },
+    {
+      "name": "replace",
+      "frames": 62,
+      "size_kb": 1182.19
+    },
+    {
+      "name": "reply",
+      "frames": 35,
+      "size_kb": 667.69
+    },
+    {
+      "name": "report",
+      "frames": 35,
+      "size_kb": 667.69
+    },
+    {
+      "name": "represent",
+      "frames": 47,
+      "size_kb": 895.91
+    },
+    {
+      "name": "reputation",
+      "frames": 95,
+      "size_kb": 1757.88
+    },
+    {
+      "name": "request",
+      "frames": 40,
+      "size_kb": 756.16
+    },
+    {
+      "name": "require",
+      "frames": 39,
+      "size_kb": 744.85
+    },
+    {
+      "name": "rescue",
+      "frames": 39,
+      "size_kb": 733.82
+    },
+    {
+      "name": "research",
+      "frames": 69,
+      "size_kb": 1316.13
+    },
+    {
+      "name": "resign",
+      "frames": 42,
+      "size_kb": 794.55
+    },
+    {
+      "name": "resist",
+      "frames": 50,
+      "size_kb": 927.99
+    },
+    {
+      "name": "respect",
+      "frames": 47,
+      "size_kb": 883.62
+    },
+    {
+      "name": "responsibility",
+      "frames": 39,
+      "size_kb": 743.01
+    },
+    {
+      "name": "responsible",
+      "frames": 39,
+      "size_kb": 743.01
+    },
+    {
+      "name": "rest",
+      "frames": 38,
+      "size_kb": 724.73
+    },
+    {
+      "name": "restaurant",
+      "frames": 64,
+      "size_kb": 1165.86
+    },
+    {
+      "name": "restroom",
+      "frames": 59,
+      "size_kb": 1094.57
+    },
+    {
+      "name": "result",
+      "frames": 41,
+      "size_kb": 781.34
+    },
+    {
+      "name": "retire",
+      "frames": 28,
+      "size_kb": 534.03
+    },
+    {
+      "name": "retreat",
+      "frames": 38,
+      "size_kb": 721.25
+    },
+    {
+      "name": "reveal",
+      "frames": 29,
+      "size_kb": 552.84
+    },
+    {
+      "name": "revenge",
+      "frames": 46,
+      "size_kb": 872.33
+    },
+    {
+      "name": "review",
+      "frames": 27,
+      "size_kb": 503.14
+    },
+    {
+      "name": "rich",
+      "frames": 37,
+      "size_kb": 702.0
+    },
+    {
+      "name": "ride",
+      "frames": 50,
+      "size_kb": 947.66
+    },
+    {
+      "name": "ridiculous",
+      "frames": 98,
+      "size_kb": 1787.91
+    },
+    {
+      "name": "right",
+      "frames": 68,
+      "size_kb": 1254.63
+    },
+    {
+      "name": "ring",
+      "frames": 84,
+      "size_kb": 1565.8
+    },
+    {
+      "name": "rise",
+      "frames": 32,
+      "size_kb": 609.49
+    },
+    {
+      "name": "river",
+      "frames": 56,
+      "size_kb": 1055.65
+    },
+    {
+      "name": "road",
+      "frames": 33,
+      "size_kb": 629.62
+    },
+    {
+      "name": "roar",
+      "frames": 145,
+      "size_kb": 2716.93
+    },
+    {
+      "name": "rob",
+      "frames": 46,
+      "size_kb": 874.73
+    },
+    {
+      "name": "robber",
+      "frames": 39,
+      "size_kb": 728.2
+    },
+    {
+      "name": "robot",
+      "frames": 68,
+      "size_kb": 1283.45
+    },
+    {
+      "name": "rock",
+      "frames": 34,
+      "size_kb": 648.24
+    },
+    {
+      "name": "role",
+      "frames": 39,
+      "size_kb": 738.9
+    },
+    {
+      "name": "roof",
+      "frames": 33,
+      "size_kb": 525.4
+    },
+    {
+      "name": "room",
+      "frames": 51,
+      "size_kb": 971.71
+    },
+    {
+      "name": "roommate",
+      "frames": 52,
+      "size_kb": 991.95
+    },
+    {
+      "name": "rooster",
+      "frames": 40,
+      "size_kb": 742.1
+    },
+    {
+      "name": "rope",
+      "frames": 45,
+      "size_kb": 853.49
+    },
+    {
+      "name": "rose",
+      "frames": 25,
+      "size_kb": 464.11
+    },
+    {
+      "name": "rough",
+      "frames": 38,
+      "size_kb": 717.88
+    },
+    {
+      "name": "rubber",
+      "frames": 60,
+      "size_kb": 1113.33
+    },
+    {
+      "name": "rude",
+      "frames": 90,
+      "size_kb": 1685.9
+    },
+    {
+      "name": "ruin",
+      "frames": 37,
+      "size_kb": 701.27
+    },
+    {
+      "name": "rule",
+      "frames": 38,
+      "size_kb": 724.55
+    },
+    {
+      "name": "run",
+      "frames": 74,
+      "size_kb": 1377.35
+    },
+    {
+      "name": "rush",
+      "frames": 55,
+      "size_kb": 1044.52
+    },
+    {
+      "name": "russia",
+      "frames": 49,
+      "size_kb": 928.14
+    },
+    {
+      "name": "s",
+      "frames": 30,
+      "size_kb": 556.69
+    },
+    {
+      "name": "sad",
+      "frames": 28,
+      "size_kb": 522.8
+    },
+    {
+      "name": "safe",
+      "frames": 39,
+      "size_kb": 733.82
+    },
+    {
+      "name": "salad",
+      "frames": 68,
+      "size_kb": 1293.62
+    },
+    {
+      "name": "salary",
+      "frames": 38,
+      "size_kb": 724.48
+    },
+    {
+      "name": "salt",
+      "frames": 39,
+      "size_kb": 744.04
+    },
+    {
+      "name": "salute",
+      "frames": 40,
+      "size_kb": 742.31
+    },
+    {
+      "name": "same",
+      "frames": 29,
+      "size_kb": 548.27
+    },
+    {
+      "name": "sandwich",
+      "frames": 42,
+      "size_kb": 787.95
+    },
+    {
+      "name": "satisfy",
+      "frames": 28,
+      "size_kb": 533.96
+    },
+    {
+      "name": "saturday",
+      "frames": 61,
+      "size_kb": 1155.54
+    },
+    {
+      "name": "sauce",
+      "frames": 120,
+      "size_kb": 2249.1
+    },
+    {
+      "name": "sausage",
+      "frames": 32,
+      "size_kb": 610.21
+    },
+    {
+      "name": "save",
+      "frames": 39,
+      "size_kb": 733.82
+    },
+    {
+      "name": "saw",
+      "frames": 72,
+      "size_kb": 1372.72
+    },
+    {
+      "name": "say",
+      "frames": 56,
+      "size_kb": 1038.07
+    },
+    {
+      "name": "scan",
+      "frames": 53,
+      "size_kb": 998.21
+    },
+    {
+      "name": "scared",
+      "frames": 35,
+      "size_kb": 667.21
+    },
+    {
+      "name": "schedule",
+      "frames": 44,
+      "size_kb": 839.88
+    },
+    {
+      "name": "school",
+      "frames": 32,
+      "size_kb": 601.47
+    },
+    {
+      "name": "science",
+      "frames": 79,
+      "size_kb": 1506.3
+    },
+    {
+      "name": "scientist",
+      "frames": 66,
+      "size_kb": 1256.87
+    },
+    {
+      "name": "scissors",
+      "frames": 40,
+      "size_kb": 760.05
+    },
+    {
+      "name": "scold",
+      "frames": 40,
+      "size_kb": 742.13
+    },
+    {
+      "name": "score",
+      "frames": 40,
+      "size_kb": 758.24
+    },
+    {
+      "name": "scotland",
+      "frames": 45,
+      "size_kb": 834.9
+    },
+    {
+      "name": "scream",
+      "frames": 48,
+      "size_kb": 876.28
+    },
+    {
+      "name": "screwdriver",
+      "frames": 38,
+      "size_kb": 724.54
+    },
+    {
+      "name": "sculpture",
+      "frames": 57,
+      "size_kb": 1086.61
+    },
+    {
+      "name": "sea",
+      "frames": 57,
+      "size_kb": 1077.08
+    },
+    {
+      "name": "search",
+      "frames": 31,
+      "size_kb": 571.99
+    },
+    {
+      "name": "second",
+      "frames": 61,
+      "size_kb": 1137.65
+    },
+    {
+      "name": "secret",
+      "frames": 93,
+      "size_kb": 1700.27
+    },
+    {
+      "name": "secretary",
+      "frames": 35,
+      "size_kb": 666.86
+    },
+    {
+      "name": "see",
+      "frames": 123,
+      "size_kb": 2249.49
+    },
+    {
+      "name": "seem",
+      "frames": 51,
+      "size_kb": 945.84
+    },
+    {
+      "name": "seldom",
+      "frames": 92,
+      "size_kb": 1752.85
+    },
+    {
+      "name": "selfish",
+      "frames": 57,
+      "size_kb": 1084.8
+    },
+    {
+      "name": "sell",
+      "frames": 34,
+      "size_kb": 648.11
+    },
+    {
+      "name": "senate",
+      "frames": 38,
+      "size_kb": 699.44
+    },
+    {
+      "name": "send",
+      "frames": 81,
+      "size_kb": 1504.14
+    },
+    {
+      "name": "senior",
+      "frames": 44,
+      "size_kb": 838.56
+    },
+    {
+      "name": "sensitive",
+      "frames": 34,
+      "size_kb": 631.19
+    },
+    {
+      "name": "sentence",
+      "frames": 37,
+      "size_kb": 694.97
+    },
+    {
+      "name": "separate",
+      "frames": 49,
+      "size_kb": 934.19
+    },
+    {
+      "name": "september",
+      "frames": 62,
+      "size_kb": 1150.41
+    },
+    {
+      "name": "sequence",
+      "frames": 55,
+      "size_kb": 1048.36
+    },
+    {
+      "name": "serious",
+      "frames": 44,
+      "size_kb": 816.4
+    },
+    {
+      "name": "serve",
+      "frames": 38,
+      "size_kb": 721.09
+    },
+    {
+      "name": "service",
+      "frames": 38,
+      "size_kb": 721.09
+    },
+    {
+      "name": "settle",
+      "frames": 70,
+      "size_kb": 1334.58
+    },
+    {
+      "name": "seven",
+      "frames": 28,
+      "size_kb": 519.06
+    },
+    {
+      "name": "several",
+      "frames": 39,
+      "size_kb": 723.62
+    },
+    {
+      "name": "sew",
+      "frames": 79,
+      "size_kb": 1494.85
+    },
+    {
+      "name": "shame",
+      "frames": 27,
+      "size_kb": 497.23
+    },
+    {
+      "name": "shampoo",
+      "frames": 52,
+      "size_kb": 987.37
+    },
+    {
+      "name": "shape",
+      "frames": 57,
+      "size_kb": 1086.61
+    },
+    {
+      "name": "share",
+      "frames": 52,
+      "size_kb": 990.95
+    },
+    {
+      "name": "shave",
+      "frames": 28,
+      "size_kb": 515.12
+    },
+    {
+      "name": "she",
+      "frames": 77,
+      "size_kb": 1432.14
+    },
+    {
+      "name": "sheep",
+      "frames": 57,
+      "size_kb": 1087.07
+    },
+    {
+      "name": "shelf",
+      "frames": 49,
+      "size_kb": 933.49
+    },
+    {
+      "name": "shine",
+      "frames": 34,
+      "size_kb": 648.6
+    },
+    {
+      "name": "shirt",
+      "frames": 74,
+      "size_kb": 1392.78
+    },
+    {
+      "name": "shock",
+      "frames": 47,
+      "size_kb": 895.46
+    },
+    {
+      "name": "shoes",
+      "frames": 32,
+      "size_kb": 610.38
+    },
+    {
+      "name": "shoot",
+      "frames": 38,
+      "size_kb": 706.08
+    },
+    {
+      "name": "shop",
+      "frames": 66,
+      "size_kb": 1257.99
+    },
+    {
+      "name": "shopping",
+      "frames": 98,
+      "size_kb": 1819.5
+    },
+    {
+      "name": "short",
+      "frames": 44,
+      "size_kb": 836.45
+    },
+    {
+      "name": "should",
+      "frames": 45,
+      "size_kb": 835.1
+    },
+    {
+      "name": "shoulder",
+      "frames": 33,
+      "size_kb": 612.08
+    },
+    {
+      "name": "shout",
+      "frames": 97,
+      "size_kb": 1777.84
+    },
+    {
+      "name": "shovel",
+      "frames": 44,
+      "size_kb": 835.48
+    },
+    {
+      "name": "show",
+      "frames": 29,
+      "size_kb": 552.84
+    },
+    {
+      "name": "shower",
+      "frames": 34,
+      "size_kb": 630.34
+    },
+    {
+      "name": "shrimp",
+      "frames": 28,
+      "size_kb": 517.65
+    },
+    {
+      "name": "shy",
+      "frames": 40,
+      "size_kb": 727.05
+    },
+    {
+      "name": "sick",
+      "frames": 46,
+      "size_kb": 855.14
+    },
+    {
+      "name": "side",
+      "frames": 30,
+      "size_kb": 554.62
+    },
+    {
+      "name": "sign",
+      "frames": 49,
+      "size_kb": 934.37
+    },
+    {
+      "name": "sign_language",
+      "frames": 67,
+      "size_kb": 1276.91
+    },
+    {
+      "name": "silent",
+      "frames": 35,
+      "size_kb": 662.67
+    },
+    {
+      "name": "silly",
+      "frames": 54,
+      "size_kb": 1001.01
+    },
+    {
+      "name": "silver",
+      "frames": 31,
+      "size_kb": 570.81
+    },
+    {
+      "name": "similar",
+      "frames": 37,
+      "size_kb": 684.4
+    },
+    {
+      "name": "simple",
+      "frames": 40,
+      "size_kb": 749.55
+    },
+    {
+      "name": "sin",
+      "frames": 63,
+      "size_kb": 1197.42
+    },
+    {
+      "name": "since",
+      "frames": 41,
+      "size_kb": 776.27
+    },
+    {
+      "name": "sing",
+      "frames": 51,
+      "size_kb": 973.2
+    },
+    {
+      "name": "singer",
+      "frames": 49,
+      "size_kb": 928.35
+    },
+    {
+      "name": "single",
+      "frames": 47,
+      "size_kb": 871.32
+    },
+    {
+      "name": "siren",
+      "frames": 54,
+      "size_kb": 1018.49
+    },
+    {
+      "name": "sister",
+      "frames": 44,
+      "size_kb": 825.73
+    },
+    {
+      "name": "sit",
+      "frames": 29,
+      "size_kb": 549.72
+    },
+    {
+      "name": "situation",
+      "frames": 33,
+      "size_kb": 628.62
+    },
+    {
+      "name": "six",
+      "frames": 43,
+      "size_kb": 792.38
+    },
+    {
+      "name": "sixteen",
+      "frames": 33,
+      "size_kb": 612.27
+    },
+    {
+      "name": "size",
+      "frames": 44,
+      "size_kb": 835.8
+    },
+    {
+      "name": "skate",
+      "frames": 49,
+      "size_kb": 931.26
+    },
+    {
+      "name": "skeleton",
+      "frames": 33,
+      "size_kb": 620.65
+    },
+    {
+      "name": "sketch",
+      "frames": 54,
+      "size_kb": 1028.06
+    },
+    {
+      "name": "ski",
+      "frames": 103,
+      "size_kb": 1900.12
+    },
+    {
+      "name": "skill",
+      "frames": 26,
+      "size_kb": 486.29
+    },
+    {
+      "name": "skin",
+      "frames": 32,
+      "size_kb": 588.5
+    },
+    {
+      "name": "skinny",
+      "frames": 46,
+      "size_kb": 831.09
+    },
+    {
+      "name": "skip",
+      "frames": 39,
+      "size_kb": 740.97
+    },
+    {
+      "name": "skirt",
+      "frames": 98,
+      "size_kb": 1855.45
+    },
+    {
+      "name": "skunk",
+      "frames": 77,
+      "size_kb": 1407.47
+    },
+    {
+      "name": "sky",
+      "frames": 90,
+      "size_kb": 1670.98
+    },
+    {
+      "name": "slave",
+      "frames": 60,
+      "size_kb": 1144.64
+    },
+    {
+      "name": "sleep",
+      "frames": 97,
+      "size_kb": 1783.07
+    },
+    {
+      "name": "sleepy",
+      "frames": 43,
+      "size_kb": 792.41
+    },
+    {
+      "name": "slice",
+      "frames": 57,
+      "size_kb": 992.73
+    },
+    {
+      "name": "slip",
+      "frames": 33,
+      "size_kb": 623.6
+    },
+    {
+      "name": "slow",
+      "frames": 50,
+      "size_kb": 946.66
+    },
+    {
+      "name": "small",
+      "frames": 67,
+      "size_kb": 1264.99
+    },
+    {
+      "name": "smart",
+      "frames": 37,
+      "size_kb": 681.29
+    },
+    {
+      "name": "smell",
+      "frames": 85,
+      "size_kb": 1557.79
+    },
+    {
+      "name": "smile",
+      "frames": 62,
+      "size_kb": 1180.05
+    },
+    {
+      "name": "smoking",
+      "frames": 59,
+      "size_kb": 1037.06
+    },
+    {
+      "name": "smooth",
+      "frames": 74,
+      "size_kb": 1409.73
+    },
+    {
+      "name": "snack",
+      "frames": 28,
+      "size_kb": 515.58
+    },
+    {
+      "name": "snake",
+      "frames": 83,
+      "size_kb": 1517.97
+    },
+    {
+      "name": "sneeze",
+      "frames": 28,
+      "size_kb": 523.94
+    },
+    {
+      "name": "snob",
+      "frames": 27,
+      "size_kb": 497.37
+    },
+    {
+      "name": "snow",
+      "frames": 80,
+      "size_kb": 1431.38
+    },
+    {
+      "name": "snowman",
+      "frames": 76,
+      "size_kb": 1421.86
+    },
+    {
+      "name": "soap",
+      "frames": 35,
+      "size_kb": 659.65
+    },
+    {
+      "name": "soccer",
+      "frames": 40,
+      "size_kb": 754.27
+    },
+    {
+      "name": "society",
+      "frames": 39,
+      "size_kb": 743.33
+    },
+    {
+      "name": "socks",
+      "frames": 46,
+      "size_kb": 876.9
+    },
+    {
+      "name": "soda",
+      "frames": 76,
+      "size_kb": 1404.15
+    },
+    {
+      "name": "sofa",
+      "frames": 38,
+      "size_kb": 717.2
+    },
+    {
+      "name": "soft",
+      "frames": 66,
+      "size_kb": 1245.16
+    },
+    {
+      "name": "soldier",
+      "frames": 59,
+      "size_kb": 1123.98
+    },
+    {
+      "name": "solid",
+      "frames": 33,
+      "size_kb": 629.16
+    },
+    {
+      "name": "solve",
+      "frames": 36,
+      "size_kb": 682.27
+    },
+    {
+      "name": "some",
+      "frames": 51,
+      "size_kb": 970.79
+    },
+    {
+      "name": "someday",
+      "frames": 44,
+      "size_kb": 815.78
+    },
+    {
+      "name": "someone",
+      "frames": 51,
+      "size_kb": 946.09
+    },
+    {
+      "name": "something",
+      "frames": 51,
+      "size_kb": 946.09
+    },
+    {
+      "name": "sometimes",
+      "frames": 49,
+      "size_kb": 915.17
+    },
+    {
+      "name": "somewhere",
+      "frames": 70,
+      "size_kb": 1314.21
+    },
+    {
+      "name": "son",
+      "frames": 33,
+      "size_kb": 627.7
+    },
+    {
+      "name": "song",
+      "frames": 51,
+      "size_kb": 973.2
+    },
+    {
+      "name": "soon",
+      "frames": 44,
+      "size_kb": 836.45
+    },
+    {
+      "name": "sore_throat",
+      "frames": 97,
+      "size_kb": 1773.99
+    },
+    {
+      "name": "sorry",
+      "frames": 110,
+      "size_kb": 2019.03
+    },
+    {
+      "name": "soul",
+      "frames": 35,
+      "size_kb": 667.03
+    },
+    {
+      "name": "sound",
+      "frames": 68,
+      "size_kb": 1253.73
+    },
+    {
+      "name": "soup",
+      "frames": 50,
+      "size_kb": 953.57
+    },
+    {
+      "name": "sour",
+      "frames": 28,
+      "size_kb": 519.22
+    },
+    {
+      "name": "south",
+      "frames": 63,
+      "size_kb": 1149.78
+    },
+    {
+      "name": "south_america",
+      "frames": 74,
+      "size_kb": 1399.0
+    },
+    {
+      "name": "spain",
+      "frames": 62,
+      "size_kb": 1181.65
+    },
+    {
+      "name": "spanish",
+      "frames": 41,
+      "size_kb": 781.37
+    },
+    {
+      "name": "speak",
+      "frames": 88,
+      "size_kb": 1610.49
+    },
+    {
+      "name": "special",
+      "frames": 35,
+      "size_kb": 659.86
+    },
+    {
+      "name": "specific",
+      "frames": 42,
+      "size_kb": 800.96
+    },
+    {
+      "name": "speech",
+      "frames": 138,
+      "size_kb": 2569.36
+    },
+    {
+      "name": "speed",
+      "frames": 44,
+      "size_kb": 839.08
+    },
+    {
+      "name": "spell",
+      "frames": 30,
+      "size_kb": 552.98
+    },
+    {
+      "name": "spider",
+      "frames": 91,
+      "size_kb": 1701.05
+    },
+    {
+      "name": "spill",
+      "frames": 49,
+      "size_kb": 934.54
+    },
+    {
+      "name": "spin",
+      "frames": 29,
+      "size_kb": 553.3
+    },
+    {
+      "name": "spirit",
+      "frames": 35,
+      "size_kb": 667.03
+    },
+    {
+      "name": "spit",
+      "frames": 31,
+      "size_kb": 575.01
+    },
+    {
+      "name": "spoon",
+      "frames": 47,
+      "size_kb": 896.52
+    },
+    {
+      "name": "spray",
+      "frames": 35,
+      "size_kb": 648.71
+    },
+    {
+      "name": "spread",
+      "frames": 49,
+      "size_kb": 934.54
+    },
+    {
+      "name": "spring",
+      "frames": 55,
+      "size_kb": 1043.09
+    },
+    {
+      "name": "sprint",
+      "frames": 74,
+      "size_kb": 1377.35
+    },
+    {
+      "name": "square",
+      "frames": 73,
+      "size_kb": 1391.83
+    },
+    {
+      "name": "squeeze",
+      "frames": 39,
+      "size_kb": 733.03
+    },
+    {
+      "name": "squirrel",
+      "frames": 87,
+      "size_kb": 1632.25
+    },
+    {
+      "name": "stadium",
+      "frames": 45,
+      "size_kb": 840.92
+    },
+    {
+      "name": "staff",
+      "frames": 77,
+      "size_kb": 1410.34
+    },
+    {
+      "name": "stairs",
+      "frames": 70,
+      "size_kb": 1297.94
+    },
+    {
+      "name": "stamp",
+      "frames": 32,
+      "size_kb": 610.4
+    },
+    {
+      "name": "stand",
+      "frames": 43,
+      "size_kb": 813.83
+    },
+    {
+      "name": "standard",
+      "frames": 67,
+      "size_kb": 1273.16
+    },
+    {
+      "name": "star",
+      "frames": 128,
+      "size_kb": 2357.68
+    },
+    {
+      "name": "stare",
+      "frames": 45,
+      "size_kb": 834.61
+    },
+    {
+      "name": "start",
+      "frames": 38,
+      "size_kb": 724.64
+    },
+    {
+      "name": "statistics",
+      "frames": 53,
+      "size_kb": 1010.04
+    },
+    {
+      "name": "stay",
+      "frames": 21,
+      "size_kb": 400.53
+    },
+    {
+      "name": "steal",
+      "frames": 50,
+      "size_kb": 951.77
+    },
+    {
+      "name": "steel",
+      "frames": 91,
+      "size_kb": 1662.35
+    },
+    {
+      "name": "stepfather",
+      "frames": 71,
+      "size_kb": 1316.41
+    },
+    {
+      "name": "sticky",
+      "frames": 41,
+      "size_kb": 775.24
+    },
+    {
+      "name": "still",
+      "frames": 37,
+      "size_kb": 705.15
+    },
+    {
+      "name": "sting",
+      "frames": 39,
+      "size_kb": 733.05
+    },
+    {
+      "name": "stink",
+      "frames": 85,
+      "size_kb": 1557.79
+    },
+    {
+      "name": "stir",
+      "frames": 67,
+      "size_kb": 1276.82
+    },
+    {
+      "name": "stitch",
+      "frames": 47,
+      "size_kb": 895.06
+    },
+    {
+      "name": "stomach",
+      "frames": 71,
+      "size_kb": 1315.35
+    },
+    {
+      "name": "stop",
+      "frames": 23,
+      "size_kb": 436.13
+    },
+    {
+      "name": "store",
+      "frames": 36,
+      "size_kb": 628.55
+    },
+    {
+      "name": "story",
+      "frames": 57,
+      "size_kb": 1085.24
+    },
+    {
+      "name": "straight",
+      "frames": 59,
+      "size_kb": 1094.79
+    },
+    {
+      "name": "strange",
+      "frames": 91,
+      "size_kb": 1699.84
+    },
+    {
+      "name": "straw",
+      "frames": 44,
+      "size_kb": 839.36
+    },
+    {
+      "name": "strawberry",
+      "frames": 32,
+      "size_kb": 589.17
+    },
+    {
+      "name": "street",
+      "frames": 33,
+      "size_kb": 629.62
+    },
+    {
+      "name": "stress",
+      "frames": 48,
+      "size_kb": 913.55
+    },
+    {
+      "name": "stretch",
+      "frames": 43,
+      "size_kb": 819.18
+    },
+    {
+      "name": "strict",
+      "frames": 38,
+      "size_kb": 704.27
+    },
+    {
+      "name": "strong",
+      "frames": 31,
+      "size_kb": 590.45
+    },
+    {
+      "name": "structure",
+      "frames": 62,
+      "size_kb": 1181.82
+    },
+    {
+      "name": "struggle",
+      "frames": 70,
+      "size_kb": 1333.79
+    },
+    {
+      "name": "stubborn",
+      "frames": 44,
+      "size_kb": 809.12
+    },
+    {
+      "name": "stuck",
+      "frames": 31,
+      "size_kb": 574.53
+    },
+    {
+      "name": "student",
+      "frames": 55,
+      "size_kb": 1035.93
+    },
+    {
+      "name": "study",
+      "frames": 101,
+      "size_kb": 1926.06
+    },
+    {
+      "name": "stupid",
+      "frames": 27,
+      "size_kb": 497.3
+    },
+    {
+      "name": "subtract",
+      "frames": 30,
+      "size_kb": 570.96
+    },
+    {
+      "name": "subway",
+      "frames": 39,
+      "size_kb": 736.05
+    },
+    {
+      "name": "sue",
+      "frames": 44,
+      "size_kb": 823.46
+    },
+    {
+      "name": "suffer",
+      "frames": 50,
+      "size_kb": 927.5
+    },
+    {
+      "name": "sugar",
+      "frames": 31,
+      "size_kb": 572.19
+    },
+    {
+      "name": "suggest",
+      "frames": 43,
+      "size_kb": 820.41
+    },
+    {
+      "name": "summer",
+      "frames": 67,
+      "size_kb": 1222.81
+    },
+    {
+      "name": "summon",
+      "frames": 44,
+      "size_kb": 835.65
+    },
+    {
+      "name": "sun",
+      "frames": 50,
+      "size_kb": 928.06
+    },
+    {
+      "name": "sunday",
+      "frames": 45,
+      "size_kb": 857.94
+    },
+    {
+      "name": "sunrise",
+      "frames": 46,
+      "size_kb": 861.99
+    },
+    {
+      "name": "sunset",
+      "frames": 43,
+      "size_kb": 807.95
+    },
+    {
+      "name": "sunshine",
+      "frames": 32,
+      "size_kb": 593.44
+    },
+    {
+      "name": "superman",
+      "frames": 84,
+      "size_kb": 1536.24
+    },
+    {
+      "name": "support",
+      "frames": 53,
+      "size_kb": 994.09
+    },
+    {
+      "name": "suppose",
+      "frames": 35,
+      "size_kb": 649.2
+    },
+    {
+      "name": "sure",
+      "frames": 32,
+      "size_kb": 587.43
+    },
+    {
+      "name": "surface",
+      "frames": 53,
+      "size_kb": 1011.02
+    },
+    {
+      "name": "surgeon",
+      "frames": 57,
+      "size_kb": 1074.62
+    },
+    {
+      "name": "surgery",
+      "frames": 29,
+      "size_kb": 553.34
+    },
+    {
+      "name": "surprise",
+      "frames": 33,
+      "size_kb": 628.85
+    },
+    {
+      "name": "surrender",
+      "frames": 50,
+      "size_kb": 949.49
+    },
+    {
+      "name": "suspect",
+      "frames": 163,
+      "size_kb": 3022.55
+    },
+    {
+      "name": "suspend",
+      "frames": 44,
+      "size_kb": 838.68
+    },
+    {
+      "name": "swallow",
+      "frames": 32,
+      "size_kb": 595.25
+    },
+    {
+      "name": "sweater",
+      "frames": 55,
+      "size_kb": 1048.03
+    },
+    {
+      "name": "sweden",
+      "frames": 60,
+      "size_kb": 1134.45
+    },
+    {
+      "name": "sweep",
+      "frames": 36,
+      "size_kb": 683.59
+    },
+    {
+      "name": "sweet",
+      "frames": 29,
+      "size_kb": 538.07
+    },
+    {
+      "name": "sweetheart",
+      "frames": 59,
+      "size_kb": 1122.79
+    },
+    {
+      "name": "swim",
+      "frames": 78,
+      "size_kb": 1482.84
+    },
+    {
+      "name": "swimming",
+      "frames": 78,
+      "size_kb": 1482.84
+    },
+    {
+      "name": "swimsuit",
+      "frames": 101,
+      "size_kb": 1920.94
+    },
+    {
+      "name": "swing",
+      "frames": 53,
+      "size_kb": 1010.34
+    },
+    {
+      "name": "switzerland",
+      "frames": 41,
+      "size_kb": 757.24
+    },
+    {
+      "name": "symbol",
+      "frames": 39,
+      "size_kb": 731.14
+    },
+    {
+      "name": "sympathy",
+      "frames": 83,
+      "size_kb": 1581.43
+    },
+    {
+      "name": "t",
+      "frames": 30,
+      "size_kb": 556.83
+    },
+    {
+      "name": "table",
+      "frames": 40,
+      "size_kb": 762.84
+    },
+    {
+      "name": "take",
+      "frames": 29,
+      "size_kb": 553.19
+    },
+    {
+      "name": "take_turns",
+      "frames": 115,
+      "size_kb": 2115.1
+    },
+    {
+      "name": "take_up",
+      "frames": 36,
+      "size_kb": 685.18
+    },
+    {
+      "name": "tale",
+      "frames": 57,
+      "size_kb": 1085.24
+    },
+    {
+      "name": "talent",
+      "frames": 26,
+      "size_kb": 486.29
+    },
+    {
+      "name": "talk",
+      "frames": 44,
+      "size_kb": 816.36
+    },
+    {
+      "name": "tall",
+      "frames": 35,
+      "size_kb": 667.49
+    },
+    {
+      "name": "tan",
+      "frames": 96,
+      "size_kb": 1755.79
+    },
+    {
+      "name": "taste",
+      "frames": 32,
+      "size_kb": 593.57
+    },
+    {
+      "name": "tea",
+      "frames": 51,
+      "size_kb": 966.93
+    },
+    {
+      "name": "teach",
+      "frames": 44,
+      "size_kb": 838.04
+    },
+    {
+      "name": "teacher",
+      "frames": 56,
+      "size_kb": 1057.9
+    },
+    {
+      "name": "team",
+      "frames": 39,
+      "size_kb": 744.0
+    },
+    {
+      "name": "tease",
+      "frames": 63,
+      "size_kb": 1200.83
+    },
+    {
+      "name": "technology",
+      "frames": 96,
+      "size_kb": 1797.92
+    },
+    {
+      "name": "teeth",
+      "frames": 48,
+      "size_kb": 890.01
+    },
+    {
+      "name": "telephone",
+      "frames": 32,
+      "size_kb": 593.76
+    },
+    {
+      "name": "telescope",
+      "frames": 48,
+      "size_kb": 889.81
+    },
+    {
+      "name": "television",
+      "frames": 44,
+      "size_kb": 815.76
+    },
+    {
+      "name": "tell",
+      "frames": 56,
+      "size_kb": 1038.07
+    },
+    {
+      "name": "temperature",
+      "frames": 35,
+      "size_kb": 667.89
+    },
+    {
+      "name": "temple",
+      "frames": 40,
+      "size_kb": 762.89
+    },
+    {
+      "name": "tempt",
+      "frames": 32,
+      "size_kb": 609.88
+    },
+    {
+      "name": "ten",
+      "frames": 45,
+      "size_kb": 834.94
+    },
+    {
+      "name": "tend",
+      "frames": 41,
+      "size_kb": 781.09
+    },
+    {
+      "name": "tender",
+      "frames": 66,
+      "size_kb": 1245.16
+    },
+    {
+      "name": "tennis",
+      "frames": 95,
+      "size_kb": 1736.94
+    },
+    {
+      "name": "tent",
+      "frames": 56,
+      "size_kb": 1066.5
+    },
+    {
+      "name": "terrible",
+      "frames": 50,
+      "size_kb": 953.07
+    },
+    {
+      "name": "test",
+      "frames": 44,
+      "size_kb": 838.76
+    },
+    {
+      "name": "testify",
+      "frames": 41,
+      "size_kb": 781.5
+    },
+    {
+      "name": "texas",
+      "frames": 35,
+      "size_kb": 645.26
+    },
+    {
+      "name": "text",
+      "frames": 53,
+      "size_kb": 1010.88
+    },
+    {
+      "name": "thailand",
+      "frames": 29,
+      "size_kb": 537.98
+    },
+    {
+      "name": "than",
+      "frames": 78,
+      "size_kb": 1446.64
+    },
+    {
+      "name": "thank_you",
+      "frames": 82,
+      "size_kb": 1511.75
+    },
+    {
+      "name": "thankful",
+      "frames": 33,
+      "size_kb": 629.75
+    },
+    {
+      "name": "thanksgiving",
+      "frames": 58,
+      "size_kb": 1106.31
+    },
+    {
+      "name": "that",
+      "frames": 60,
+      "size_kb": 1104.39
+    },
+    {
+      "name": "theater",
+      "frames": 87,
+      "size_kb": 1658.2
+    },
+    {
+      "name": "their",
+      "frames": 80,
+      "size_kb": 1463.83
+    },
+    {
+      "name": "them",
+      "frames": 44,
+      "size_kb": 816.32
+    },
+    {
+      "name": "theme",
+      "frames": 34,
+      "size_kb": 647.84
+    },
+    {
+      "name": "themselves",
+      "frames": 40,
+      "size_kb": 763.34
+    },
+    {
+      "name": "then",
+      "frames": 41,
+      "size_kb": 782.17
+    },
+    {
+      "name": "theory",
+      "frames": 34,
+      "size_kb": 630.78
+    },
+    {
+      "name": "therapy",
+      "frames": 43,
+      "size_kb": 815.12
+    },
+    {
+      "name": "there",
+      "frames": 57,
+      "size_kb": 1076.73
+    },
+    {
+      "name": "therefore",
+      "frames": 76,
+      "size_kb": 1409.12
+    },
+    {
+      "name": "thermometer",
+      "frames": 35,
+      "size_kb": 667.89
+    },
+    {
+      "name": "they",
+      "frames": 67,
+      "size_kb": 1265.64
+    },
+    {
+      "name": "thick",
+      "frames": 34,
+      "size_kb": 625.42
+    },
+    {
+      "name": "thin",
+      "frames": 46,
+      "size_kb": 831.09
+    },
+    {
+      "name": "thing",
+      "frames": 32,
+      "size_kb": 608.68
+    },
+    {
+      "name": "think",
+      "frames": 33,
+      "size_kb": 611.92
+    },
+    {
+      "name": "third",
+      "frames": 24,
+      "size_kb": 445.49
+    },
+    {
+      "name": "thirsty",
+      "frames": 68,
+      "size_kb": 1260.97
+    },
+    {
+      "name": "this",
+      "frames": 19,
+      "size_kb": 352.49
+    },
+    {
+      "name": "thousand",
+      "frames": 28,
+      "size_kb": 528.97
+    },
+    {
+      "name": "three",
+      "frames": 28,
+      "size_kb": 519.36
+    },
+    {
+      "name": "thrill",
+      "frames": 31,
+      "size_kb": 589.89
+    },
+    {
+      "name": "throat",
+      "frames": 43,
+      "size_kb": 789.5
+    },
+    {
+      "name": "through",
+      "frames": 41,
+      "size_kb": 764.66
+    },
+    {
+      "name": "throw",
+      "frames": 47,
+      "size_kb": 867.97
+    },
+    {
+      "name": "thursday",
+      "frames": 58,
+      "size_kb": 1096.26
+    },
+    {
+      "name": "ticket",
+      "frames": 43,
+      "size_kb": 819.43
+    },
+    {
+      "name": "tie",
+      "frames": 42,
+      "size_kb": 800.71
+    },
+    {
+      "name": "tiger",
+      "frames": 84,
+      "size_kb": 1581.08
+    },
+    {
+      "name": "time",
+      "frames": 28,
+      "size_kb": 533.81
+    },
+    {
+      "name": "tiptoe",
+      "frames": 73,
+      "size_kb": 1392.23
+    },
+    {
+      "name": "tired",
+      "frames": 86,
+      "size_kb": 1603.09
+    },
+    {
+      "name": "tissue",
+      "frames": 134,
+      "size_kb": 2464.02
+    },
+    {
+      "name": "title",
+      "frames": 34,
+      "size_kb": 647.84
+    },
+    {
+      "name": "to",
+      "frames": 31,
+      "size_kb": 591.5
+    },
+    {
+      "name": "toast",
+      "frames": 51,
+      "size_kb": 972.09
+    },
+    {
+      "name": "tobacco",
+      "frames": 195,
+      "size_kb": 3600.97
+    },
+    {
+      "name": "today",
+      "frames": 41,
+      "size_kb": 782.08
+    },
+    {
+      "name": "together",
+      "frames": 46,
+      "size_kb": 876.29
+    },
+    {
+      "name": "toilet",
+      "frames": 59,
+      "size_kb": 1094.57
+    },
+    {
+      "name": "toilet_paper",
+      "frames": 81,
+      "size_kb": 1499.7
+    },
+    {
+      "name": "tolerate",
+      "frames": 112,
+      "size_kb": 2060.85
+    },
+    {
+      "name": "tomato",
+      "frames": 68,
+      "size_kb": 1266.8
+    },
+    {
+      "name": "tomorrow",
+      "frames": 58,
+      "size_kb": 1068.0
+    },
+    {
+      "name": "tongue",
+      "frames": 40,
+      "size_kb": 741.04
+    },
+    {
+      "name": "tonight",
+      "frames": 76,
+      "size_kb": 1425.24
+    },
+    {
+      "name": "tooth",
+      "frames": 35,
+      "size_kb": 646.79
+    },
+    {
+      "name": "toothbrush",
+      "frames": 41,
+      "size_kb": 760.7
+    },
+    {
+      "name": "top",
+      "frames": 47,
+      "size_kb": 894.68
+    },
+    {
+      "name": "topic",
+      "frames": 34,
+      "size_kb": 647.84
+    },
+    {
+      "name": "tornado",
+      "frames": 38,
+      "size_kb": 724.67
+    },
+    {
+      "name": "torture",
+      "frames": 49,
+      "size_kb": 922.24
+    },
+    {
+      "name": "total",
+      "frames": 27,
+      "size_kb": 514.31
+    },
+    {
+      "name": "touch",
+      "frames": 38,
+      "size_kb": 724.26
+    },
+    {
+      "name": "tough",
+      "frames": 44,
+      "size_kb": 837.43
+    },
+    {
+      "name": "tournament",
+      "frames": 48,
+      "size_kb": 900.01
+    },
+    {
+      "name": "towel",
+      "frames": 53,
+      "size_kb": 1010.15
+    },
+    {
+      "name": "tower",
+      "frames": 34,
+      "size_kb": 646.32
+    },
+    {
+      "name": "town",
+      "frames": 45,
+      "size_kb": 857.84
+    },
+    {
+      "name": "trade",
+      "frames": 55,
+      "size_kb": 1048.87
+    },
+    {
+      "name": "tradition",
+      "frames": 36,
+      "size_kb": 686.22
+    },
+    {
+      "name": "traffic",
+      "frames": 42,
+      "size_kb": 787.76
+    },
+    {
+      "name": "train",
+      "frames": 30,
+      "size_kb": 572.29
+    },
+    {
+      "name": "tranquil",
+      "frames": 70,
+      "size_kb": 1334.58
+    },
+    {
+      "name": "transfer",
+      "frames": 44,
+      "size_kb": 817.25
+    },
+    {
+      "name": "transform",
+      "frames": 43,
+      "size_kb": 814.96
+    },
+    {
+      "name": "translate",
+      "frames": 33,
+      "size_kb": 624.02
+    },
+    {
+      "name": "travel",
+      "frames": 54,
+      "size_kb": 1003.94
+    },
+    {
+      "name": "tree",
+      "frames": 37,
+      "size_kb": 705.55
+    },
+    {
+      "name": "triangle",
+      "frames": 73,
+      "size_kb": 1390.4
+    },
+    {
+      "name": "trip",
+      "frames": 54,
+      "size_kb": 1003.94
+    },
+    {
+      "name": "trophy",
+      "frames": 41,
+      "size_kb": 759.39
+    },
+    {
+      "name": "trouble",
+      "frames": 56,
+      "size_kb": 1049.39
+    },
+    {
+      "name": "truck",
+      "frames": 69,
+      "size_kb": 1289.75
+    },
+    {
+      "name": "true",
+      "frames": 62,
+      "size_kb": 1131.17
+    },
+    {
+      "name": "trust",
+      "frames": 35,
+      "size_kb": 654.95
+    },
+    {
+      "name": "truth",
+      "frames": 44,
+      "size_kb": 839.4
+    },
+    {
+      "name": "try",
+      "frames": 32,
+      "size_kb": 610.05
+    },
+    {
+      "name": "tuesday",
+      "frames": 56,
+      "size_kb": 1062.81
+    },
+    {
+      "name": "turkey",
+      "frames": 55,
+      "size_kb": 1016.25
+    },
+    {
+      "name": "turn",
+      "frames": 62,
+      "size_kb": 1150.04
+    },
+    {
+      "name": "turtle",
+      "frames": 49,
+      "size_kb": 921.36
+    },
+    {
+      "name": "tutor",
+      "frames": 49,
+      "size_kb": 933.35
+    },
+    {
+      "name": "tv",
+      "frames": 82,
+      "size_kb": 1483.29
+    },
+    {
+      "name": "twin",
+      "frames": 46,
+      "size_kb": 853.01
+    },
+    {
+      "name": "two",
+      "frames": 28,
+      "size_kb": 519.48
+    },
+    {
+      "name": "type",
+      "frames": 66,
+      "size_kb": 1257.75
+    },
+    {
+      "name": "u",
+      "frames": 30,
+      "size_kb": 556.69
+    },
+    {
+      "name": "ugly",
+      "frames": 68,
+      "size_kb": 1265.05
+    },
+    {
+      "name": "umbrella",
+      "frames": 44,
+      "size_kb": 838.67
+    },
+    {
+      "name": "uncle",
+      "frames": 30,
+      "size_kb": 552.86
+    },
+    {
+      "name": "under",
+      "frames": 43,
+      "size_kb": 816.8
+    },
+    {
+      "name": "understand",
+      "frames": 48,
+      "size_kb": 890.51
+    },
+    {
+      "name": "underwear",
+      "frames": 74,
+      "size_kb": 1392.45
+    },
+    {
+      "name": "unique",
+      "frames": 35,
+      "size_kb": 659.86
+    },
+    {
+      "name": "united_states",
+      "frames": 58,
+      "size_kb": 1075.23
+    },
+    {
+      "name": "university",
+      "frames": 42,
+      "size_kb": 799.87
+    },
+    {
+      "name": "until",
+      "frames": 31,
+      "size_kb": 591.5
+    },
+    {
+      "name": "up",
+      "frames": 41,
+      "size_kb": 760.39
+    },
+    {
+      "name": "upset",
+      "frames": 51,
+      "size_kb": 947.09
+    },
+    {
+      "name": "upstairs",
+      "frames": 39,
+      "size_kb": 718.05
+    },
+    {
+      "name": "use",
+      "frames": 42,
+      "size_kb": 801.11
+    },
+    {
+      "name": "v",
+      "frames": 30,
+      "size_kb": 556.68
+    },
+    {
+      "name": "vacant",
+      "frames": 28,
+      "size_kb": 533.5
+    },
+    {
+      "name": "vacation",
+      "frames": 39,
+      "size_kb": 743.29
+    },
+    {
+      "name": "vague",
+      "frames": 63,
+      "size_kb": 1180.36
+    },
+    {
+      "name": "valley",
+      "frames": 79,
+      "size_kb": 1460.7
+    },
+    {
+      "name": "value",
+      "frames": 38,
+      "size_kb": 717.03
+    },
+    {
+      "name": "vampire",
+      "frames": 29,
+      "size_kb": 553.59
+    },
+    {
+      "name": "vegetable",
+      "frames": 48,
+      "size_kb": 890.59
+    },
+    {
+      "name": "verb",
+      "frames": 30,
+      "size_kb": 554.11
+    },
+    {
+      "name": "very",
+      "frames": 39,
+      "size_kb": 743.59
+    },
+    {
+      "name": "vice_president",
+      "frames": 40,
+      "size_kb": 739.25
+    },
+    {
+      "name": "viewpoint",
+      "frames": 40,
+      "size_kb": 763.32
+    },
+    {
+      "name": "violin",
+      "frames": 98,
+      "size_kb": 1866.26
+    },
+    {
+      "name": "visit",
+      "frames": 62,
+      "size_kb": 1181.7
+    },
+    {
+      "name": "visitor",
+      "frames": 71,
+      "size_kb": 1349.88
+    },
+    {
+      "name": "visualize",
+      "frames": 127,
+      "size_kb": 2358.76
+    },
+    {
+      "name": "vlog",
+      "frames": 35,
+      "size_kb": 667.01
+    },
+    {
+      "name": "vocabulary",
+      "frames": 37,
+      "size_kb": 705.8
+    },
+    {
+      "name": "voice",
+      "frames": 33,
+      "size_kb": 608.33
+    },
+    {
+      "name": "volleyball",
+      "frames": 37,
+      "size_kb": 705.09
+    },
+    {
+      "name": "volunteer",
+      "frames": 37,
+      "size_kb": 680.67
+    },
+    {
+      "name": "vomit",
+      "frames": 29,
+      "size_kb": 553.33
+    },
+    {
+      "name": "vote",
+      "frames": 35,
+      "size_kb": 663.01
+    },
+    {
+      "name": "w",
+      "frames": 30,
+      "size_kb": 556.88
+    },
+    {
+      "name": "wait",
+      "frames": 46,
+      "size_kb": 868.7
+    },
+    {
+      "name": "waiter",
+      "frames": 56,
+      "size_kb": 1060.14
+    },
+    {
+      "name": "wake_up",
+      "frames": 41,
+      "size_kb": 769.87
+    },
+    {
+      "name": "walk",
+      "frames": 41,
+      "size_kb": 781.61
+    },
+    {
+      "name": "wall",
+      "frames": 44,
+      "size_kb": 838.55
+    },
+    {
+      "name": "wallet",
+      "frames": 40,
+      "size_kb": 763.07
+    },
+    {
+      "name": "wander",
+      "frames": 70,
+      "size_kb": 1298.04
+    },
+    {
+      "name": "want",
+      "frames": 38,
+      "size_kb": 725.08
+    },
+    {
+      "name": "war",
+      "frames": 66,
+      "size_kb": 1257.74
+    },
+    {
+      "name": "warm",
+      "frames": 38,
+      "size_kb": 699.2
+    },
+    {
+      "name": "warn",
+      "frames": 24,
+      "size_kb": 458.02
+    },
+    {
+      "name": "wash",
+      "frames": 65,
+      "size_kb": 1222.72
+    },
+    {
+      "name": "wash_face",
+      "frames": 47,
+      "size_kb": 875.93
+    },
+    {
+      "name": "washington",
+      "frames": 44,
+      "size_kb": 812.07
+    },
+    {
+      "name": "waste",
+      "frames": 38,
+      "size_kb": 717.35
+    },
+    {
+      "name": "watch",
+      "frames": 46,
+      "size_kb": 872.44
+    },
+    {
+      "name": "water",
+      "frames": 68,
+      "size_kb": 1261.03
+    },
+    {
+      "name": "waterfall",
+      "frames": 50,
+      "size_kb": 942.62
+    },
+    {
+      "name": "watermelon",
+      "frames": 60,
+      "size_kb": 1127.53
+    },
+    {
+      "name": "way",
+      "frames": 33,
+      "size_kb": 629.62
+    },
+    {
+      "name": "we",
+      "frames": 48,
+      "size_kb": 905.9
+    },
+    {
+      "name": "weak",
+      "frames": 42,
+      "size_kb": 800.4
+    },
+    {
+      "name": "wear",
+      "frames": 51,
+      "size_kb": 971.71
+    },
+    {
+      "name": "weather",
+      "frames": 120,
+      "size_kb": 2263.14
+    },
+    {
+      "name": "wedding",
+      "frames": 50,
+      "size_kb": 952.68
+    },
+    {
+      "name": "wednesday",
+      "frames": 60,
+      "size_kb": 1137.26
+    },
+    {
+      "name": "week",
+      "frames": 51,
+      "size_kb": 966.18
+    },
+    {
+      "name": "weekend",
+      "frames": 61,
+      "size_kb": 1145.83
+    },
+    {
+      "name": "weekly",
+      "frames": 58,
+      "size_kb": 1092.74
+    },
+    {
+      "name": "weigh",
+      "frames": 50,
+      "size_kb": 952.77
+    },
+    {
+      "name": "weight",
+      "frames": 50,
+      "size_kb": 952.77
+    },
+    {
+      "name": "weird",
+      "frames": 45,
+      "size_kb": 811.75
+    },
+    {
+      "name": "welcome",
+      "frames": 49,
+      "size_kb": 909.41
+    },
+    {
+      "name": "west",
+      "frames": 42,
+      "size_kb": 772.53
+    },
+    {
+      "name": "wet",
+      "frames": 45,
+      "size_kb": 856.4
+    },
+    {
+      "name": "whale",
+      "frames": 92,
+      "size_kb": 1705.84
+    },
+    {
+      "name": "what",
+      "frames": 52,
+      "size_kb": 991.33
+    },
+    {
+      "name": "whatever",
+      "frames": 54,
+      "size_kb": 1029.34
+    },
+    {
+      "name": "wheelchair",
+      "frames": 58,
+      "size_kb": 1102.75
+    },
+    {
+      "name": "when",
+      "frames": 52,
+      "size_kb": 990.87
+    },
+    {
+      "name": "where",
+      "frames": 46,
+      "size_kb": 853.49
+    },
+    {
+      "name": "which",
+      "frames": 62,
+      "size_kb": 1182.51
+    },
+    {
+      "name": "while",
+      "frames": 55,
+      "size_kb": 1038.97
+    },
+    {
+      "name": "whistle",
+      "frames": 89,
+      "size_kb": 1629.54
+    },
+    {
+      "name": "white",
+      "frames": 23,
+      "size_kb": 426.46
+    },
+    {
+      "name": "who",
+      "frames": 40,
+      "size_kb": 737.62
+    },
+    {
+      "name": "why",
+      "frames": 26,
+      "size_kb": 482.21
+    },
+    {
+      "name": "wide",
+      "frames": 54,
+      "size_kb": 1024.27
+    },
+    {
+      "name": "wife",
+      "frames": 49,
+      "size_kb": 923.36
+    },
+    {
+      "name": "will",
+      "frames": 24,
+      "size_kb": 445.44
+    },
+    {
+      "name": "willing",
+      "frames": 46,
+      "size_kb": 853.62
+    },
+    {
+      "name": "win",
+      "frames": 30,
+      "size_kb": 571.38
+    },
+    {
+      "name": "wind",
+      "frames": 70,
+      "size_kb": 1330.64
+    },
+    {
+      "name": "window",
+      "frames": 62,
+      "size_kb": 1181.13
+    },
+    {
+      "name": "wine",
+      "frames": 65,
+      "size_kb": 1198.25
+    },
+    {
+      "name": "winter",
+      "frames": 54,
+      "size_kb": 1028.8
+    },
+    {
+      "name": "wish",
+      "frames": 35,
+      "size_kb": 648.96
+    },
+    {
+      "name": "with",
+      "frames": 52,
+      "size_kb": 991.15
+    },
+    {
+      "name": "within",
+      "frames": 57,
+      "size_kb": 1085.63
+    },
+    {
+      "name": "without",
+      "frames": 50,
+      "size_kb": 953.03
+    },
+    {
+      "name": "witness",
+      "frames": 54,
+      "size_kb": 1020.99
+    },
+    {
+      "name": "wolf",
+      "frames": 94,
+      "size_kb": 1714.19
+    },
+    {
+      "name": "woman",
+      "frames": 32,
+      "size_kb": 589.03
+    },
+    {
+      "name": "wonder",
+      "frames": 34,
+      "size_kb": 626.43
+    },
+    {
+      "name": "wonderful",
+      "frames": 51,
+      "size_kb": 972.27
+    },
+    {
+      "name": "wood",
+      "frames": 48,
+      "size_kb": 909.61
+    },
+    {
+      "name": "word",
+      "frames": 37,
+      "size_kb": 705.8
+    },
+    {
+      "name": "work",
+      "frames": 39,
+      "size_kb": 743.63
+    },
+    {
+      "name": "worker",
+      "frames": 37,
+      "size_kb": 697.94
+    },
+    {
+      "name": "workshop",
+      "frames": 48,
+      "size_kb": 915.56
+    },
+    {
+      "name": "world",
+      "frames": 59,
+      "size_kb": 1120.12
+    },
+    {
+      "name": "worm",
+      "frames": 54,
+      "size_kb": 1018.79
+    },
+    {
+      "name": "worry",
+      "frames": 61,
+      "size_kb": 1139.47
+    },
+    {
+      "name": "worse",
+      "frames": 46,
+      "size_kb": 870.79
+    },
+    {
+      "name": "worthless",
+      "frames": 47,
+      "size_kb": 892.01
+    },
+    {
+      "name": "wow",
+      "frames": 61,
+      "size_kb": 1132.73
+    },
+    {
+      "name": "wrap",
+      "frames": 63,
+      "size_kb": 1197.22
+    },
+    {
+      "name": "wrench",
+      "frames": 41,
+      "size_kb": 768.17
+    },
+    {
+      "name": "wristwatch",
+      "frames": 46,
+      "size_kb": 872.44
+    },
+    {
+      "name": "write",
+      "frames": 37,
+      "size_kb": 699.94
+    },
+    {
+      "name": "wrong",
+      "frames": 35,
+      "size_kb": 649.38
+    },
+    {
+      "name": "year",
+      "frames": 27,
+      "size_kb": 515.02
+    },
+    {
+      "name": "yellow",
+      "frames": 45,
+      "size_kb": 834.84
+    },
+    {
+      "name": "yes",
+      "frames": 53,
+      "size_kb": 986.58
+    },
+    {
+      "name": "yesterday",
+      "frames": 55,
+      "size_kb": 1011.52
+    },
+    {
+      "name": "you",
+      "frames": 51,
+      "size_kb": 946.26
+    },
+    {
+      "name": "young",
+      "frames": 48,
+      "size_kb": 913.9
+    },
+    {
+      "name": "your",
+      "frames": 86,
+      "size_kb": 1572.74
+    },
+    {
+      "name": "yourself",
+      "frames": 44,
+      "size_kb": 808.63
+    },
+    {
+      "name": "zero",
+      "frames": 28,
+      "size_kb": 519.6
+    }
+  ],
+  "errors": [],
+  "timestamp": "2026-02-07T11:48:44.190142",
+  "format": "kalidokit-compatible",
+  "landmarks_per_frame": 543
+}

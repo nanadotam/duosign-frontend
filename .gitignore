@@ -50,8 +50,6 @@ research paper.md
 duosign_algo/pose_extraction/poses_kalidokit
 public/poses_kalidokit
 public/lexicon/ase/old
-public/lexicon/ase/
-public/lexicon/
 
 
 duosign_algo/wlasl-processed
@@ -69,4 +67,4 @@ from-github/kalidokit
 duosign_algo/selected_poses/
 
 old-commit/
-public/lexicon/ase/
+
