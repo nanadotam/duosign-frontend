@@ -52,7 +52,7 @@ public/poses_kalidokit
 public/lexicon/ase/old
 
 
-duosign_algo/wlasl-processed
+
 duosign_algo/wlasl-processed/videos
 
 duosign_algo/pose_processing/poses_v3/
@@ -68,3 +68,13 @@ duosign_algo/selected_poses/
 
 old-commit/
 
+duosign_algo/wlasl-processed/poses
+duosign_algo/wlasl-processed/Excalidraw-duosign-extract-pose-pipeline.png
+duosign_algo/wlasl-processed/missing.txt
+duosign_algo/wlasl-processed/nslt_100.json
+duosign_algo/wlasl-processed/nslt_300.json
+duosign_algo/wlasl-processed/nslt_1000.json
+duosign_algo/wlasl-processed/nslt_2000.json
+duosign_algo/wlasl-processed/README.md
+duosign_algo/wlasl-processed/wlasl_class_list.txt
+duosign_algo/wlasl-processed/wlasl_pose_extractor.py
